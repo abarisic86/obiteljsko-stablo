@@ -58,32 +58,15 @@ function GenerationColumn({ nodes, onPersonClick, zoomLevel, onCardPositionUpdat
     <div className="flex flex-col items-center gap-4 px-2">
       {nodes.map((node) => (
         <div key={node.id} className="flex flex-col items-center gap-2">
-          {/* Family unit: person + spouse */}
-          <div className="flex items-center gap-2">
-            <PersonCard
-              ref={(el) => {
-                if (el) cardRefs.current.set(node.id, el)
-                else cardRefs.current.delete(node.id)
-              }}
-              person={node}
-              onClick={() => onPersonClick(node)}
-              zoomLevel={zoomLevel}
-            />
-            {node.spouse && (
-              <>
-                <div className="text-gray-400 text-xs">+</div>
-                <PersonCard
-                  ref={(el) => {
-                    if (el && node.spouse) cardRefs.current.set(node.spouse.id, el)
-                    else if (node.spouse) cardRefs.current.delete(node.spouse.id)
-                  }}
-                  person={node.spouse}
-                  onClick={() => onPersonClick(node.spouse!)}
-                  zoomLevel={zoomLevel}
-                />
-              </>
-            )}
-          </div>
+          <PersonCard
+            ref={(el) => {
+              if (el) cardRefs.current.set(node.id, el)
+              else cardRefs.current.delete(node.id)
+            }}
+            person={node}
+            onClick={() => onPersonClick(node)}
+            zoomLevel={zoomLevel}
+          />
         </div>
       ))}
     </div>

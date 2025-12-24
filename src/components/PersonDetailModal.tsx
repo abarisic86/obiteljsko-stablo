@@ -79,27 +79,81 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
           {/* Spouse */}
           {spouse && (
             <div>
-              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-1">
+              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">
                 Supružnik
               </h3>
-              <div className="space-y-2">
-                <p className="text-gray-800">{spouse.name}</p>
+              <div className="space-y-3">
+                {/* Spouse Photo */}
+                {spouse.photoUrl && (
+                  <div className="w-24 h-24 mx-auto rounded-full overflow-hidden bg-gray-200">
+                    <img
+                      src={spouse.photoUrl}
+                      alt={spouse.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement
+                        target.style.display = 'none'
+                        const parent = target.parentElement
+                        if (parent && !parent.querySelector('.initials')) {
+                          const initials = spouse.name
+                            .split(' ')
+                            .map((n) => n[0])
+                            .join('')
+                            .toUpperCase()
+                            .slice(0, 2)
+                          const initialsDiv = document.createElement('div')
+                          initialsDiv.className = 'initials flex items-center justify-center w-full h-full text-gray-600 font-bold text-2xl'
+                          initialsDiv.textContent = initials
+                          parent.appendChild(initialsDiv)
+                        }
+                      }}
+                    />
+                  </div>
+                )}
+                
+                {/* Spouse Name */}
+                <p className="text-lg font-semibold text-gray-800 text-center">{spouse.name}</p>
+                
                 {!isSpouseInTree && (
-                  <p className="text-xs text-gray-500 italic">
+                  <p className="text-xs text-gray-500 italic text-center">
                     (Nije direktno u obiteljskom stablu)
                   </p>
                 )}
+                
+                {/* Spouse Birthdate */}
                 {spouse.birthdate && (
-                  <p className="text-sm text-gray-600">
-                    {new Date(spouse.birthdate).toLocaleDateString('hr-HR', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </p>
+                  <div>
+                    <h4 className="text-xs font-semibold text-gray-500 uppercase mb-1">
+                      Datum rođenja
+                    </h4>
+                    <p className="text-sm text-gray-700">
+                      {new Date(spouse.birthdate).toLocaleDateString('hr-HR', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </p>
+                  </div>
                 )}
+                
+                {/* Spouse Location */}
                 {spouse.location && (
-                  <p className="text-sm text-gray-600">{spouse.location}</p>
+                  <div>
+                    <h4 className="text-xs font-semibold text-gray-500 uppercase mb-1">
+                      Lokacija
+                    </h4>
+                    <p className="text-sm text-gray-700">{spouse.location}</p>
+                  </div>
+                )}
+                
+                {/* Spouse Contact */}
+                {spouse.contact && (
+                  <div>
+                    <h4 className="text-xs font-semibold text-gray-500 uppercase mb-1">
+                      Kontakt
+                    </h4>
+                    <p className="text-sm text-gray-700 break-all">{spouse.contact}</p>
+                  </div>
                 )}
               </div>
             </div>
