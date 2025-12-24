@@ -260,7 +260,7 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
               <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">
                 Supružnik
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-3 border border-gray-300 rounded-lg p-4 bg-gray-50">
                 {/* Spouse Photo */}
                 {spouse.photoUrl && (
                   <div className="w-24 h-24 mx-auto rounded-full overflow-hidden bg-gray-200">
@@ -295,12 +295,6 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
                   {spouse.deceasedDate && <span className="ml-1 text-gray-500">✝</span>}
                   {spouseBirthdaySoon && !spouse.deceasedDate && <span className="ml-1" title="Birthday soon!">🎂</span>}
                 </p>
-                
-                {!isSpouseInTree && (
-                  <p className="text-xs text-gray-500 italic text-center">
-                    (Nije direktno u obiteljskom stablu)
-                  </p>
-                )}
                 
                 {/* Spouse Birthdate */}
                 {spouse.birthdate && (

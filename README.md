@@ -141,10 +141,25 @@ Ako želiš automatski deploy svaki put kad pushaš na `main` branch, postavi Gi
 1. **Prvo deployaj jednom preko Vercel dashboarda** (korak 3 gore) - ovo će kreirati Vercel projekt
 
 2. **Dohvati Vercel credentials**:
+   
+   **VERCEL_TOKEN:**
    - Idi na [vercel.com/account/tokens](https://vercel.com/account/tokens)
-   - Kreiraj novi token i kopiraj ga
-   - Idi na svoj projekt na Vercel dashboardu
-   - U Settings → General, kopiraj **Org ID** i **Project ID**
+   - Klikni "Create Token"
+   - Daj mu ime (npr. "GitHub Actions")
+   - Kopiraj token (prikazuje se samo jednom!)
+   
+   **VERCEL_ORG_ID i VERCEL_PROJECT_ID:**
+   - Idi na [vercel.com/dashboard](https://vercel.com/dashboard)
+   - Klikni na svoj projekt
+   - Idi na **Settings** tab (lijevo u meniju)
+   - U **General** sekciji, scrollaj dolje
+   - Nađi **"Organization ID"** - to je tvoj `VERCEL_ORG_ID`
+   - Nađi **"Project ID"** - to je tvoj `VERCEL_PROJECT_ID`
+   
+   **Alternativno - preko API:**
+   - Ako ne vidiš ID-ove u Settings, možeš ih dobiti preko Vercel API:
+   - `VERCEL_ORG_ID`: Idi na [vercel.com/account](https://vercel.com/account) → "General" → "Team ID" (ako si solo, to je tvoj User ID)
+   - `VERCEL_PROJECT_ID`: U URL-u projekta na Vercel dashboardu, ili u Settings → General
 
 3. **Dodaj GitHub Secrets**:
    - Idi na GitHub repo → Settings → Secrets and variables → Actions
