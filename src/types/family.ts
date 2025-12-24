@@ -5,8 +5,8 @@ export interface Person {
   photoUrl: string;
   parentId: string | null;
   spouseId: string | null;
-  location: string;
-  contact: string;
+  streetAddress: string;
+  phoneNumber: string;
   generation: number;
 }
 

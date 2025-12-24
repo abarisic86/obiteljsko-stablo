@@ -8,8 +8,8 @@ export interface SheetRow {
   photo_url: string
   parent_id: string
   spouse_id: string
-  location: string
-  contact: string
+  street_address: string
+  phone_number: string
   generation: string
 }
 
@@ -38,22 +38,22 @@ export function parseSheetData(csvText: string): Person[] {
         return null
       }
 
-      // Handle misaligned fields due to commas in location field
+      // Handle misaligned fields due to commas in street_address field
       // If generation is missing but __parsed_extra exists, reconstruct fields
-      let location = row.location?.trim() || ''
-      let contact = row.contact?.trim() || ''
+      let streetAddress = row.street_address?.trim() || ''
+      let phoneNumber = row.phone_number?.trim() || ''
       let generation = row.generation?.trim() || ''
       
-      // If generation is empty but we have __parsed_extra, the location field was split
+      // If generation is empty but we have __parsed_extra, the street_address field was split
       if (!generation && row.__parsed_extra && Array.isArray(row.__parsed_extra)) {
-        // Reconstruct: location was split, contact got location part, generation is in __parsed_extra
+        // Reconstruct: street_address was split, phone_number got street_address part, generation is in __parsed_extra
         if (row.__parsed_extra.length > 0) {
           generation = row.__parsed_extra[0]?.trim() || ''
         }
-        // If contact looks like it contains location info (starts with space or comma), merge it
-        if (contact && (contact.startsWith(' ') || contact.startsWith(','))) {
-          location = location + contact
-          contact = row.__parsed_extra[1]?.trim() || ''
+        // If phone_number looks like it contains address info (starts with space or comma), merge it
+        if (phoneNumber && (phoneNumber.startsWith(' ') || phoneNumber.startsWith(','))) {
+          streetAddress = streetAddress + phoneNumber
+          phoneNumber = row.__parsed_extra[1]?.trim() || ''
         }
       }
 
@@ -68,8 +68,8 @@ export function parseSheetData(csvText: string): Person[] {
           photoUrl: row.photo_url?.trim() || '',
           parentId: parentId && parentId.length > 0 ? parentId : null,
           spouseId: spouseId && spouseId.length > 0 ? spouseId : null,
-          location: location,
-          contact: contact,
+          streetAddress: streetAddress,
+          phoneNumber: phoneNumber,
           generation: parseInt(generation || '0', 10),
         }
       } catch (error) {

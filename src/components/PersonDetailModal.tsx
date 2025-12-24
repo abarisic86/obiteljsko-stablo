@@ -10,6 +10,17 @@ interface PersonDetailModalProps {
 export default function PersonDetailModal({ person, spouse, isSpouseInTree, onClose }: PersonDetailModalProps) {
   if (!person) return null
 
+  const getGoogleMapsUrl = (address: string) => {
+    const encodedAddress = encodeURIComponent(address)
+    return `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`
+  }
+
+  const handleAddressClick = (e: React.MouseEvent<HTMLAnchorElement>, address: string) => {
+    e.stopPropagation()
+    e.preventDefault()
+    window.open(getGoogleMapsUrl(address), '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
@@ -76,23 +87,31 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
             </div>
           )}
 
-          {/* Location */}
-          {person.location && (
+          {/* Street Address */}
+          {person.streetAddress && (
             <div>
               <h3 className="text-sm font-semibold text-gray-500 uppercase mb-1">
-                Lokacija
+                Adresa
               </h3>
-              <p className="text-gray-800">{person.location}</p>
+              <a
+                href={getGoogleMapsUrl(person.streetAddress)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => handleAddressClick(e, person.streetAddress)}
+                className="text-blue-600 hover:text-blue-800 hover:underline break-words cursor-pointer"
+              >
+                {person.streetAddress}
+              </a>
             </div>
           )}
 
-          {/* Contact */}
-          {person.contact && (
+          {/* Phone Number */}
+          {person.phoneNumber && (
             <div>
               <h3 className="text-sm font-semibold text-gray-500 uppercase mb-1">
-                Kontakt
+                Telefon
               </h3>
-              <p className="text-gray-800 break-all">{person.contact}</p>
+              <p className="text-gray-800 break-all">{person.phoneNumber}</p>
             </div>
           )}
 
@@ -156,23 +175,31 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
                   </div>
                 )}
                 
-                {/* Spouse Location */}
-                {spouse.location && (
+                {/* Spouse Street Address */}
+                {spouse.streetAddress && (
                   <div>
                     <h4 className="text-xs font-semibold text-gray-500 uppercase mb-1">
-                      Lokacija
+                      Adresa
                     </h4>
-                    <p className="text-sm text-gray-700">{spouse.location}</p>
+                    <a
+                      href={getGoogleMapsUrl(spouse.streetAddress)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => handleAddressClick(e, spouse.streetAddress)}
+                      className="text-sm text-blue-600 hover:text-blue-800 hover:underline break-words cursor-pointer"
+                    >
+                      {spouse.streetAddress}
+                    </a>
                   </div>
                 )}
                 
-                {/* Spouse Contact */}
-                {spouse.contact && (
+                {/* Spouse Phone Number */}
+                {spouse.phoneNumber && (
                   <div>
                     <h4 className="text-xs font-semibold text-gray-500 uppercase mb-1">
-                      Kontakt
+                      Telefon
                     </h4>
-                    <p className="text-sm text-gray-700 break-all">{spouse.contact}</p>
+                    <p className="text-sm text-gray-700 break-all">{spouse.phoneNumber}</p>
                   </div>
                 )}
               </div>
