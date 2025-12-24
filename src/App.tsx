@@ -2,6 +2,7 @@ import { useState } from 'react'
 import FamilyTree from './components/FamilyTree'
 import SearchBar from './components/SearchBar'
 import { useFamilyData } from './hooks/useFamilyData'
+import { Person } from './types/family'
 
 // Primary data source: Google Sheets CSV export URL
 // For Google Sheets: File > Share > Publish to web > CSV format
@@ -28,6 +29,17 @@ function App() {
 
   const handleScrollComplete = () => {
     setScrollToPersonId(null)
+  }
+
+  // Helper functions to find parent and children
+  const findParent = (personId: string, people: Person[]): Person | null => {
+    const person = people.find(p => p.id === personId)
+    if (!person || !person.parentId) return null
+    return people.find(p => p.id === person.parentId) || null
+  }
+
+  const findChildren = (personId: string, people: Person[]): Person[] => {
+    return people.filter(p => p.parentId === personId)
   }
 
   if (loading) {
@@ -80,6 +92,8 @@ function App() {
         onPersonSelect={setSelectedPersonId}
         scrollToPersonId={scrollToPersonId}
         onScrollComplete={handleScrollComplete}
+        selectedPersonParent={selectedPersonId ? findParent(selectedPersonId, people) : null}
+        selectedPersonChildren={selectedPersonId ? findChildren(selectedPersonId, people) : []}
       />
     </div>
   )

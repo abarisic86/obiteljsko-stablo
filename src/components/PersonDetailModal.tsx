@@ -3,10 +3,13 @@ import { Person } from '../types/family'
 interface PersonDetailModalProps {
   person: Person | null
   spouse?: Person
+  parent?: Person | null
+  children?: Person[]
   onClose: () => void
+  onPersonClick: (personId: string) => void
 }
 
-export default function PersonDetailModal({ person, spouse, onClose }: PersonDetailModalProps) {
+export default function PersonDetailModal({ person, spouse, parent, children = [], onClose, onPersonClick }: PersonDetailModalProps) {
   if (!person) return null
 
   const getGoogleMapsUrl = (address: string) => {
@@ -383,6 +386,56 @@ export default function PersonDetailModal({ person, spouse, onClose }: PersonDet
                     </a>
                   </div>
                 )}
+              </div>
+            </div>
+          )}
+
+          {/* Parent */}
+          {parent && (
+            <div>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">
+                Roditelj
+              </h3>
+              <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                <button
+                  onClick={() => onPersonClick(parent.id)}
+                  className="text-lg font-semibold text-blue-600 hover:text-blue-800 hover:underline transition-colors text-left w-full"
+                >
+                  {parent.name}
+                  {parent.deceasedDate && <span className="ml-2 text-gray-500">✝</span>}
+                </button>
+                {parent.birthdate && (
+                  <p className="text-sm text-gray-600 mt-1">
+                    Rođen: {new Date(parent.birthdate).getFullYear()}
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Children */}
+          {children.length > 0 && (
+            <div>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">
+                Djeca ({children.length})
+              </h3>
+              <div className="space-y-2">
+                {children.map((child) => (
+                  <div key={child.id} className="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                    <button
+                      onClick={() => onPersonClick(child.id)}
+                      className="text-lg font-semibold text-blue-600 hover:text-blue-800 hover:underline transition-colors text-left w-full"
+                    >
+                      {child.name}
+                      {child.deceasedDate && <span className="ml-2 text-gray-500">✝</span>}
+                    </button>
+                    {child.birthdate && (
+                      <p className="text-sm text-gray-600 mt-1">
+                        Rođen: {new Date(child.birthdate).getFullYear()}
+                      </p>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           )}

@@ -14,6 +14,8 @@ interface FamilyTreeProps {
   onPersonSelect: (id: string | null) => void;
   scrollToPersonId: string | null;
   onScrollComplete: () => void;
+  selectedPersonParent?: Person | null;
+  selectedPersonChildren?: Person[];
 }
 
 export default function FamilyTree({
@@ -23,6 +25,8 @@ export default function FamilyTree({
   onPersonSelect,
   scrollToPersonId,
   onScrollComplete,
+  selectedPersonParent,
+  selectedPersonChildren = [],
 }: FamilyTreeProps) {
   const { generations, positions, bounds } = useTreeLayout(rootNode);
   const [zoomLevel, setZoomLevel] = useState(1);
@@ -237,7 +241,10 @@ export default function FamilyTree({
       <PersonDetailModal
         person={selectedPerson}
         spouse={selectedSpouse}
+        parent={selectedPersonParent}
+        children={selectedPersonChildren}
         onClose={() => onPersonSelect(null)}
+        onPersonClick={onPersonSelect}
       />
     </div>
   );
