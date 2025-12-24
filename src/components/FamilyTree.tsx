@@ -99,10 +99,11 @@ export default function FamilyTree({
   };
 
   // Calculate initial position to center content at (0,0) in viewport center
-  // Content (0,0) should appear at viewport center
+  // Account for search bar overlaying the top portion
   const scale = 0.75;
+  const searchBarOffset = 40; // Approximate search bar height + spacing
   const initialPositionX = viewportSize.width / 2;
-  const initialPositionY = viewportSize.height / 2;
+  const initialPositionY = (viewportSize.height - searchBarOffset) / 2;
 
   // Find spouse for selected person - check both tree and original people array
   const selectedSpouse = selectedPerson
