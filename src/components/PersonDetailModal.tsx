@@ -76,6 +76,26 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
             </div>
           )}
 
+          {/* Location */}
+          {person.location && (
+            <div>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-1">
+                Lokacija
+              </h3>
+              <p className="text-gray-800">{person.location}</p>
+            </div>
+          )}
+
+          {/* Contact */}
+          {person.contact && (
+            <div>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-1">
+                Kontakt
+              </h3>
+              <p className="text-gray-800 break-all">{person.contact}</p>
+            </div>
+          )}
+
           {/* Spouse */}
           {spouse && (
             <div>
@@ -156,26 +176,6 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
                   </div>
                 )}
               </div>
-            </div>
-          )}
-
-          {/* Location */}
-          {person.location && (
-            <div>
-              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-1">
-                Lokacija
-              </h3>
-              <p className="text-gray-800">{person.location}</p>
-            </div>
-          )}
-
-          {/* Contact */}
-          {person.contact && (
-            <div>
-              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-1">
-                Kontakt
-              </h3>
-              <p className="text-gray-800 break-all">{person.contact}</p>
             </div>
           )}
         </div>
