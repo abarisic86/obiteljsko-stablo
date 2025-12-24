@@ -9,23 +9,35 @@ import { useTreeLayout } from '../hooks/useTreeLayout'
 
 interface FamilyTreeProps {
   rootNode: FamilyNode
+  people: Person[]
   selectedPersonId: string | null
   onPersonSelect: (id: string | null) => void
 }
 
 export default function FamilyTree({
   rootNode,
+  people,
   selectedPersonId,
   onPersonSelect,
 }: FamilyTreeProps) {
   const { generations, positions, bounds } = useTreeLayout(rootNode)
   const [zoomLevel, setZoomLevel] = useState(1)
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null)
+  const [cardPositions, setCardPositions] = useState<Map<string, DOMRect>>(new Map())
+  const containerRef = useRef<HTMLDivElement>(null)
   const transformControlsRef = useRef<{
     zoomIn: () => void
     zoomOut: () => void
     resetTransform: () => void
   } | null>(null)
+
+  const handleCardPositionUpdate = (personId: string, rect: DOMRect) => {
+    setCardPositions((prev) => {
+      const next = new Map(prev)
+      next.set(personId, rect)
+      return next
+    })
+  }
 
   // Find selected person data
   useEffect(() => {
@@ -53,6 +65,28 @@ export default function FamilyTree({
 
   const handleZoomChange = (state: { scale: number }) => {
     setZoomLevel(state.scale)
+    // Trigger position update after zoom change
+    setTimeout(() => {
+      if (containerRef.current) {
+        const cards = containerRef.current.querySelectorAll('[data-person-id]')
+        const newPositions = new Map<string, DOMRect>()
+        cards.forEach((card) => {
+          const personId = card.getAttribute('data-person-id')
+          if (personId) {
+            const rect = card.getBoundingClientRect()
+            const containerRect = containerRef.current!.getBoundingClientRect()
+            const relativeRect = new DOMRect(
+              rect.left - containerRect.left,
+              rect.top - containerRect.top,
+              rect.width,
+              rect.height
+            )
+            newPositions.set(personId, relativeRect)
+          }
+        })
+        setCardPositions(newPositions)
+      }
+    }, 50)
   }
 
   const handleZoomIn = () => {
@@ -67,12 +101,27 @@ export default function FamilyTree({
     transformControlsRef.current?.resetTransform()
   }
 
-  // Find spouse for selected person
+  // Find spouse for selected person - check both tree and original people array
   const selectedSpouse = selectedPerson
-    ? generations
-        .flat()
-        .find((node) => node.id === selectedPerson.id)?.spouse
+    ? (() => {
+        // First check if spouse is in the tree
+        const nodeInTree = generations.flat().find((node) => node.id === selectedPerson.id)
+        if (nodeInTree?.spouse) {
+          return nodeInTree.spouse
+        }
+        // If not in tree, check original people array
+        if (selectedPerson.spouseId) {
+          const spouse = people.find((p) => p.id === selectedPerson.spouseId)
+          return spouse || undefined
+        }
+        return undefined
+      })()
     : undefined
+
+  // Check if spouse is in the tree structure
+  const isSpouseInTree = selectedSpouse
+    ? generations.flat().some((node) => node.id === selectedSpouse.id)
+    : false
 
   return (
     <div className="w-full h-screen bg-gray-50 overflow-hidden relative">
@@ -106,6 +155,8 @@ export default function FamilyTree({
                 }}
               >
                 <div
+                  ref={containerRef}
+                  data-tree-container
                   className="relative flex items-center justify-center"
                   style={{
                     width: `${bounds.width}px`,
@@ -117,6 +168,7 @@ export default function FamilyTree({
                   <ConnectionLines
                     generations={generations}
                     positions={positions}
+                    cardPositions={cardPositions}
                     zoomLevel={zoomLevel}
                   />
 
@@ -128,6 +180,7 @@ export default function FamilyTree({
                         nodes={nodes}
                         onPersonClick={handlePersonClick}
                         zoomLevel={zoomLevel}
+                        onCardPositionUpdate={handleCardPositionUpdate}
                       />
                     ))}
                   </div>
@@ -149,6 +202,7 @@ export default function FamilyTree({
       <PersonDetailModal
         person={selectedPerson}
         spouse={selectedSpouse}
+        isSpouseInTree={isSpouseInTree}
         onClose={() => onPersonSelect(null)}
       />
     </div>

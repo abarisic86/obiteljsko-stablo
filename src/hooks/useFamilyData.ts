@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { FamilyNode } from '../types/family'
+import { FamilyNode, Person } from '../types/family'
 import { parseSheetData } from '../utils/parseSheetData'
 import { buildTreeStructure } from '../utils/buildTreeStructure'
 
@@ -10,6 +10,7 @@ interface UseFamilyDataOptions {
 
 export function useFamilyData({ primaryUrl, fallbackUrl = '/test-data.csv' }: UseFamilyDataOptions) {
   const [tree, setTree] = useState<FamilyNode | null>(null)
+  const [people, setPeople] = useState<Person[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -28,18 +29,19 @@ export function useFamilyData({ primaryUrl, fallbackUrl = '/test-data.csv' }: Us
           throw new Error('Empty response from data source')
         }
 
-        const people = parseSheetData(csvText)
+        const parsedPeople = parseSheetData(csvText)
 
-        if (people.length === 0) {
+        if (parsedPeople.length === 0) {
           throw new Error('No data found after parsing')
         }
 
-        const treeStructure = buildTreeStructure(people)
+        const treeStructure = buildTreeStructure(parsedPeople)
         if (!treeStructure) {
           throw new Error('Failed to build tree structure')
         }
 
         setTree(treeStructure)
+        setPeople(parsedPeople)
         return { success: true }
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error'
@@ -93,6 +95,6 @@ export function useFamilyData({ primaryUrl, fallbackUrl = '/test-data.csv' }: Us
     loadData()
   }, [primaryUrl, fallbackUrl])
 
-  return { tree, loading, error }
+  return { tree, people, loading, error }
 }
 

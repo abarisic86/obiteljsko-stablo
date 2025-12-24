@@ -11,7 +11,7 @@ const GOOGLE_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/
 const FALLBACK_DATA_URL = '/test-data.csv'
 
 function App() {
-  const { tree, loading, error } = useFamilyData({
+  const { tree, people, loading, error } = useFamilyData({
     primaryUrl: GOOGLE_SHEETS_URL !== 'https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=0' 
       ? GOOGLE_SHEETS_URL 
       : null,
@@ -57,6 +57,7 @@ function App() {
   return (
     <FamilyTree
       rootNode={tree}
+      people={people}
       selectedPersonId={selectedPersonId}
       onPersonSelect={setSelectedPersonId}
     />

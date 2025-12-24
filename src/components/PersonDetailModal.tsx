@@ -3,10 +3,11 @@ import { Person } from '../types/family'
 interface PersonDetailModalProps {
   person: Person | null
   spouse?: Person
+  isSpouseInTree?: boolean
   onClose: () => void
 }
 
-export default function PersonDetailModal({ person, spouse, onClose }: PersonDetailModalProps) {
+export default function PersonDetailModal({ person, spouse, isSpouseInTree, onClose }: PersonDetailModalProps) {
   if (!person) return null
 
   return (
@@ -81,7 +82,26 @@ export default function PersonDetailModal({ person, spouse, onClose }: PersonDet
               <h3 className="text-sm font-semibold text-gray-500 uppercase mb-1">
                 Supružnik
               </h3>
-              <p className="text-gray-800">{spouse.name}</p>
+              <div className="space-y-2">
+                <p className="text-gray-800">{spouse.name}</p>
+                {!isSpouseInTree && (
+                  <p className="text-xs text-gray-500 italic">
+                    (Nije direktno u obiteljskom stablu)
+                  </p>
+                )}
+                {spouse.birthdate && (
+                  <p className="text-sm text-gray-600">
+                    {new Date(spouse.birthdate).toLocaleDateString('hr-HR', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </p>
+                )}
+                {spouse.location && (
+                  <p className="text-sm text-gray-600">{spouse.location}</p>
+                )}
+              </div>
             </div>
           )}
 

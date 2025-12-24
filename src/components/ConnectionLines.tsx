@@ -1,48 +1,70 @@
-import { FamilyNode, PersonPosition } from '../types/family'
+import { FamilyNode, PersonPosition } from "../types/family";
 
 interface ConnectionLinesProps {
-  generations: FamilyNode[][]
-  positions: Map<string, PersonPosition>
-  zoomLevel: number
+  generations: FamilyNode[][];
+  positions: Map<string, PersonPosition>;
+  cardPositions: Map<string, DOMRect>;
+  zoomLevel: number;
 }
 
-const CARD_WIDTH = 140
-const COLUMN_SPACING = 200
-const ROW_SPACING = 220
+export default function ConnectionLines({
+  generations,
+  positions,
+  cardPositions,
+  zoomLevel,
+}: ConnectionLinesProps) {
+  if (zoomLevel < 0.2) return null; // Hide lines when very zoomed out
 
-export default function ConnectionLines({ generations, positions, zoomLevel }: ConnectionLinesProps) {
-  if (zoomLevel < 0.2) return null // Hide lines when very zoomed out
-
-  const lines: JSX.Element[] = []
+  const lines: JSX.Element[] = [];
 
   // Draw lines from parents to children
   for (let genIndex = 0; genIndex < generations.length - 1; genIndex++) {
-    const parentGen = generations[genIndex]
-    const childGen = generations[genIndex + 1]
+    const parentGen = generations[genIndex];
+    const childGen = generations[genIndex + 1];
 
-    parentGen.forEach((parent, parentIndex) => {
-      const parentPos = positions.get(parent.id)
-      if (!parentPos) return
+    parentGen.forEach((parent) => {
+      // Use actual card position if available, otherwise fall back to calculated position
+      const parentCardRect = cardPositions.get(parent.id);
+      let parentX: number;
+      let parentY: number;
 
-      // Calculate parent center (accounting for column layout)
-      const parentX = parentPos.x + CARD_WIDTH / 2
-      const parentY = parentPos.y + 90 // Middle of card
+      if (parentCardRect) {
+        // Use actual DOM position
+        parentX = parentCardRect.left + parentCardRect.width / 2;
+        parentY = parentCardRect.top + parentCardRect.height / 2;
+      } else {
+        // Fallback to calculated position
+        const parentPos = positions.get(parent.id);
+        if (!parentPos) return;
+        parentX = parentPos.x + parentPos.width / 2;
+        parentY = parentPos.y + parentPos.height / 2;
+      }
 
       parent.children.forEach((child) => {
         // Find child's position in next generation
-        const childIndexInGen = childGen.findIndex((n) => n.id === child.id)
-        if (childIndexInGen === -1) return
+        const childIndexInGen = childGen.findIndex((n) => n.id === child.id);
+        if (childIndexInGen === -1) return;
 
-        const childPos = positions.get(child.id)
-        if (!childPos) return
+        // Use actual card position if available, otherwise fall back to calculated position
+        const childCardRect = cardPositions.get(child.id);
+        let childX: number;
+        let childY: number;
 
-        // Calculate child center
-        const childX = childPos.x + CARD_WIDTH / 2
-        const childY = childPos.y + 90 // Middle of card
+        if (childCardRect) {
+          // Use actual DOM position
+          childX = childCardRect.left + childCardRect.width / 2;
+          childY = childCardRect.top + childCardRect.height / 2;
+        } else {
+          // Fallback to calculated position
+          const childPos = positions.get(child.id);
+          if (!childPos) return;
+          childX = childPos.x + childPos.width / 2;
+          childY = childPos.y + childPos.height / 2;
+        }
 
         // Create bezier curve for smoother lines
-        const midX = (parentX + childX) / 2
-        const path = `M ${parentX} ${parentY} C ${midX} ${parentY}, ${midX} ${childY}, ${childX} ${childY}`
+        const midX = (parentX + childX) / 2;
+        const path = `M ${parentX} ${parentY} C ${midX} ${parentY}, ${midX} ${childY}, ${childX} ${childY}`;
 
         lines.push(
           <path
@@ -51,21 +73,20 @@ export default function ConnectionLines({ generations, positions, zoomLevel }: C
             stroke="#94a3b8"
             strokeWidth={zoomLevel > 0.5 ? 2 : 1}
             fill="none"
-            strokeDasharray={zoomLevel < 0.4 ? '3,3' : '0'}
+            strokeDasharray={zoomLevel < 0.4 ? "3,3" : "0"}
             opacity={zoomLevel > 0.3 ? 0.6 : 0.3}
           />
-        )
-      })
-    })
+        );
+      });
+    });
   }
 
   return (
     <svg
       className="absolute inset-0 pointer-events-none"
-      style={{ width: '100%', height: '100%', overflow: 'visible' }}
+      style={{ width: "100%", height: "100%", overflow: "visible" }}
     >
       {lines}
     </svg>
-  )
+  );
 }
-

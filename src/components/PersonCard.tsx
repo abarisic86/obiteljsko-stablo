@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, forwardRef } from 'react'
 import { Person } from '../types/family'
 
 interface PersonCardProps {
@@ -7,22 +7,25 @@ interface PersonCardProps {
   zoomLevel?: number
 }
 
-function PersonCard({ person, onClick, zoomLevel = 1 }: PersonCardProps) {
-  const isZoomedOut = zoomLevel < 0.5
-  const showDetails = zoomLevel > 0.3
+const PersonCard = forwardRef<HTMLDivElement, PersonCardProps>(
+  ({ person, onClick, zoomLevel = 1 }, ref) => {
+    const isZoomedOut = zoomLevel < 0.5
+    const showDetails = zoomLevel > 0.3
 
-  return (
-    <div
-      className={`
-        bg-white rounded-lg shadow-md border-2 border-gray-200
-        transition-all duration-200 cursor-pointer
-        hover:shadow-lg hover:border-blue-400
-        ${onClick ? 'hover:scale-105' : ''}
-        ${isZoomedOut ? 'p-1' : 'p-2'}
-      `}
-      onClick={onClick}
-      style={{ minWidth: isZoomedOut ? '60px' : '120px' }}
-    >
+    return (
+      <div
+        ref={ref}
+        className={`
+          bg-white rounded-lg shadow-md border-2 border-gray-200
+          transition-all duration-200 cursor-pointer
+          hover:shadow-lg hover:border-blue-400
+          ${onClick ? 'hover:scale-105' : ''}
+          ${isZoomedOut ? 'p-1' : 'p-2'}
+        `}
+        onClick={onClick}
+        style={{ minWidth: isZoomedOut ? '60px' : '120px' }}
+        data-person-id={person.id}
+      >
       {/* Photo */}
       <div className={`${isZoomedOut ? 'w-12 h-12' : 'w-20 h-20'} mx-auto mb-2 rounded-full overflow-hidden bg-gray-200`}>
         {person.photoUrl ? (
@@ -82,9 +85,12 @@ function PersonCard({ person, onClick, zoomLevel = 1 }: PersonCardProps) {
           )}
         </div>
       )}
-    </div>
-  )
-}
+      </div>
+    )
+  }
+)
+
+PersonCard.displayName = 'PersonCard'
 
 export default memo(PersonCard)
 
