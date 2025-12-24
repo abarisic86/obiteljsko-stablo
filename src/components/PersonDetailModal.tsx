@@ -393,54 +393,51 @@ export default function PersonDetailModal({ person, spouse, parent, children = [
           {/* Parent */}
           {parent && (
             <div>
-              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">
+              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">
                 Roditelj
               </h3>
-              <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    onPersonClick(parent.id)
-                  }}
-                  className="text-lg font-semibold text-blue-600 hover:text-blue-800 hover:underline transition-colors text-left w-full"
-                >
-                  {parent.name}
-                  {parent.deceasedDate && <span className="ml-2 text-gray-500">✝</span>}
-                </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onPersonClick(parent.id)
+                }}
+                className="text-blue-600 hover:text-blue-800 hover:underline transition-colors text-left"
+              >
+                {parent.name}
                 {parent.birthdate && (
-                  <p className="text-sm text-gray-600 mt-1">
-                    Rođen: {new Date(parent.birthdate).getFullYear()}
-                  </p>
+                  <span className="text-gray-500 ml-2">
+                    '{String(new Date(parent.birthdate).getFullYear()).slice(-2)}
+                  </span>
                 )}
-              </div>
+                {parent.deceasedDate && <span className="ml-1 text-gray-500">✝</span>}
+              </button>
             </div>
           )}
 
           {/* Children */}
           {children.length > 0 && (
             <div>
-              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">
-                Djeca ({children.length})
+              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">
+                Djeca
               </h3>
-              <div className="space-y-2">
+              <div className="space-y-1">
                 {children.map((child) => (
-                  <div key={child.id} className="border border-gray-300 rounded-lg p-4 bg-gray-50">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        onPersonClick(child.id)
-                      }}
-                      className="text-lg font-semibold text-blue-600 hover:text-blue-800 hover:underline transition-colors text-left w-full"
-                    >
-                      {child.name}
-                      {child.deceasedDate && <span className="ml-2 text-gray-500">✝</span>}
-                    </button>
+                  <button
+                    key={child.id}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onPersonClick(child.id)
+                    }}
+                    className="block text-blue-600 hover:text-blue-800 hover:underline transition-colors text-left"
+                  >
+                    {child.name}
                     {child.birthdate && (
-                      <p className="text-sm text-gray-600 mt-1">
-                        Rođen: {new Date(child.birthdate).getFullYear()}
-                      </p>
+                      <span className="text-gray-500 ml-2">
+                        '{String(new Date(child.birthdate).getFullYear()).slice(-2)}
+                      </span>
                     )}
-                  </div>
+                    {child.deceasedDate && <span className="ml-1 text-gray-500">✝</span>}
+                  </button>
                 ))}
               </div>
             </div>
