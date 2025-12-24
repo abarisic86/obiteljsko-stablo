@@ -3,14 +3,12 @@ import { FamilyNode, PersonPosition } from "../types/family";
 interface ConnectionLinesProps {
   generations: FamilyNode[][];
   positions: Map<string, PersonPosition>;
-  cardPositions: Map<string, DOMRect>;
   zoomLevel: number;
 }
 
 export default function ConnectionLines({
   generations,
   positions,
-  cardPositions,
   zoomLevel,
 }: ConnectionLinesProps) {
   if (zoomLevel < 0.2) return null; // Hide lines when very zoomed out
@@ -23,44 +21,24 @@ export default function ConnectionLines({
     const childGen = generations[genIndex + 1];
 
     parentGen.forEach((parent) => {
-      // Use actual card position if available, otherwise fall back to calculated position
-      const parentCardRect = cardPositions.get(parent.id);
-      let parentX: number;
-      let parentY: number;
+      // Use calculated positions directly
+      const parentPos = positions.get(parent.id);
+      if (!parentPos) return;
 
-      if (parentCardRect) {
-        // Use actual DOM position
-        parentX = parentCardRect.left + parentCardRect.width / 2;
-        parentY = parentCardRect.top + parentCardRect.height / 2;
-      } else {
-        // Fallback to calculated position
-        const parentPos = positions.get(parent.id);
-        if (!parentPos) return;
-        parentX = parentPos.x + parentPos.width / 2;
-        parentY = parentPos.y + parentPos.height / 2;
-      }
+      const parentX = parentPos.x + parentPos.width / 2;
+      const parentY = parentPos.y + parentPos.height / 2;
 
       parent.children.forEach((child) => {
         // Find child's position in next generation
         const childIndexInGen = childGen.findIndex((n) => n.id === child.id);
         if (childIndexInGen === -1) return;
 
-        // Use actual card position if available, otherwise fall back to calculated position
-        const childCardRect = cardPositions.get(child.id);
-        let childX: number;
-        let childY: number;
+        // Use calculated positions directly
+        const childPos = positions.get(child.id);
+        if (!childPos) return;
 
-        if (childCardRect) {
-          // Use actual DOM position
-          childX = childCardRect.left + childCardRect.width / 2;
-          childY = childCardRect.top + childCardRect.height / 2;
-        } else {
-          // Fallback to calculated position
-          const childPos = positions.get(child.id);
-          if (!childPos) return;
-          childX = childPos.x + childPos.width / 2;
-          childY = childPos.y + childPos.height / 2;
-        }
+        const childX = childPos.x + childPos.width / 2;
+        const childY = childPos.y + childPos.height / 2;
 
         // Create bezier curve for smoother lines
         const midX = (parentX + childX) / 2;
