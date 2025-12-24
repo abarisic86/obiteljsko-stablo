@@ -148,9 +148,10 @@ export default function FamilyTree({
 
             if (personPosition) {
               // Calculate target position to center the person in viewport
-              // The tree is centered at (0,0), so we need to pan so that personPosition.x,y is at viewport center
+              // Account for search bar at top (approximately 60px offset)
+              const searchBarOffset = 60;
               const targetX = viewportSize.width / 2 - personPosition.x;
-              const targetY = viewportSize.height / 2 - personPosition.y;
+              const targetY = (viewportSize.height - searchBarOffset) / 2 - personPosition.y;
 
               // Keep current zoom level
               setTransform(targetX, targetY, zoomLevel);
