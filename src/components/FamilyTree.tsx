@@ -86,7 +86,7 @@ export default function FamilyTree({
 
   // Calculate initial position to center content at (0,0) in viewport center
   // Content (0,0) should appear at viewport center
-  const scale = 0.5;
+  const scale = 0.75;
   const initialPositionX = viewportSize.width / 2;
   const initialPositionY = viewportSize.height / 2;
 
