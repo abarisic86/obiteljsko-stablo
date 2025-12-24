@@ -28,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Deploy to Vercel
-        uses: vercel/actions/action@v20
+        uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
