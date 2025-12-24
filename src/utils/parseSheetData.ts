@@ -10,6 +10,7 @@ export interface SheetRow {
   spouse_id: string
   street_address: string
   phone_number: string
+  deceased_date: string
   generation: string
 }
 
@@ -42,6 +43,7 @@ export function parseSheetData(csvText: string): Person[] {
       // If generation is missing but __parsed_extra exists, reconstruct fields
       let streetAddress = row.street_address?.trim() || ''
       let phoneNumber = row.phone_number?.trim() || ''
+      let deceasedDate = row.deceased_date?.trim() || ''
       let generation = row.generation?.trim() || ''
       
       // If generation is empty but we have __parsed_extra, the street_address field was split
@@ -70,6 +72,7 @@ export function parseSheetData(csvText: string): Person[] {
           spouseId: spouseId && spouseId.length > 0 ? spouseId : null,
           streetAddress: streetAddress,
           phoneNumber: phoneNumber,
+          deceasedDate: deceasedDate,
           generation: parseInt(generation || '0', 10),
         }
       } catch (error) {

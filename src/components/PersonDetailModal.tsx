@@ -21,6 +21,96 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
     window.open(getGoogleMapsUrl(address), '_blank', 'noopener,noreferrer')
   }
 
+  const addToCalendar = (name: string, birthdate: string) => {
+    const birthDate = new Date(birthdate)
+    const year = birthDate.getFullYear()
+    const month = String(birthDate.getMonth() + 1).padStart(2, '0')
+    const day = String(birthDate.getDate()).padStart(2, '0')
+    
+    // Format date as YYYYMMDD for ICS format
+    const dateStr = `${year}${month}${day}`
+    
+    // Create ICS file content
+    const icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Family Tree//Birthday Event//EN',
+      'BEGIN:VEVENT',
+      `DTSTART;VALUE=DATE:${dateStr}`,
+      `DTEND;VALUE=DATE:${dateStr}`,
+      `SUMMARY:${name} - Rođendan`,
+      `DESCRIPTION:Rođendan ${name}`,
+      'RRULE:FREQ=YEARLY;INTERVAL=1',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n')
+    
+    // Detect iOS devices
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+    
+    if (isIOS) {
+      // On iOS, use data URL without download attribute
+      // This should trigger the calendar app to open directly
+      const dataUrl = `data:text/calendar;charset=utf-8,${encodeURIComponent(icsContent)}`
+      const link = document.createElement('a')
+      link.href = dataUrl
+      // Don't use download attribute on iOS - let the system handle it
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    } else {
+      // On Android and desktop, use blob URL with download attribute
+      // Android will typically offer to open with calendar app
+      // Desktop will download but user can open with calendar app
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' })
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', `${name.replace(/\s+/g, '_')}_birthday.ics`)
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      
+      // Clean up the blob URL after a delay
+      setTimeout(() => {
+        URL.revokeObjectURL(url)
+      }, 100)
+    }
+  }
+
+  const handleCalendarClick = (e: React.MouseEvent<HTMLButtonElement>, name: string, birthdate: string) => {
+    e.stopPropagation()
+    addToCalendar(name, birthdate)
+  }
+
+  // Check if birthday is in the next week
+  const isBirthdaySoon = (personData: Person) => {
+    if (!personData.birthdate || personData.deceasedDate) return false
+
+    try {
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+      
+      const birthDate = new Date(personData.birthdate)
+      const thisYearBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate())
+      
+      // If birthday already passed this year, check next year
+      const nextBirthday = thisYearBirthday < today
+        ? new Date(today.getFullYear() + 1, birthDate.getMonth(), birthDate.getDate())
+        : thisYearBirthday
+      
+      // Calculate days until birthday
+      const daysUntilBirthday = Math.ceil((nextBirthday.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+      
+      return daysUntilBirthday >= 0 && daysUntilBirthday <= 7
+    } catch {
+      return false
+    }
+  }
+
+  const personBirthdaySoon = isBirthdaySoon(person)
+  const spouseBirthdaySoon = spouse ? isBirthdaySoon(spouse) : false
+
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
@@ -32,7 +122,11 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
       >
         {/* Header */}
         <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-start">
-          <h2 className="text-2xl font-bold text-gray-800">{person.name}</h2>
+          <h2 className="text-2xl font-bold text-gray-800">
+            {person.name}
+            {person.deceasedDate && <span className="ml-2 text-gray-500">✝</span>}
+            {personBirthdaySoon && !person.deceasedDate && <span className="ml-2" title="Birthday soon!">🎂</span>}
+          </h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
@@ -77,8 +171,48 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
               <h3 className="text-sm font-semibold text-gray-500 uppercase mb-1">
                 Datum rođenja
               </h3>
+              <div className="flex items-center gap-2">
+                <p className="text-gray-800">
+                  {new Date(person.birthdate).toLocaleDateString('hr-HR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </p>
+                {!person.deceasedDate && (
+                  <button
+                    onClick={(e) => handleCalendarClick(e, person.name, person.birthdate)}
+                    className="text-blue-600 hover:text-blue-800 transition-colors"
+                    title="Dodaj u kalendar"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Deceased Date */}
+          {person.deceasedDate && (
+            <div>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-1">
+                Datum smrti
+              </h3>
               <p className="text-gray-800">
-                {new Date(person.birthdate).toLocaleDateString('hr-HR', {
+                {new Date(person.deceasedDate).toLocaleDateString('hr-HR', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',
@@ -111,7 +245,12 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
               <h3 className="text-sm font-semibold text-gray-500 uppercase mb-1">
                 Telefon
               </h3>
-              <p className="text-gray-800 break-all">{person.phoneNumber}</p>
+              <a
+                href={`tel:${person.phoneNumber}`}
+                className="text-blue-600 hover:text-blue-800 hover:underline break-all cursor-pointer"
+              >
+                {person.phoneNumber}
+              </a>
             </div>
           )}
 
@@ -151,7 +290,11 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
                 )}
                 
                 {/* Spouse Name */}
-                <p className="text-lg font-semibold text-gray-800 text-center">{spouse.name}</p>
+                <p className="text-lg font-semibold text-gray-800 text-center">
+                  {spouse.name}
+                  {spouse.deceasedDate && <span className="ml-1 text-gray-500">✝</span>}
+                  {spouseBirthdaySoon && !spouse.deceasedDate && <span className="ml-1" title="Birthday soon!">🎂</span>}
+                </p>
                 
                 {!isSpouseInTree && (
                   <p className="text-xs text-gray-500 italic text-center">
@@ -165,8 +308,48 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
                     <h4 className="text-xs font-semibold text-gray-500 uppercase mb-1">
                       Datum rođenja
                     </h4>
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm text-gray-700">
+                        {new Date(spouse.birthdate).toLocaleDateString('hr-HR', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </p>
+                      {!spouse.deceasedDate && (
+                        <button
+                          onClick={(e) => handleCalendarClick(e, spouse.name, spouse.birthdate)}
+                          className="text-blue-600 hover:text-blue-800 transition-colors"
+                          title="Dodaj u kalendar"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
+                          </svg>
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                )}
+                
+                {/* Spouse Deceased Date */}
+                {spouse.deceasedDate && (
+                  <div>
+                    <h4 className="text-xs font-semibold text-gray-500 uppercase mb-1">
+                      Datum smrti
+                    </h4>
                     <p className="text-sm text-gray-700">
-                      {new Date(spouse.birthdate).toLocaleDateString('hr-HR', {
+                      {new Date(spouse.deceasedDate).toLocaleDateString('hr-HR', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',
@@ -199,7 +382,12 @@ export default function PersonDetailModal({ person, spouse, isSpouseInTree, onCl
                     <h4 className="text-xs font-semibold text-gray-500 uppercase mb-1">
                       Telefon
                     </h4>
-                    <p className="text-sm text-gray-700 break-all">{spouse.phoneNumber}</p>
+                    <a
+                      href={`tel:${spouse.phoneNumber}`}
+                      className="text-sm text-blue-600 hover:text-blue-800 hover:underline break-all cursor-pointer"
+                    >
+                      {spouse.phoneNumber}
+                    </a>
                   </div>
                 )}
               </div>

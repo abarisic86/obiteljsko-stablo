@@ -1,136 +1,136 @@
-id,name,birthdate,photo_url,parent_id,spouse_id,street_address,phone_number,generation
-P001,Ivan Barišić,1920-05-15,https://i.pravatar.cc/150?img=1,,P002,"Ilica 123, Zagreb, Hrvatska",+385 91 214 1409,0
-P002,Marija Barišić,1922-08-20,https://i.pravatar.cc/150?img=2,,P001,"Ilica 123, Zagreb, Hrvatska",+385 45 350 4657,0
-P003,Petar Barišić,1945-03-10,https://i.pravatar.cc/150?img=3,P001,P004,"Ilica 123, Zagreb, Hrvatska",+385 27 854 2679,1
-P004,Ana Barišić,1947-11-25,https://i.pravatar.cc/150?img=4,,P003,"Ilica 123, Zagreb, Hrvatska",+385 96 858 9935,1
-P005,Marko Barišić,1948-07-12,https://i.pravatar.cc/150?img=5,P001,P006,"Europska avenija 15, Osijek, Hrvatska",+385 21 704 7912,1
-P006,Jelena Barišić,1950-02-18,https://i.pravatar.cc/150?img=6,,P005,"Europska avenija 15, Osijek, Hrvatska",+385 14 130 2535,1
-P007,Tomislav Barišić,1952-09-30,,P001,P008,"Marmontova 12, Split, Hrvatska",+385 37 338 9279,1
-P008,Ivana Barišić,1954-04-05,,,P007,"Marmontova 12, Split, Hrvatska",+385 87 127 4257,1
-P009,Josip Barišić,1956-12-22,,P001,P010,"Korzo 8, Rijeka, Hrvatska",+385 93 818 9928,1
-P010,Maja Barišić,1958-06-14,,,P009,"Korzo 8, Rijeka, Hrvatska",+385 63 325 8359,1
-P011,Ante Barišić,1970-01-15,https://i.pravatar.cc/150?img=11,P003,P012,"Ilica 123, Zagreb, Hrvatska",+385 85 384 1106,2
-P012,Sandra Barišić,1972-05-20,https://i.pravatar.cc/150?img=12,,P011,"Ilica 123, Zagreb, Hrvatska",+385 30 814 7924,2
-P013,Mateo Barišić,1971-08-10,https://i.pravatar.cc/150?img=13,P003,P014,"Ilica 123, Zagreb, Hrvatska",+385 53 384 3547,2
-P014,Luka Barišić,1973-03-25,https://i.pravatar.cc/150?img=14,,P013,"Ilica 123, Zagreb, Hrvatska",+385 37 881 6514,2
-P015,Damir Barišić,1972-11-05,,P005,P016,"Europska avenija 15, Osijek, Hrvatska",+385 23 194 7224,2
-P016,Petra Barišić,1974-07-18,,,P015,"Europska avenija 15, Osijek, Hrvatska",+385 22 467 6635,2
-P017,Boris Barišić,1973-04-12,,P005,P018,"Europska avenija 15, Osijek, Hrvatska",+385 87 370 1711,2
-P018,Marijana Barišić,1975-09-30,,,P017,"Europska avenija 15, Osijek, Hrvatska",+385 68 649 3045,2
-P019,Davor Barišić,1974-02-20,,P005,P020,"Europska avenija 15, Osijek, Hrvatska",+385 58 180 5803,2
-P020,Sanja Barišić,1976-10-15,,,P019,"Europska avenija 15, Osijek, Hrvatska",+385 90 733 6925,2
-P021,Zoran Barišić,1972-06-08,,P007,P022,"Marmontova 12, Split, Hrvatska",+385 83 296 2139,2
-P022,Mirjana Barišić,1974-12-22,,,P021,"Marmontova 12, Split, Hrvatska",+385 15 777 4733,2
-P023,Goran Barišić,1973-09-14,,P007,P024,"Marmontova 12, Split, Hrvatska",+385 47 181 4814,2
-P024,Vesna Barišić,1975-05-28,,,P023,"Marmontova 12, Split, Hrvatska",+385 22 489 5554,2
-P025,Dražen Barišić,1974-01-10,,P007,P026,"Marmontova 12, Split, Hrvatska",+385 68 750 6977,2
-P026,Ivana Barišić,1976-08-03,,,P025,"Marmontova 12, Split, Hrvatska",+385 30 479 6820,2
-P027,Marin Barišić,1971-03-17,,P009,P028,"Korzo 8, Rijeka, Hrvatska",+385 36 786 5374,2
-P028,Martina Barišić,1973-11-09,,,P027,"Korzo 8, Rijeka, Hrvatska",+385 99 799 2169,2
-P029,Nikola Barišić,1972-07-25,,P009,P030,"Korzo 8, Rijeka, Hrvatska",+385 87 750 3803,2
-P030,Andrea Barišić,1974-04-12,,,P029,"Korzo 8, Rijeka, Hrvatska",+385 78 846 5010,2
-P031,Krešimir Barišić,1973-10-05,,P009,P032,"Korzo 8, Rijeka, Hrvatska",+385 30 573 7216,2
-P032,Tamara Barišić,1975-06-20,,,P031,"Korzo 8, Rijeka, Hrvatska",+385 44 755 4598,2
-P033,Luka Barišić,1995-03-10,https://i.pravatar.cc/150?img=33,P011,P034,"Ilica 123, Zagreb, Hrvatska",+385 97 432 1916,3
-P034,Sara Barišić,1997-08-15,https://i.pravatar.cc/150?img=34,,P033,"Ilica 123, Zagreb, Hrvatska",+385 39 941 1525,3
-P035,Marko Barišić,1996-11-20,https://i.pravatar.cc/150?img=35,P011,P036,"Ilica 123, Zagreb, Hrvatska",+385 50 510 5386,3
-P036,Petra Barišić,1998-05-12,https://i.pravatar.cc/150?img=36,,P035,"Ilica 123, Zagreb, Hrvatska",+385 18 316 6155,3
-P037,Ivan Barišić,1995-07-08,,P013,P038,"Ilica 123, Zagreb, Hrvatska",+385 37 771 9179,3
-P038,Mia Barišić,1997-12-25,,,P037,"Ilica 123, Zagreb, Hrvatska",+385 60 758 8517,3
-P039,Ante Barišić,1996-04-18,,P013,P040,"Ilica 123, Zagreb, Hrvatska",+385 28 371 3287,3
-P040,Lea Barišić,1998-09-30,,,P039,"Ilica 123, Zagreb, Hrvatska",+385 41 862 9830,3
-P041,Domagoj Barišić,1994-12-05,,P015,P042,"Europska avenija 15, Osijek, Hrvatska",+385 43 864 8019,3
-P042,Lana Barišić,1996-06-20,,,P041,"Europska avenija 15, Osijek, Hrvatska",+385 84 508 6930,3
-P043,Bruno Barišić,1995-09-14,,P015,P044,"Europska avenija 15, Osijek, Hrvatska",+385 38 241 9348,3
-P044,Ema Barišić,1997-03-28,,,P043,"Europska avenija 15, Osijek, Hrvatska",+385 73 193 1771,3
-P045,Filip Barišić,1996-01-10,,P015,P046,"Europska avenija 15, Osijek, Hrvatska",+385 24 256 3621,3
-P046,Nika Barišić,1998-07-15,,,P045,"Europska avenija 15, Osijek, Hrvatska",+385 97 532 2040,3
-P047,Gabriel Barišić,1994-05-22,,P017,P048,"Europska avenija 15, Osijek, Hrvatska",+385 59 490 8668,3
-P048,Klara Barišić,1996-11-08,,,P047,"Europska avenija 15, Osijek, Hrvatska",+385 77 357 1188,3
-P049,Hrvoje Barišić,1995-08-30,,P017,P050,"Europska avenija 15, Osijek, Hrvatska",+385 97 838 2876,3
-P050,Lucija Barišić,1997-04-12,,,P049,"Europska avenija 15, Osijek, Hrvatska",+385 97 649 5371,3
-P051,Igor Barišić,1996-02-18,,P017,P052,"Europska avenija 15, Osijek, Hrvatska",+385 92 448 2827,3
-P052,Marina Barišić,1998-09-05,,,P051,"Europska avenija 15, Osijek, Hrvatska",+385 47 545 3591,3
-P053,Jakov Barišić,1994-10-25,,P019,P054,"Europska avenija 15, Osijek, Hrvatska",+385 68 103 5315,3
-P054,Ana Barišić,1996-06-10,,,P053,"Europska avenija 15, Osijek, Hrvatska",+385 74 880 3927,3
-P055,Karlo Barišić,1995-03-20,,P019,P056,"Europska avenija 15, Osijek, Hrvatska",+385 74 208 5889,3
-P056,Dora Barišić,1997-11-14,,,P055,"Europska avenija 15, Osijek, Hrvatska",+385 91 619 4258,3
-P057,Lovro Barišić,1996-08-28,,P019,P058,"Europska avenija 15, Osijek, Hrvatska",+385 29 482 3646,3
-P058,Tara Barišić,1998-05-03,,,P057,"Europska avenija 15, Osijek, Hrvatska",+385 79 897 9689,3
-P059,Matej Barišić,1994-12-15,,P021,P060,"Marmontova 12, Split, Hrvatska",+385 10 713 6310,3
-P060,Tea Barišić,1996-08-20,,,P059,"Marmontova 12, Split, Hrvatska",+385 72 119 2832,3
-P061,Nino Barišić,1995-05-10,,P021,P062,"Marmontova 12, Split, Hrvatska",+385 56 999 6038,3
-P062,Lara Barišić,1997-01-25,,,P061,"Marmontova 12, Split, Hrvatska",+385 40 159 4946,3
-P063,Roko Barišić,1996-09-18,,P021,P064,"Marmontova 12, Split, Hrvatska",+385 82 180 2403,3
-P064,Ena Barišić,1998-04-12,,,P063,"Marmontova 12, Split, Hrvatska",+385 72 935 2133,3
-P065,Sime Barišić,1994-11-30,,P023,P066,"Marmontova 12, Split, Hrvatska",+385 78 884 3060,3
-P066,Noa Barišić,1996-07-14,,,P065,"Marmontova 12, Split, Hrvatska",+385 26 775 8787,3
-P067,Tin Barišić,1995-02-22,,P023,P068,"Marmontova 12, Split, Hrvatska",+385 80 269 5342,3
-P068,Ina Barišić,1997-10-08,,,P067,"Marmontova 12, Split, Hrvatska",+385 77 993 7932,3
-P069,Vid Barišić,1996-06-05,,P023,P070,"Marmontova 12, Split, Hrvatska",+385 37 652 4295,3
-P070,Una Barišić,1998-03-20,,,P069,"Marmontova 12, Split, Hrvatska",+385 49 508 7118,3
-P071,Leon Barišić,1994-09-12,,P025,P072,"Marmontova 12, Split, Hrvatska",+385 66 629 8397,3
-P072,Neva Barišić,1996-05-28,,,P071,"Marmontova 12, Split, Hrvatska",+385 25 353 4681,3
-P073,Jan Barišić,1995-01-15,,P025,P074,"Marmontova 12, Split, Hrvatska",+385 18 446 1344,3
-P074,Ona Barišić,1997-08-30,,,P073,"Marmontova 12, Split, Hrvatska",+385 85 667 4770,3
-P075,Raj Barišić,1996-04-25,,P025,P076,"Marmontova 12, Split, Hrvatska",+385 85 325 1117,3
-P076,Pia Barišić,1998-11-10,,,P075,"Marmontova 12, Split, Hrvatska",+385 19 824 1964,3
-P077,Noel Barišić,1994-07-18,,P027,P078,"Korzo 8, Rijeka, Hrvatska",+385 39 169 1514,3
-P078,Ria Barišić,1996-03-05,,,P077,"Korzo 8, Rijeka, Hrvatska",+385 52 172 9423,3
-P079,Len Barišić,1995-10-22,,P027,P080,"Korzo 8, Rijeka, Hrvatska",+385 40 385 8953,3
-P080,Sia Barišić,1997-06-14,,,P079,"Korzo 8, Rijeka, Hrvatska",+385 37 652 3167,3
-P081,Van Barišić,1996-02-08,,P027,P082,"Korzo 8, Rijeka, Hrvatska",+385 83 690 8744,3
-P082,Tia Barišić,1998-09-25,,,P081,"Korzo 8, Rijeka, Hrvatska",+385 41 903 8749,3
-P083,Ben Barišić,1994-12-30,,P029,P084,"Korzo 8, Rijeka, Hrvatska",+385 62 294 2545,3
-P084,Uia Barišić,1996-08-12,,,P083,"Korzo 8, Rijeka, Hrvatska",+385 22 774 8062,3
-P085,Den Barišić,1995-05-20,,P029,P086,"Korzo 8, Rijeka, Hrvatska",+385 55 533 7735,3
-P086,Via Barišić,1997-01-15,,,P085,"Korzo 8, Rijeka, Hrvatska",+385 69 984 1887,3
-P087,Ken Barišić,1996-08-28,,P029,P088,"Korzo 8, Rijeka, Hrvatska",+385 96 769 2612,3
-P088,Wia Barišić,1998-04-10,,,P087,"Korzo 8, Rijeka, Hrvatska",+385 17 512 6559,3
-P089,Zen Barišić,1994-11-05,,P031,P090,"Korzo 8, Rijeka, Hrvatska",+385 23 354 4139,3
-P090,Xia Barišić,1996-07-22,,,P089,"Korzo 8, Rijeka, Hrvatska",+385 34 649 8350,3
-P091,Yen Barišić,1995-03-14,,P031,P092,"Korzo 8, Rijeka, Hrvatska",+385 27 532 4006,3
-P092,Zia Barišić,1997-10-30,,,P091,"Korzo 8, Rijeka, Hrvatska",+385 45 573 5092,3
-P093,Aen Barišić,1996-06-18,,P031,P094,"Korzo 8, Rijeka, Hrvatska",+385 19 553 2604,3
-P094,Bia Barišić,1998-02-12,,,P093,"Korzo 8, Rijeka, Hrvatska",+385 16 767 9856,3
-P095,Noah Barišić,2022-04-08,,P033,,"Ilica 123, Zagreb, Hrvatska",+385 27 854 2679,4
-P096,Roko Barišić,2023-01-01,,P033,,"Ilica 123, Zagreb, Hrvatska",+385 21 323 4811,4
-P097,Lovro Barišić,2021-12-21,,P033,,"Ilica 123, Zagreb, Hrvatska",+385 99 658 7873,4
-P098,Ana Barišić,2022-01-25,,P035,,"Ilica 123, Zagreb, Hrvatska",+385 30 814 7924,4
-P099,Noel Barišić,2022-02-03,,P037,,"Ilica 123, Zagreb, Hrvatska",+385 58 199 6881,4
-P101,Lea Barišić,2024-06-19,,,P100,"Ilica 123, Zagreb, Hrvatska",+385 34 821 2139,4
-P100,Tea Barišić,2020-12-15,,P039,P101,"Ilica 123, Zagreb, Hrvatska",+385 78 227 7201,4
-P102,Leon Barišić,2021-05-03,,P039,,"Ilica 123, Zagreb, Hrvatska",+385 39 987 2654,4
-P103,Lea Barišić,2023-11-27,,P039,,"Ilica 123, Zagreb, Hrvatska",+385 56 266 7065,4
-P104,Leon Barišić,2022-12-22,,P041,,"Europska avenija 15, Osijek, Hrvatska",+385 92 173 3803,4
-P105,Petar Barišić,2023-07-09,,P041,,"Europska avenija 15, Osijek, Hrvatska",+385 91 804 4598,4
-P106,Lara Barišić,2020-04-27,,P043,,"Europska avenija 15, Osijek, Hrvatska",+385 14 924 6168,4
-P107,Marko Barišić,2024-12-11,,P043,,"Europska avenija 15, Osijek, Hrvatska",+385 37 771 9179,4
-P108,Ena Barišić,2023-03-09,,P043,,"Europska avenija 15, Osijek, Hrvatska",+385 27 352 9830,4
-P109,Ena Barišić,2024-07-12,,P045,,"Europska avenija 15, Osijek, Hrvatska",+385 38 241 9348,4
-P110,Ben Barišić,2020-03-21,,P045,,"Europska avenija 15, Osijek, Hrvatska",+385 30 911 7916,4
-P111,Mateo Barišić,2023-10-15,,P047,,"Europska avenija 15, Osijek, Hrvatska",+385 77 357 1188,4
-P112,Leon Barišić,2024-05-25,,P047,,"Europska avenija 15, Osijek, Hrvatska",+385 92 448 2827,4
-P113,Nika Barišić,2021-08-01,,P047,,"Europska avenija 15, Osijek, Hrvatska",+385 43 612 3927,4
-P114,Ben Barišić,2022-11-17,,P049,,"Europska avenija 15, Osijek, Hrvatska",+385 87 303 3504,4
-P115,Lovro Barišić,2024-01-20,,P049,,"Europska avenija 15, Osijek, Hrvatska",+385 51 600 1319,4
-P116,Len Barišić,2022-05-08,,P049,,"Europska avenija 15, Osijek, Hrvatska",+385 17 346 2290,4
-P117,Lara Barišić,2020-09-25,,P051,,"Europska avenija 15, Osijek, Hrvatska",+385 26 231 8787,4
-P118,Lucija Barišić,2024-07-07,,P053,,"Europska avenija 15, Osijek, Hrvatska",+385 79 873 4295,4
-P119,Klara Barišić,2024-08-04,,P055,,"Europska avenija 15, Osijek, Hrvatska",+385 41 330 2049,4
-P120,Roko Barišić,2021-01-03,,P055,,"Europska avenija 15, Osijek, Hrvatska",+385 90 160 4750,4
-P122,Petar Barišić,2024-10-16,,,P121,"Europska avenija 15, Osijek, Hrvatska",+385 41 903 8749,4
-P121,Ben Barišić,2022-02-17,,P057,P122,"Europska avenija 15, Osijek, Hrvatska",+385 40 385 8953,4
-P123,Luka Barišić,2020-11-14,,P059,,"Marmontova 12, Split, Hrvatska",+385 55 533 7735,4
-P124,Leon Barišić,2020-01-13,,P059,,"Marmontova 12, Split, Hrvatska",+385 53 919 2790,4
-P125,Marko Barišić,2024-08-05,,P061,,"Marmontova 12, Split, Hrvatska",+385 64 287 5563,4
-P126,Tea Barišić,2024-02-02,,P063,,"Marmontova 12, Split, Hrvatska",+385 93 653 1241,4
-P127,Mateo Barišić,2023-08-07,,P065,,"Marmontova 12, Split, Hrvatska",+385 61 160 3697,4
-P129,Lea Barišić,2021-01-19,,,P128,"Marmontova 12, Split, Hrvatska",+385 79 162 6138,4
-P128,Ena Barišić,2023-05-14,,P067,P129,"Marmontova 12, Split, Hrvatska",+385 99 848 8973,4
-P130,Noah Barišić,2024-08-17,,P067,,"Marmontova 12, Split, Hrvatska",+385 77 261 1931,4
-P131,Ben Barišić,2021-02-20,,P069,,"Marmontova 12, Split, Hrvatska",+385 18 791 4853,4
-P132,Roko Barišić,2024-01-20,,P069,,"Marmontova 12, Split, Hrvatska",+385 20 529 9565,4
-P133,Ena Barišić,2022-04-22,,P069,,"Marmontova 12, Split, Hrvatska",+385 50 344 5351,4
-P134,Leon Barišić,2022-08-11,,P071,,"Marmontova 12, Split, Hrvatska",+385 19 109 8508,4
-P135,Luka Barišić,2024-04-17,,P071,,"Marmontova 12, Split, Hrvatska",+385 43 235 6718,4
+id,name,birthdate,photo_url,parent_id,spouse_id,street_address,phone_number,generation,deceased_date
+P001,Ivan Barišić,1920-05-15,https://i.pravatar.cc/150?img=1,,P002,"Ilica 123, Zagreb, Hrvatska",+385 91 214 1409,0,2010-02-01
+P002,Marija Barišić,1922-08-20,https://i.pravatar.cc/150?img=2,,P001,"Ilica 123, Zagreb, Hrvatska",+385 45 350 4657,0,1998-04-08
+P003,Petar Barišić,1945-03-10,https://i.pravatar.cc/150?img=3,P001,P004,"Ilica 123, Zagreb, Hrvatska",+385 27 854 2679,1,2011-11-24
+P004,Ana Barišić,1947-11-25,https://i.pravatar.cc/150?img=4,,P003,"Ilica 123, Zagreb, Hrvatska",+385 96 858 9935,1,
+P005,Marko Barišić,1948-07-12,https://i.pravatar.cc/150?img=5,P001,P006,"Europska avenija 15, Osijek, Hrvatska",+385 21 704 7912,1,2016-01-01
+P006,Jelena Barišić,1950-02-18,https://i.pravatar.cc/150?img=6,,P005,"Europska avenija 15, Osijek, Hrvatska",+385 14 130 2535,1,2013-09-20
+P007,Tomislav Barišić,1952-09-30,,P001,P008,"Marmontova 12, Split, Hrvatska",+385 37 338 9279,1,2013-12-21
+P008,Ivana Barišić,1954-04-05,,,P007,"Marmontova 12, Split, Hrvatska",+385 87 127 4257,1,
+P009,Josip Barišić,1956-12-22,,P001,P010,"Korzo 8, Rijeka, Hrvatska",+385 93 818 9928,1,
+P010,Maja Barišić,1958-06-14,,,P009,"Korzo 8, Rijeka, Hrvatska",+385 63 325 8359,1,
+P011,Ante Barišić,1970-01-15,https://i.pravatar.cc/150?img=11,P003,P012,"Ilica 123, Zagreb, Hrvatska",+385 85 384 1106,2,
+P012,Sandra Barišić,1972-05-20,https://i.pravatar.cc/150?img=12,,P011,"Ilica 123, Zagreb, Hrvatska",+385 30 814 7924,2,
+P013,Mateo Barišić,1971-08-10,https://i.pravatar.cc/150?img=13,P003,P014,"Ilica 123, Zagreb, Hrvatska",+385 53 384 3547,2,
+P014,Luka Barišić,1973-03-25,https://i.pravatar.cc/150?img=14,,P013,"Ilica 123, Zagreb, Hrvatska",+385 37 881 6514,2,
+P015,Damir Barišić,1972-11-05,,P005,P016,"Europska avenija 15, Osijek, Hrvatska",+385 23 194 7224,2,
+P016,Petra Barišić,1974-07-18,,,P015,"Europska avenija 15, Osijek, Hrvatska",+385 22 467 6635,2,
+P017,Boris Barišić,1973-04-12,,P005,P018,"Europska avenija 15, Osijek, Hrvatska",+385 87 370 1711,2,
+P018,Marijana Barišić,1975-09-30,,,P017,"Europska avenija 15, Osijek, Hrvatska",+385 68 649 3045,2,
+P019,Davor Barišić,1974-02-20,,P005,P020,"Europska avenija 15, Osijek, Hrvatska",+385 58 180 5803,2,
+P020,Sanja Barišić,1976-10-15,,,P019,"Europska avenija 15, Osijek, Hrvatska",+385 90 733 6925,2,
+P021,Zoran Barišić,1972-06-08,,P007,P022,"Marmontova 12, Split, Hrvatska",+385 83 296 2139,2,
+P022,Mirjana Barišić,1974-12-22,,,P021,"Marmontova 12, Split, Hrvatska",+385 15 777 4733,2,
+P023,Goran Barišić,1973-09-14,,P007,P024,"Marmontova 12, Split, Hrvatska",+385 47 181 4814,2,
+P024,Vesna Barišić,1975-05-28,,,P023,"Marmontova 12, Split, Hrvatska",+385 22 489 5554,2,
+P025,Dražen Barišić,1974-01-10,,P007,P026,"Marmontova 12, Split, Hrvatska",+385 68 750 6977,2,
+P026,Ivana Barišić,1976-08-03,,,P025,"Marmontova 12, Split, Hrvatska",+385 30 479 6820,2,
+P027,Marin Barišić,1971-03-17,,P009,P028,"Korzo 8, Rijeka, Hrvatska",+385 36 786 5374,2,
+P028,Martina Barišić,1973-11-09,,,P027,"Korzo 8, Rijeka, Hrvatska",+385 99 799 2169,2,
+P029,Nikola Barišić,1972-07-25,,P009,P030,"Korzo 8, Rijeka, Hrvatska",+385 87 750 3803,2,
+P030,Andrea Barišić,1974-04-12,,,P029,"Korzo 8, Rijeka, Hrvatska",+385 78 846 5010,2,
+P031,Krešimir Barišić,1973-10-05,,P009,P032,"Korzo 8, Rijeka, Hrvatska",+385 30 573 7216,2,
+P032,Tamara Barišić,1975-06-20,,,P031,"Korzo 8, Rijeka, Hrvatska",+385 44 755 4598,2,
+P033,Luka Barišić,1995-03-10,https://i.pravatar.cc/150?img=33,P011,P034,"Ilica 123, Zagreb, Hrvatska",+385 97 432 1916,3,
+P034,Sara Barišić,1997-08-15,https://i.pravatar.cc/150?img=34,,P033,"Ilica 123, Zagreb, Hrvatska",+385 39 941 1525,3,
+P035,Marko Barišić,1996-11-20,https://i.pravatar.cc/150?img=35,P011,P036,"Ilica 123, Zagreb, Hrvatska",+385 50 510 5386,3,
+P036,Petra Barišić,1998-05-12,https://i.pravatar.cc/150?img=36,,P035,"Ilica 123, Zagreb, Hrvatska",+385 18 316 6155,3,
+P037,Ivan Barišić,1995-07-08,,P013,P038,"Ilica 123, Zagreb, Hrvatska",+385 37 771 9179,3,
+P038,Mia Barišić,1997-12-25,,,P037,"Ilica 123, Zagreb, Hrvatska",+385 60 758 8517,3,
+P039,Ante Barišić,1996-04-18,,P013,P040,"Ilica 123, Zagreb, Hrvatska",+385 28 371 3287,3,
+P040,Lea Barišić,1998-09-30,,,P039,"Ilica 123, Zagreb, Hrvatska",+385 41 862 9830,3,
+P041,Domagoj Barišić,1994-12-05,,P015,P042,"Europska avenija 15, Osijek, Hrvatska",+385 43 864 8019,3,
+P042,Lana Barišić,1996-06-20,,,P041,"Europska avenija 15, Osijek, Hrvatska",+385 84 508 6930,3,
+P043,Bruno Barišić,1995-09-14,,P015,P044,"Europska avenija 15, Osijek, Hrvatska",+385 38 241 9348,3,
+P044,Ema Barišić,1997-03-28,,,P043,"Europska avenija 15, Osijek, Hrvatska",+385 73 193 1771,3,
+P045,Filip Barišić,1996-01-10,,P015,P046,"Europska avenija 15, Osijek, Hrvatska",+385 24 256 3621,3,
+P046,Nika Barišić,1998-07-15,,,P045,"Europska avenija 15, Osijek, Hrvatska",+385 97 532 2040,3,
+P047,Gabriel Barišić,1994-05-22,,P017,P048,"Europska avenija 15, Osijek, Hrvatska",+385 59 490 8668,3,
+P048,Klara Barišić,1996-11-08,,,P047,"Europska avenija 15, Osijek, Hrvatska",+385 77 357 1188,3,
+P049,Hrvoje Barišić,1995-08-30,,P017,P050,"Europska avenija 15, Osijek, Hrvatska",+385 97 838 2876,3,
+P050,Lucija Barišić,1997-04-12,,,P049,"Europska avenija 15, Osijek, Hrvatska",+385 97 649 5371,3,
+P051,Igor Barišić,1996-02-18,,P017,P052,"Europska avenija 15, Osijek, Hrvatska",+385 92 448 2827,3,
+P052,Marina Barišić,1998-09-05,,,P051,"Europska avenija 15, Osijek, Hrvatska",+385 47 545 3591,3,
+P053,Jakov Barišić,1994-10-25,,P019,P054,"Europska avenija 15, Osijek, Hrvatska",+385 68 103 5315,3,
+P054,Ana Barišić,1996-06-10,,,P053,"Europska avenija 15, Osijek, Hrvatska",+385 74 880 3927,3,
+P055,Karlo Barišić,1995-03-20,,P019,P056,"Europska avenija 15, Osijek, Hrvatska",+385 74 208 5889,3,
+P056,Dora Barišić,1997-11-14,,,P055,"Europska avenija 15, Osijek, Hrvatska",+385 91 619 4258,3,
+P057,Lovro Barišić,1996-08-28,,P019,P058,"Europska avenija 15, Osijek, Hrvatska",+385 29 482 3646,3,
+P058,Tara Barišić,1998-05-03,,,P057,"Europska avenija 15, Osijek, Hrvatska",+385 79 897 9689,3,
+P059,Matej Barišić,1994-12-15,,P021,P060,"Marmontova 12, Split, Hrvatska",+385 10 713 6310,3,
+P060,Tea Barišić,1996-08-20,,,P059,"Marmontova 12, Split, Hrvatska",+385 72 119 2832,3,
+P061,Nino Barišić,1995-05-10,,P021,P062,"Marmontova 12, Split, Hrvatska",+385 56 999 6038,3,
+P062,Lara Barišić,1997-01-25,,,P061,"Marmontova 12, Split, Hrvatska",+385 40 159 4946,3,
+P063,Roko Barišić,1996-09-18,,P021,P064,"Marmontova 12, Split, Hrvatska",+385 82 180 2403,3,
+P064,Ena Barišić,1998-04-12,,,P063,"Marmontova 12, Split, Hrvatska",+385 72 935 2133,3,
+P065,Sime Barišić,1994-11-30,,P023,P066,"Marmontova 12, Split, Hrvatska",+385 78 884 3060,3,
+P066,Noa Barišić,1996-07-14,,,P065,"Marmontova 12, Split, Hrvatska",+385 26 775 8787,3,
+P067,Tin Barišić,1995-02-22,,P023,P068,"Marmontova 12, Split, Hrvatska",+385 80 269 5342,3,
+P068,Ina Barišić,1997-10-08,,,P067,"Marmontova 12, Split, Hrvatska",+385 77 993 7932,3,
+P069,Vid Barišić,1996-06-05,,P023,P070,"Marmontova 12, Split, Hrvatska",+385 37 652 4295,3,
+P070,Una Barišić,1998-03-20,,,P069,"Marmontova 12, Split, Hrvatska",+385 49 508 7118,3,
+P071,Leon Barišić,1994-09-12,,P025,P072,"Marmontova 12, Split, Hrvatska",+385 66 629 8397,3,
+P072,Neva Barišić,1996-05-28,,,P071,"Marmontova 12, Split, Hrvatska",+385 25 353 4681,3,
+P073,Jan Barišić,1995-01-15,,P025,P074,"Marmontova 12, Split, Hrvatska",+385 18 446 1344,3,
+P074,Ona Barišić,1997-08-30,,,P073,"Marmontova 12, Split, Hrvatska",+385 85 667 4770,3,
+P075,Raj Barišić,1996-04-25,,P025,P076,"Marmontova 12, Split, Hrvatska",+385 85 325 1117,3,
+P076,Pia Barišić,1998-11-10,,,P075,"Marmontova 12, Split, Hrvatska",+385 19 824 1964,3,
+P077,Noel Barišić,1994-07-18,,P027,P078,"Korzo 8, Rijeka, Hrvatska",+385 39 169 1514,3,
+P078,Ria Barišić,1996-03-05,,,P077,"Korzo 8, Rijeka, Hrvatska",+385 52 172 9423,3,
+P079,Len Barišić,1995-10-22,,P027,P080,"Korzo 8, Rijeka, Hrvatska",+385 40 385 8953,3,
+P080,Sia Barišić,1997-06-14,,,P079,"Korzo 8, Rijeka, Hrvatska",+385 37 652 3167,3,
+P081,Van Barišić,1996-02-08,,P027,P082,"Korzo 8, Rijeka, Hrvatska",+385 83 690 8744,3,
+P082,Tia Barišić,1998-09-25,,,P081,"Korzo 8, Rijeka, Hrvatska",+385 41 903 8749,3,
+P083,Ben Barišić,1994-12-30,,P029,P084,"Korzo 8, Rijeka, Hrvatska",+385 62 294 2545,3,
+P084,Uia Barišić,1996-08-12,,,P083,"Korzo 8, Rijeka, Hrvatska",+385 22 774 8062,3,
+P085,Den Barišić,1995-05-20,,P029,P086,"Korzo 8, Rijeka, Hrvatska",+385 55 533 7735,3,
+P086,Via Barišić,1997-01-15,,,P085,"Korzo 8, Rijeka, Hrvatska",+385 69 984 1887,3,
+P087,Ken Barišić,1996-08-28,,P029,P088,"Korzo 8, Rijeka, Hrvatska",+385 96 769 2612,3,
+P088,Wia Barišić,1998-04-10,,,P087,"Korzo 8, Rijeka, Hrvatska",+385 17 512 6559,3,
+P089,Zen Barišić,1994-11-05,,P031,P090,"Korzo 8, Rijeka, Hrvatska",+385 23 354 4139,3,
+P090,Xia Barišić,1996-07-22,,,P089,"Korzo 8, Rijeka, Hrvatska",+385 34 649 8350,3,
+P091,Yen Barišić,1995-03-14,,P031,P092,"Korzo 8, Rijeka, Hrvatska",+385 27 532 4006,3,
+P092,Zia Barišić,1997-10-30,,,P091,"Korzo 8, Rijeka, Hrvatska",+385 45 573 5092,3,
+P093,Aen Barišić,1996-06-18,,P031,P094,"Korzo 8, Rijeka, Hrvatska",+385 19 553 2604,3,
+P094,Bia Barišić,1998-02-12,,,P093,"Korzo 8, Rijeka, Hrvatska",+385 16 767 9856,3,
+P095,Noah Barišić,2022-04-08,,P033,,"Ilica 123, Zagreb, Hrvatska",+385 27 854 2679,4,
+P096,Roko Barišić,2023-01-01,,P033,,"Ilica 123, Zagreb, Hrvatska",+385 21 323 4811,4,
+P097,Lovro Barišić,2021-12-21,,P033,,"Ilica 123, Zagreb, Hrvatska",+385 99 658 7873,4,
+P098,Ana Barišić,2022-01-25,,P035,,"Ilica 123, Zagreb, Hrvatska",+385 30 814 7924,4,
+P099,Noel Barišić,2022-02-03,,P037,,"Ilica 123, Zagreb, Hrvatska",+385 58 199 6881,4,
+P101,Lea Barišić,2024-06-19,,,P100,"Ilica 123, Zagreb, Hrvatska",+385 34 821 2139,4,
+P100,Tea Barišić,2020-12-15,,P039,P101,"Ilica 123, Zagreb, Hrvatska",+385 78 227 7201,4,
+P102,Leon Barišić,2021-05-03,,P039,,"Ilica 123, Zagreb, Hrvatska",+385 39 987 2654,4,
+P103,Lea Barišić,2023-11-27,,P039,,"Ilica 123, Zagreb, Hrvatska",+385 56 266 7065,4,
+P104,Leon Barišić,2022-12-22,,P041,,"Europska avenija 15, Osijek, Hrvatska",+385 92 173 3803,4,
+P105,Petar Barišić,2023-07-09,,P041,,"Europska avenija 15, Osijek, Hrvatska",+385 91 804 4598,4,
+P106,Lara Barišić,2020-04-27,,P043,,"Europska avenija 15, Osijek, Hrvatska",+385 14 924 6168,4,
+P107,Marko Barišić,2024-12-11,,P043,,"Europska avenija 15, Osijek, Hrvatska",+385 37 771 9179,4,
+P108,Ena Barišić,2023-03-09,,P043,,"Europska avenija 15, Osijek, Hrvatska",+385 27 352 9830,4,
+P109,Ena Barišić,2024-07-12,,P045,,"Europska avenija 15, Osijek, Hrvatska",+385 38 241 9348,4,
+P110,Ben Barišić,2020-03-21,,P045,,"Europska avenija 15, Osijek, Hrvatska",+385 30 911 7916,4,
+P111,Mateo Barišić,2023-10-15,,P047,,"Europska avenija 15, Osijek, Hrvatska",+385 77 357 1188,4,
+P112,Leon Barišić,2024-05-25,,P047,,"Europska avenija 15, Osijek, Hrvatska",+385 92 448 2827,4,
+P113,Nika Barišić,2021-08-01,,P047,,"Europska avenija 15, Osijek, Hrvatska",+385 43 612 3927,4,
+P114,Ben Barišić,2022-11-17,,P049,,"Europska avenija 15, Osijek, Hrvatska",+385 87 303 3504,4,
+P115,Lovro Barišić,2024-01-20,,P049,,"Europska avenija 15, Osijek, Hrvatska",+385 51 600 1319,4,
+P116,Len Barišić,2022-05-08,,P049,,"Europska avenija 15, Osijek, Hrvatska",+385 17 346 2290,4,
+P117,Lara Barišić,2020-09-25,,P051,,"Europska avenija 15, Osijek, Hrvatska",+385 26 231 8787,4,
+P118,Lucija Barišić,2024-07-07,,P053,,"Europska avenija 15, Osijek, Hrvatska",+385 79 873 4295,4,
+P119,Klara Barišić,2024-08-04,,P055,,"Europska avenija 15, Osijek, Hrvatska",+385 41 330 2049,4,
+P120,Roko Barišić,2021-01-03,,P055,,"Europska avenija 15, Osijek, Hrvatska",+385 90 160 4750,4,
+P122,Petar Barišić,2024-10-16,,,P121,"Europska avenija 15, Osijek, Hrvatska",+385 41 903 8749,4,
+P121,Ben Barišić,2022-02-17,,P057,P122,"Europska avenija 15, Osijek, Hrvatska",+385 40 385 8953,4,
+P123,Luka Barišić,2020-11-14,,P059,,"Marmontova 12, Split, Hrvatska",+385 55 533 7735,4,
+P124,Leon Barišić,2020-01-13,,P059,,"Marmontova 12, Split, Hrvatska",+385 53 919 2790,4,
+P125,Marko Barišić,2024-08-05,,P061,,"Marmontova 12, Split, Hrvatska",+385 64 287 5563,4,
+P126,Tea Barišić,2024-02-02,,P063,,"Marmontova 12, Split, Hrvatska",+385 93 653 1241,4,
+P127,Mateo Barišić,2023-08-07,,P065,,"Marmontova 12, Split, Hrvatska",+385 61 160 3697,4,
+P129,Lea Barišić,2021-01-19,,,P128,"Marmontova 12, Split, Hrvatska",+385 79 162 6138,4,
+P128,Ena Barišić,2023-05-14,,P067,P129,"Marmontova 12, Split, Hrvatska",+385 99 848 8973,4,
+P130,Noah Barišić,2024-08-17,,P067,,"Marmontova 12, Split, Hrvatska",+385 77 261 1931,4,
+P131,Ben Barišić,2021-02-20,,P069,,"Marmontova 12, Split, Hrvatska",+385 18 791 4853,4,
+P132,Roko Barišić,2024-01-20,,P069,,"Marmontova 12, Split, Hrvatska",+385 20 529 9565,4,
+P133,Ena Barišić,2022-04-22,,P069,,"Marmontova 12, Split, Hrvatska",+385 50 344 5351,4,
+P134,Leon Barišić,2022-08-11,,P071,,"Marmontova 12, Split, Hrvatska",+385 19 109 8508,4,
+P135,Luka Barišić,2024-04-17,,P071,,"Marmontova 12, Split, Hrvatska",+385 43 235 6718,4,

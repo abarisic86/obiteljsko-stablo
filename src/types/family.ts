@@ -7,6 +7,7 @@ export interface Person {
   spouseId: string | null;
   streetAddress: string;
   phoneNumber: string;
+  deceasedDate: string;
   generation: number;
 }
 
