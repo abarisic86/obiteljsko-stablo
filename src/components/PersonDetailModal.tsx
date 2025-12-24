@@ -398,7 +398,10 @@ export default function PersonDetailModal({ person, spouse, parent, children = [
               </h3>
               <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
                 <button
-                  onClick={() => onPersonClick(parent.id)}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onPersonClick(parent.id)
+                  }}
                   className="text-lg font-semibold text-blue-600 hover:text-blue-800 hover:underline transition-colors text-left w-full"
                 >
                   {parent.name}
@@ -423,7 +426,10 @@ export default function PersonDetailModal({ person, spouse, parent, children = [
                 {children.map((child) => (
                   <div key={child.id} className="border border-gray-300 rounded-lg p-4 bg-gray-50">
                     <button
-                      onClick={() => onPersonClick(child.id)}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        onPersonClick(child.id)
+                      }}
                       className="text-lg font-semibold text-blue-600 hover:text-blue-800 hover:underline transition-colors text-left w-full"
                     >
                       {child.name}
