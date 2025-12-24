@@ -12,6 +12,8 @@ interface FamilyTreeProps {
   people: Person[];
   selectedPersonId: string | null;
   onPersonSelect: (id: string | null) => void;
+  scrollToPersonId: string | null;
+  onScrollComplete: () => void;
 }
 
 export default function FamilyTree({
@@ -19,10 +21,15 @@ export default function FamilyTree({
   people,
   selectedPersonId,
   onPersonSelect,
+  scrollToPersonId,
+  onScrollComplete,
 }: FamilyTreeProps) {
   const { generations, positions, bounds } = useTreeLayout(rootNode);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
+  const [shouldScrollToPerson, setShouldScrollToPerson] = useState<
+    string | null
+  >(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const transformControlsRef = useRef<{
     zoomIn: () => void;
@@ -63,6 +70,13 @@ export default function FamilyTree({
     const person = findPerson(rootNode);
     setSelectedPerson(person);
   }, [selectedPersonId, rootNode]);
+
+  // Handle scroll to person
+  useEffect(() => {
+    if (scrollToPersonId) {
+      setShouldScrollToPerson(scrollToPersonId);
+    }
+  }, [scrollToPersonId]);
 
   const handlePersonClick = (person: Person) => {
     onPersonSelect(person.id);
@@ -123,9 +137,29 @@ export default function FamilyTree({
         doubleClick={{ disabled: false, step: 0.7 }}
         onTransformed={(_ref, state) => handleZoomChange(state)}
       >
-        {({ zoomIn, zoomOut, resetTransform }) => {
+        {({ zoomIn, zoomOut, resetTransform, setTransform }) => {
           // Store controls for external access
           transformControlsRef.current = { zoomIn, zoomOut, resetTransform };
+
+          // Handle scroll to person if needed
+          if (shouldScrollToPerson) {
+            const personId = shouldScrollToPerson;
+            const personPosition = positions.get(personId);
+
+            if (personPosition) {
+              // Calculate target position to center the person in viewport
+              // The tree is centered at (0,0), so we need to pan so that personPosition.x,y is at viewport center
+              const targetX = viewportSize.width / 2 - personPosition.x;
+              const targetY = viewportSize.height / 2 - personPosition.y;
+
+              // Keep current zoom level
+              setTransform(targetX, targetY, zoomLevel);
+            }
+
+            // Reset the scroll flag and notify parent
+            setShouldScrollToPerson(null);
+            onScrollComplete();
+          }
 
           return (
             <>

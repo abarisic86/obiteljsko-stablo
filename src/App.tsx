@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import FamilyTree from './components/FamilyTree'
+import SearchBar from './components/SearchBar'
 import { useFamilyData } from './hooks/useFamilyData'
 
 // Primary data source: Google Sheets CSV export URL
@@ -18,6 +19,16 @@ function App() {
     fallbackUrl: FALLBACK_DATA_URL,
   })
   const [selectedPersonId, setSelectedPersonId] = useState<string | null>(null)
+  const [scrollToPersonId, setScrollToPersonId] = useState<string | null>(null)
+
+  const handlePersonSelect = (personId: string) => {
+    setSelectedPersonId(personId)
+    setScrollToPersonId(personId)
+  }
+
+  const handleScrollComplete = () => {
+    setScrollToPersonId(null)
+  }
 
   if (loading) {
     return (
@@ -55,12 +66,22 @@ function App() {
   }
 
   return (
-    <FamilyTree
-      rootNode={tree}
-      people={people}
-      selectedPersonId={selectedPersonId}
-      onPersonSelect={setSelectedPersonId}
-    />
+    <div className="w-full h-screen bg-gray-50 relative">
+      <div className="absolute top-4 left-0 right-0 z-40">
+        <SearchBar
+          people={people}
+          onPersonSelect={handlePersonSelect}
+        />
+      </div>
+      <FamilyTree
+        rootNode={tree}
+        people={people}
+        selectedPersonId={selectedPersonId}
+        onPersonSelect={setSelectedPersonId}
+        scrollToPersonId={scrollToPersonId}
+        onScrollComplete={handleScrollComplete}
+      />
+    </div>
   )
 }
 
