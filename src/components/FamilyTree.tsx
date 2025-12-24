@@ -30,6 +30,20 @@ export default function FamilyTree({
     resetTransform: () => void;
   } | null>(null);
 
+  // Get viewport size immediately
+  const [viewportSize, setViewportSize] = useState(() => ({
+    width: typeof window !== "undefined" ? window.innerWidth : 0,
+    height: typeof window !== "undefined" ? window.innerHeight : 0,
+  }));
+
+  useEffect(() => {
+    const updateSize = () => {
+      setViewportSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
   // Find selected person data
   useEffect(() => {
     if (!selectedPersonId) {
@@ -70,6 +84,12 @@ export default function FamilyTree({
     transformControlsRef.current?.resetTransform();
   };
 
+  // Calculate initial position to center content at (0,0) in viewport center
+  // Content (0,0) should appear at viewport center
+  const scale = 0.5;
+  const initialPositionX = viewportSize.width / 2;
+  const initialPositionY = viewportSize.height / 2;
+
   // Find spouse for selected person - check both tree and original people array
   const selectedSpouse = selectedPerson
     ? (() => {
@@ -92,13 +112,12 @@ export default function FamilyTree({
   return (
     <div className="w-full h-screen bg-gray-50 overflow-hidden relative">
       <TransformWrapper
-        initialScale={0.5}
+        initialScale={scale}
         minScale={0.1}
         maxScale={2}
         limitToBounds={false}
-        centerOnInit={true}
-        initialPositionX={0}
-        initialPositionY={0}
+        initialPositionX={initialPositionX}
+        initialPositionY={initialPositionY}
         wheel={{ step: 0.1 }}
         pinch={{ step: 5 }}
         doubleClick={{ disabled: false, step: 0.7 }}
@@ -116,8 +135,6 @@ export default function FamilyTree({
                 contentStyle={{
                   width: `${bounds.width}px`,
                   height: `${bounds.height}px`,
-                  minWidth: "100%",
-                  minHeight: "100%",
                 }}
               >
                 <div
