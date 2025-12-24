@@ -151,7 +151,8 @@ export default function FamilyTree({
               // Account for search bar overlaying the top portion
               const searchBarOffset = 40; // Approximate search bar height + spacing
               const targetX = viewportSize.width / 2 - personPosition.x;
-              const targetY = viewportSize.height / 2 - personPosition.y + searchBarOffset;
+              const targetY =
+                viewportSize.height / 2 - personPosition.y + searchBarOffset;
 
               // Keep current zoom level
               setTransform(targetX, targetY, zoomLevel);
