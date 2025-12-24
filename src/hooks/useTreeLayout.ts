@@ -2,9 +2,9 @@ import { useMemo } from "react";
 import { FamilyNode, PersonPosition } from "../types/family";
 
 const CARD_WIDTH = 140;
-const CARD_HEIGHT = 180;
+const CARD_HEIGHT = 60;
 const COLUMN_SPACING = 200;
-const ROW_SPACING = 220;
+const ROW_SPACING = 80;
 
 export function useTreeLayout(rootNode: FamilyNode) {
   return useMemo(() => {
@@ -55,8 +55,7 @@ export function useTreeLayout(rootNode: FamilyNode) {
         childrenRanges.push(childRange);
         // Position next sibling directly below with minimal spacing (siblings grouped together)
         // Use smaller spacing for siblings, larger spacing between different parent groups
-        const spacing =
-          index < node.children.length - 1 ? ROW_SPACING / 8 : ROW_SPACING / 2;
+        const spacing = index < node.children.length - 1 ? 20 : ROW_SPACING / 2;
         currentChildY = childRange.maxY + spacing;
       });
 
@@ -142,7 +141,7 @@ export function useTreeLayout(rootNode: FamilyNode) {
       positions: adjustedPositions,
       bounds: {
         width: adjMaxX - adjMinX + COLUMN_SPACING,
-        height: adjMaxY - adjMinY + ROW_SPACING,
+        height: adjMaxY - adjMinY + ROW_SPACING / 2,
         minX: adjMinX,
         minY: adjMinY,
         centerX: 0, // Tree is now centered at origin

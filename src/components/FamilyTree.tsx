@@ -132,7 +132,7 @@ export default function FamilyTree({
                   style={{
                     width: `${bounds.width}px`,
                     height: `${bounds.height}px`,
-                    padding: "40px",
+                    padding: "20px",
                   }}
                 >
                   {/* Connection Lines */}
