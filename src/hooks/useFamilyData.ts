@@ -3,18 +3,20 @@ import { FamilyNode } from '../types/family'
 import { parseSheetData } from '../utils/parseSheetData'
 import { buildTreeStructure } from '../utils/buildTreeStructure'
 
-export function useFamilyData(sheetUrl: string) {
+interface UseFamilyDataOptions {
+  primaryUrl?: string | null
+  fallbackUrl?: string
+}
+
+export function useFamilyData({ primaryUrl, fallbackUrl = '/test-data.csv' }: UseFamilyDataOptions) {
   const [tree, setTree] = useState<FamilyNode | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchData(url: string): Promise<boolean> {
       try {
-        setLoading(true)
-        setError(null)
-
-        const response = await fetch(sheetUrl)
+        const response = await fetch(url)
         if (!response.ok) {
           throw new Error(
             `Failed to fetch data: ${response.status} ${response.statusText}`
@@ -30,25 +32,52 @@ export function useFamilyData(sheetUrl: string) {
 
         const treeStructure = buildTreeStructure(people)
         setTree(treeStructure)
+        return true
       } catch (err) {
-        setError(
-          err instanceof Error
-            ? err.message
-            : 'An unknown error occurred while loading data'
-        )
-        setTree(null)
-      } finally {
-        setLoading(false)
+        return false
       }
     }
 
-    if (sheetUrl && sheetUrl !== 'https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=0') {
-      fetchData()
-    } else {
-      setError('Please configure the Google Sheets URL in App.tsx')
+    async function loadData() {
+      setLoading(true)
+      setError(null)
+
+      // Try primary URL first if provided
+      if (primaryUrl) {
+        const success = await fetchData(primaryUrl)
+        if (success) {
+          setLoading(false)
+          return
+        }
+        // If primary URL failed, try fallback
+        if (fallbackUrl) {
+          const fallbackSuccess = await fetchData(fallbackUrl)
+          if (fallbackSuccess) {
+            setLoading(false)
+            setError(null) // Clear error since fallback succeeded
+            return
+          }
+        }
+        // Both failed
+        setError('Failed to load data from both primary source and fallback')
+        setTree(null)
+      } else if (fallbackUrl) {
+        // No primary URL, use fallback directly
+        const success = await fetchData(fallbackUrl)
+        if (!success) {
+          setError('Failed to load data from fallback source')
+          setTree(null)
+        }
+      } else {
+        setError('No data source configured')
+        setTree(null)
+      }
+
       setLoading(false)
     }
-  }, [sheetUrl])
+
+    loadData()
+  }, [primaryUrl, fallbackUrl])
 
   return { tree, loading, error }
 }
