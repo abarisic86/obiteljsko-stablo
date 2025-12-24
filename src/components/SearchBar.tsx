@@ -93,7 +93,7 @@ export default function SearchBar({ people, onPersonSelect }: SearchBarProps) {
   }
 
   return (
-    <div className="relative w-full max-w-md mx-auto mb-4 z-50">
+    <div className="relative w-full max-w-md mx-auto mb-4 px-4 sm:px-6 lg:px-8 z-50">
       {/* Search Input */}
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
