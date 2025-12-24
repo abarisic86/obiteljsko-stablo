@@ -84,7 +84,7 @@ export default function SearchBar({ people, onPersonSelect }: SearchBarProps) {
     const parts = name.split(regex)
 
     return parts.map((part, index) =>
-      regex.test(part) ? (
+      index % 2 === 1 ? ( // Odd indices are the matched parts
         <mark key={index} className="bg-yellow-200">{part}</mark>
       ) : (
         part
