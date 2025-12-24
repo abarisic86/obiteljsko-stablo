@@ -89,11 +89,6 @@ export default function FamilyTree({
       })()
     : undefined;
 
-  // Check if spouse is in the tree structure
-  const isSpouseInTree = selectedSpouse
-    ? generations.flat().some((node) => node.id === selectedSpouse.id)
-    : false;
-
   return (
     <div className="w-full h-screen bg-gray-50 overflow-hidden relative">
       <TransformWrapper
@@ -188,7 +183,6 @@ export default function FamilyTree({
       <PersonDetailModal
         person={selectedPerson}
         spouse={selectedSpouse}
-        isSpouseInTree={isSpouseInTree}
         onClose={() => onPersonSelect(null)}
       />
     </div>

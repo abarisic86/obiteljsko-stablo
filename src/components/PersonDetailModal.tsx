@@ -3,11 +3,10 @@ import { Person } from '../types/family'
 interface PersonDetailModalProps {
   person: Person | null
   spouse?: Person
-  isSpouseInTree?: boolean
   onClose: () => void
 }
 
-export default function PersonDetailModal({ person, spouse, isSpouseInTree, onClose }: PersonDetailModalProps) {
+export default function PersonDetailModal({ person, spouse, onClose }: PersonDetailModalProps) {
   if (!person) return null
 
   const getGoogleMapsUrl = (address: string) => {
