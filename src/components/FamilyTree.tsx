@@ -155,9 +155,12 @@ export default function FamilyTree({
               // Calculate target position to center the person in viewport
               // Account for search bar overlaying the top portion
               const searchBarOffset = 40; // Approximate search bar height + spacing
-              const targetX = viewportSize.width / 2 - personPosition.x;
-              const targetY =
-                viewportSize.height / 2 - personPosition.y + searchBarOffset;
+              const viewportCenterX = viewportSize.width / 2;
+              const viewportCenterY = (viewportSize.height - searchBarOffset) / 2;
+
+              // To center the person, we want personPosition to appear at viewport center
+              const targetX = viewportCenterX - personPosition.x;
+              const targetY = viewportCenterY - personPosition.y;
 
               // Keep current zoom level
               setTransform(targetX, targetY, zoomLevel);
