@@ -17,7 +17,6 @@ export interface SheetRow {
 export function parseSheetData(csvText: string): Person[] {
   const result = Papa.parse<SheetRow>(csvText, {
     header: true,
-    skipEmptyLines: true,
     transformHeader: (header) => {
       // Normalize header names to handle variations
       const normalized = header.trim().toLowerCase().replace(/\s+/g, '_')

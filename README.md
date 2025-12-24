@@ -134,6 +134,29 @@ Slijedi upute - prvi put će te pitati za login i konfiguraciju.
 
 Nakon deploya, aplikacija će biti dostupna na URL-u poput: `https://obiteljsko-stablo.vercel.app`
 
+#### Automatski Deploy s GitHub Actions
+
+Ako želiš automatski deploy svaki put kad pushaš na `main` branch, postavi GitHub Actions:
+
+1. **Prvo deployaj jednom preko Vercel dashboarda** (korak 3 gore) - ovo će kreirati Vercel projekt
+
+2. **Dohvati Vercel credentials**:
+   - Idi na [vercel.com/account/tokens](https://vercel.com/account/tokens)
+   - Kreiraj novi token i kopiraj ga
+   - Idi na svoj projekt na Vercel dashboardu
+   - U Settings → General, kopiraj **Org ID** i **Project ID**
+
+3. **Dodaj GitHub Secrets**:
+   - Idi na GitHub repo → Settings → Secrets and variables → Actions
+   - Dodaj tri secrets:
+     - `VERCEL_TOKEN` - token koji si kopirao
+     - `VERCEL_ORG_ID` - Org ID iz Vercel projekta
+     - `VERCEL_PROJECT_ID` - Project ID iz Vercel projekta
+
+4. **Pushaj kod** - GitHub Actions workflow (`.github/workflows/deploy.yml`) će automatski deployati na svaki push na `main` branch
+
+**Napomena**: Workflow je već konfiguriran u projektu, samo trebaš dodati secrets!
+
 ### Netlify (Alternativa - Besplatno)
 
 1. Pushaj kod na GitHub
