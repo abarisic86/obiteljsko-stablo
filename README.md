@@ -101,6 +101,58 @@ src/
 - react-zoom-pan-pinch
 - papaparse
 
+## Deployment
+
+### Vercel (Preporučeno - Besplatno)
+
+Vercel je najjednostavnija opcija za deploy React/Vite aplikacija:
+
+1. **Instaliraj Vercel CLI** (opcionalno, možeš i preko web sučelja):
+```bash
+npm i -g vercel
+```
+
+2. **Deploy preko CLI**:
+```bash
+# U root direktoriju projekta
+vercel
+```
+Slijedi upute - prvi put će te pitati za login i konfiguraciju.
+
+3. **Ili deploy preko GitHub**:
+   - Pushaj kod na GitHub
+   - Idi na [vercel.com](https://vercel.com)
+   - Klikni "New Project"
+   - Poveži GitHub repo
+   - Vercel će automatski detektirati Vite i konfigurirati build
+   - Klikni "Deploy"
+
+**Build Settings** (Vercel automatski detektira, ali možeš provjeriti):
+- Build Command: `npm run build`
+- Output Directory: `dist`
+- Install Command: `npm install`
+
+Nakon deploya, aplikacija će biti dostupna na URL-u poput: `https://obiteljsko-stablo.vercel.app`
+
+### Netlify (Alternativa - Besplatno)
+
+1. Pushaj kod na GitHub
+2. Idi na [netlify.com](https://netlify.com)
+3. Klikni "Add new site" > "Import an existing project"
+4. Poveži GitHub repo
+5. Build settings:
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+6. Klikni "Deploy site"
+
+### GitHub Pages
+
+Za GitHub Pages, trebaš malo više konfiguracije:
+1. Dodaj `base` u `vite.config.ts`: `base: '/obiteljsko-stablo/'` (zamijeni s imenom repo-a)
+2. Instaliraj `gh-pages`: `npm install --save-dev gh-pages`
+3. Dodaj script u `package.json`: `"deploy": "npm run build && gh-pages -d dist"`
+4. Pokreni: `npm run deploy`
+
 ## License
 
 MIT
