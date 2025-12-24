@@ -14,7 +14,7 @@ export function useFamilyData({ primaryUrl, fallbackUrl = '/test-data.csv' }: Us
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    async function fetchData(url: string): Promise<boolean> {
+    async function fetchData(url: string): Promise<{ success: boolean; error?: string }> {
       try {
         const response = await fetch(url)
         if (!response.ok) {
@@ -24,17 +24,27 @@ export function useFamilyData({ primaryUrl, fallbackUrl = '/test-data.csv' }: Us
         }
 
         const csvText = await response.text()
+        if (!csvText || csvText.trim().length === 0) {
+          throw new Error('Empty response from data source')
+        }
+
         const people = parseSheetData(csvText)
 
         if (people.length === 0) {
-          throw new Error('No data found in the sheet')
+          throw new Error('No data found after parsing')
         }
 
         const treeStructure = buildTreeStructure(people)
+        if (!treeStructure) {
+          throw new Error('Failed to build tree structure')
+        }
+
         setTree(treeStructure)
-        return true
+        return { success: true }
       } catch (err) {
-        return false
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error'
+        console.error(`Failed to fetch from ${url}:`, errorMessage)
+        return { success: false, error: errorMessage }
       }
     }
 
@@ -44,28 +54,32 @@ export function useFamilyData({ primaryUrl, fallbackUrl = '/test-data.csv' }: Us
 
       // Try primary URL first if provided
       if (primaryUrl) {
-        const success = await fetchData(primaryUrl)
-        if (success) {
+        const primaryResult = await fetchData(primaryUrl)
+        if (primaryResult.success) {
           setLoading(false)
           return
         }
         // If primary URL failed, try fallback
         if (fallbackUrl) {
-          const fallbackSuccess = await fetchData(fallbackUrl)
-          if (fallbackSuccess) {
+          const fallbackResult = await fetchData(fallbackUrl)
+          if (fallbackResult.success) {
             setLoading(false)
             setError(null) // Clear error since fallback succeeded
             return
           }
+          // Both failed - show detailed error
+          setError(
+            `Failed to load data: Primary (${primaryResult.error || 'unknown error'}), Fallback (${fallbackResult.error || 'unknown error'})`
+          )
+        } else {
+          setError(`Failed to load data from primary source: ${primaryResult.error || 'unknown error'}`)
         }
-        // Both failed
-        setError('Failed to load data from both primary source and fallback')
         setTree(null)
       } else if (fallbackUrl) {
         // No primary URL, use fallback directly
-        const success = await fetchData(fallbackUrl)
-        if (!success) {
-          setError('Failed to load data from fallback source')
+        const fallbackResult = await fetchData(fallbackUrl)
+        if (!fallbackResult.success) {
+          setError(`Failed to load data from fallback source: ${fallbackResult.error || 'unknown error'}`)
           setTree(null)
         }
       } else {

@@ -25,7 +25,7 @@ export function useTreeLayout(rootNode: FamilyNode) {
       // Count siblings at same level
       const siblingsInGen = generations[generation].length
       
-      // Center vertically within generation
+      // Center vertically within generation (centered around 0)
       const totalHeight = siblingsInGen * ROW_SPACING
       const startY = -totalHeight / 2 + ROW_SPACING / 2
       
@@ -49,10 +49,10 @@ export function useTreeLayout(rootNode: FamilyNode) {
     traverse(rootNode, 0)
 
     // Calculate bounds
-    let minX = 0
-    let maxX = 0
-    let minY = 0
-    let maxY = 0
+    let minX = Infinity
+    let maxX = -Infinity
+    let minY = Infinity
+    let maxY = -Infinity
 
     positions.forEach((pos) => {
       minX = Math.min(minX, pos.x)
@@ -61,14 +61,43 @@ export function useTreeLayout(rootNode: FamilyNode) {
       maxY = Math.max(maxY, pos.y + pos.height)
     })
 
+    // Calculate center of the tree
+    const centerX = (minX + maxX) / 2
+    const centerY = (minY + maxY) / 2
+
+    // Adjust positions to center the tree at origin (0, 0)
+    const adjustedPositions = new Map<string, PersonPosition>()
+    positions.forEach((pos, id) => {
+      adjustedPositions.set(id, {
+        ...pos,
+        x: pos.x - centerX,
+        y: pos.y - centerY,
+      })
+    })
+
+    // Recalculate bounds after centering
+    let adjMinX = Infinity
+    let adjMaxX = -Infinity
+    let adjMinY = Infinity
+    let adjMaxY = -Infinity
+
+    adjustedPositions.forEach((pos) => {
+      adjMinX = Math.min(adjMinX, pos.x)
+      adjMaxX = Math.max(adjMaxX, pos.x + pos.width)
+      adjMinY = Math.min(adjMinY, pos.y)
+      adjMaxY = Math.max(adjMaxY, pos.y + pos.height)
+    })
+
     return {
       generations,
-      positions,
+      positions: adjustedPositions,
       bounds: {
-        width: maxX - minX + COLUMN_SPACING,
-        height: maxY - minY + ROW_SPACING,
-        minX,
-        minY,
+        width: adjMaxX - adjMinX + COLUMN_SPACING,
+        height: adjMaxY - adjMinY + ROW_SPACING,
+        minX: adjMinX,
+        minY: adjMinY,
+        centerX: 0, // Tree is now centered at origin
+        centerY: 0,
       },
     }
   }, [rootNode])

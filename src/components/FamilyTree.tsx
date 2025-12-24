@@ -82,6 +82,8 @@ export default function FamilyTree({
         maxScale={2}
         limitToBounds={false}
         centerOnInit={true}
+        initialPositionX={0}
+        initialPositionY={0}
         wheel={{ step: 0.1 }}
         pinch={{ step: 5 }}
         doubleClick={{ disabled: false, step: 0.7 }}
@@ -104,7 +106,7 @@ export default function FamilyTree({
                 }}
               >
                 <div
-                  className="relative flex items-start"
+                  className="relative flex items-center justify-center"
                   style={{
                     width: `${bounds.width}px`,
                     height: `${bounds.height}px`,
@@ -118,8 +120,8 @@ export default function FamilyTree({
                     zoomLevel={zoomLevel}
                   />
 
-                  {/* Generation Columns */}
-                  <div className="relative flex gap-8">
+                  {/* Generation Columns - positioned relative to centered container */}
+                  <div className="relative flex gap-8 items-center">
                     {generations.map((nodes, genIndex) => (
                       <GenerationColumn
                         key={genIndex}
