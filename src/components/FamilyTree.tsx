@@ -28,7 +28,8 @@ export default function FamilyTree({
   selectedPersonParent,
   selectedPersonChildren = [],
 }: FamilyTreeProps) {
-  const { generations, positions, bounds } = useTreeLayout(rootNode);
+  const { generations, positions, spousePositions, bounds } =
+    useTreeLayout(rootNode);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
   const [shouldScrollToPerson, setShouldScrollToPerson] = useState<
@@ -149,14 +150,17 @@ export default function FamilyTree({
           // Handle scroll to person if needed
           if (shouldScrollToPerson) {
             const personId = shouldScrollToPerson;
-            const personPosition = positions.get(personId);
+            // Check both main positions and spouse positions
+            const personPosition =
+              positions.get(personId) || spousePositions.get(personId);
 
             if (personPosition) {
               // Calculate target position to center the person in viewport
               // Account for search bar overlaying the top portion
               const searchBarOffset = 40; // Approximate search bar height + spacing
               const viewportCenterX = viewportSize.width / 2;
-              const viewportCenterY = (viewportSize.height - searchBarOffset) / 2;
+              const viewportCenterY =
+                (viewportSize.height - searchBarOffset) / 2;
 
               // To center the person, we want personPosition to appear at viewport center
               const targetX = viewportCenterX - personPosition.x;
@@ -195,6 +199,7 @@ export default function FamilyTree({
                   <ConnectionLines
                     generations={generations}
                     positions={positions}
+                    spousePositions={spousePositions}
                     zoomLevel={zoomLevel}
                   />
 
@@ -207,21 +212,45 @@ export default function FamilyTree({
                       const pos = positions.get(node.id);
                       if (!pos) return null;
 
+                      const spousePos = node.spouse
+                        ? spousePositions.get(node.spouse.id)
+                        : null;
+
                       return (
-                        <div
-                          key={node.id}
-                          className="absolute"
-                          style={{
-                            left: `${pos.x}px`,
-                            top: `${pos.y}px`,
-                            width: `${pos.width}px`,
-                          }}
-                        >
-                          <PersonCard
-                            person={node}
-                            onClick={() => handlePersonClick(node)}
-                            zoomLevel={zoomLevel}
-                          />
+                        <div key={node.id}>
+                          {/* Main person card */}
+                          <div
+                            className="absolute"
+                            style={{
+                              left: `${pos.x}px`,
+                              top: `${pos.y}px`,
+                              width: `${pos.width}px`,
+                            }}
+                          >
+                            <PersonCard
+                              person={node}
+                              onClick={() => handlePersonClick(node)}
+                              zoomLevel={zoomLevel}
+                            />
+                          </div>
+
+                          {/* Spouse card if exists */}
+                          {node.spouse && spousePos && (
+                            <div
+                              className="absolute"
+                              style={{
+                                left: `${spousePos.x}px`,
+                                top: `${spousePos.y}px`,
+                                width: `${spousePos.width}px`,
+                              }}
+                            >
+                              <PersonCard
+                                person={node.spouse}
+                                onClick={() => handlePersonClick(node.spouse!)}
+                                zoomLevel={zoomLevel}
+                              />
+                            </div>
+                          )}
                         </div>
                       );
                     })}
