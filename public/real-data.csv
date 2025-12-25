@@ -3,8 +3,8 @@ p01,Mirko Barišić,1932-06-14,,,p02,Rakitno,,1991-01-14,0
 p02,Iva Barišić,1930-12-12,,,p01,Rakitno,,1995-12-12,0
 p03,Jure Barišić,1953-06-14,,p01,p04,"Haendelova 2, Zagreb, Croatia",,,1
 p04,Nada Barišić,1959-01-11,,,p03,"Haendelova 2, Zagreb, Croatia",,,1
-p05,Petar Barišić,1961-06-22,,p01,p06,,+385989811433,,1
-p06,Sanja,,,,p05,,,,1
+p05,Petar Barišić,1961-06-22,https://drive.google.com/u/0/open?usp=forms_web&id=1_YNQ9341XzaVS9cvP9fBJoqEHulsINX0,p01,p06,"Borje 12, Zagreb, Hrvatska",+385989811433,,1
+p06,Sanja r. Grčanac,,,,p05,,,,1
 p07,Jago Barišić,,,p01,p08,,,,1
 p08,Ljubica,,,,p07,,,,1
 p10,Veselka (Vesa) Pavković,,,p01,p09,,,,1
@@ -13,7 +13,8 @@ p12,Ankica Radoš,,,p01,p11,,,,1
 p11,Vinko Radoš,,,,p12,,,,1
 p13,Ilija Barišić,,,p01,p14,,,,1
 p14,Nada,,,,p13,,,,1
-p34,Marica Jakovljević,,,p01,,,,,1
+p34,Marica (Mardefina) Jakovljević,,,p01,p35,,,,1
+p35,Ivan Jakovljević,,,,p34,,,,1
 p16,Iva Zlomislić,,,p34,p15,,,,2
 p15,Grgo Zlomislić,,,,p16,,,,2
 p17,Ante Barišić,1986-07-11,,p03,p18,"Kutnjački put 2A, 10000 Zagreb",+38598446921,,2
@@ -30,6 +31,23 @@ p27,Anđelka Barišić,,,,p26,,,,2
 p28,Mirko Barišić,1991-06-18,,p07,,"Podi 15, Posušje, Bosna i Hercegovina",+387 63 488 179,,2
 p29,Iva Majić,1971-07-04,,p13,p30,"Kutnjački put 2a Zagreb hrvatska",,,2
 p30,Dragan Majić,1970-05-10,,,p29,"Kutnjački put 2a Zagreb hrvatska",,,2
+p36,Blaženka Pavina,1979-03-30,https://drive.google.com/u/0/open?usp=forms_web&id=1F2arAa-NPvxaEaez2fP-OjpSquExJUae,p34,p37,"Ivana Šibla 6",098721038,,2
+p37,Igor Pavina,,,,p36,,,,2
+p40,Slavica Krišto,1977-02-21,,p34,p41,"Rangarova 2, Zagreb, Hrvatska",,,2
+p41,Domagoj Krišto,,,,p40,,,,2
+p44,Blaženko Jakovljević,1979-03-30,,p34,p45,"Kralja Tomislava 20, Posušje, BiH",,,2
+p45,Ivana Jakovljević,,,,p44,,,,2
+p49,Jozo Jakovljević,1974-05-07,,p34,p50,"Podi, Rakitno, BiH",,,2
+p50,Violeta Jakovljević,,,,p49,,,,2
 p31,Fran Barišić,2019-12-06,,p17,,"Ulica Crvenog Križa 25",-,,3
 p32,Mara Majić,2006-12-03,https://drive.google.com/u/0/open?usp=forms_web&id=1Tf6NdPlLaFhnSOjDh4hDCKFc9mwuvARw,p29,,"Kutnjački put 2a",,,3
 p33,Mario Zlomislić,1991-05-11,,p16,,"Unterdorfstrasse 5, 8442 Hettlingen, Švicarska",+41786596697,,3
+p38,Iva Pavina,2012-05-30,,p36,,"Ivana Šibla 6, Zagreb, Hrvatska",,,3
+p39,Ante Pavina,2015-07-13,,p36,,"Ivana Šibla 6, Zagreb, Hrvatska",,,3
+p42,Ana Krišto,2007-05-07,,p40,,"Rangarova 2, Zagreb, Hrvatska",,,3
+p43,Petar Krešimir Krišto,2009-03-09,,p40,,"Rangarova 2, Zagreb, Hrvatska",,,3
+p46,Ivan Jakovljević,2011-05-06,,p44,,"Kralja Tomislava 20, Posušje, BiH",,,3
+p47,David Jakovljević,2013-12-27,,p44,,"Kralja Tomislava 20, Posušje, BiH",,,3
+p48,Ante Jakovljević,2017-09-15,,p44,,"Kralja Tomislava 20, Posušje, BiH",,,3
+p51,Luka Jakovljević,2008-03-26,,p49,,"Podi, Rakitno, BiH",,,3
+p52,Klara Jakovljević,2012-04-20,,p49,,"Podi, Rakitno, BiH",,,3
