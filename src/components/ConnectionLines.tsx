@@ -49,7 +49,7 @@ export default function ConnectionLines({
             key={`${parent.id}-${child.id}`}
             d={path}
             stroke="#ffffff"
-            strokeWidth={zoomLevel > 1 ? 4 : zoomLevel > 0.5 ? 3 : 2}
+            strokeWidth={zoomLevel < 0.3 ? 6 : zoomLevel < 0.5 ? 4 : zoomLevel < 1 ? 3 : 2}
             fill="none"
             strokeDasharray={zoomLevel < 0.4 ? "3,3" : "0"}
             opacity={zoomLevel > 0.5 ? 0.8 : zoomLevel > 0.3 ? 0.6 : 0.4}
