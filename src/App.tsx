@@ -4,19 +4,12 @@ import SearchBar from './components/SearchBar'
 import { useFamilyData } from './hooks/useFamilyData'
 import { Person } from './types/family'
 
-// Primary data source: Google Sheets CSV export URL
-// For Google Sheets: File > Share > Publish to web > CSV format
-// If this URL fails or doesn't exist, the app will automatically fall back to test-data.csv
-const GOOGLE_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=0'
-
-// Fallback data source: Local test data file (used if primary URL fails)
+// Data source: Local test data file
 const FALLBACK_DATA_URL = '/test-data.csv'
 
 function App() {
   const { tree, people, loading, error } = useFamilyData({
-    primaryUrl: GOOGLE_SHEETS_URL !== 'https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=0' 
-      ? GOOGLE_SHEETS_URL 
-      : null,
+    primaryUrl: null, // Use local test data for now
     fallbackUrl: FALLBACK_DATA_URL,
   })
   const [selectedPersonId, setSelectedPersonId] = useState<string | null>(null)
