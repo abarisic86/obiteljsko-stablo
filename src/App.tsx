@@ -81,11 +81,13 @@ function App() {
     <div className="w-full h-screen relative">
       {/* Background image */}
       <img
-        src="/variant.jpg"
+        src="/bg.jpg"
         alt="Background"
         className="absolute inset-0 w-full h-full object-cover z-0"
+        onLoad={() => console.log('Background image loaded successfully')}
         onError={(e) => {
           console.log('Background image failed to load:', e);
+          console.log('Image src:', (e.target as HTMLImageElement).src);
           const target = e.target as HTMLImageElement;
           target.style.display = 'none';
         }}

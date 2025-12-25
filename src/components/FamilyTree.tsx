@@ -129,7 +129,7 @@ export default function FamilyTree({
     : undefined;
 
   return (
-    <div className="w-full h-screen bg-gray-50 overflow-hidden relative">
+    <div className="w-full h-screen overflow-hidden relative">
       <TransformWrapper
         initialScale={scale}
         minScale={0.1}
