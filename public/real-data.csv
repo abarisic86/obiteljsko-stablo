@@ -9,15 +9,16 @@ p07,Jago Barišić,1959-01-02,,p01,p08,"Rakitno Podi 15",063 322 819,,1
 p08,Ljubica,,,,p07,,,,1
 p10,Veselka (Vesa) Pavković,,,p01,p09,,,,1
 p09,Veselko Pavković,,,,p10,,,,1
-p12,Ankica Radoš,1955-07-03,,p01,p11,,,,1
+p12,Ankica Radoš,1969-07-03,,p01,p11,,,,1
 p11,Vinko Radoš,,,,p12,,,,1
 p13,Ilija Barišić,1945-01-01,,p01,p14,,,2022-10-17,1
 p14,Nada,,,,p13,,,,1
 p53,Vinko (Vice) Barišić,,,p01,p54,,,,1
 p54,Anđelka Barišić,1956-04-22,,,p53,,,,1
+p65,Miroslav (Mićo) Barišić,1979-03-30,,p53,,,,,2
 p55,Danica Pavković,,,p01,p60,,,,1
 p60,Ilija Pavković,1945-11-26,,,p55,,,,1
-p56,Stanko Pavković,,,p10,,,,,2
+p56,Stanko Pavković,1979-11-22,,p10,,,,,2
 p57,Vjeko (Jack) Pavković,,,p55,p58,,,,2
 p58,Suzana Pavković,,,,p57,,,,2
 p59,Lara Pavković,2006-04-28,,p57,,,,,,3
@@ -29,6 +30,10 @@ p17,Ante Barišić,1986-07-11,,p03,p18,"Kutnjački put 2A, 10000 Zagreb",+385984
 p18,Ana Kunović,,,,p17,,,,2
 p19,Mirko Barišić,1988-05-14,,p03,,"Kutnjacki put 2A, Zagreb, Hrvatska",,,2
 p20,Marijana Barišić,1984-10-31,,p03,,"Kutnjacki put 2A, Zagreb, Hrvatska",,2010-03-05,2
+p61,Luka Barišić,1993,,p05,,,,,2
+p62,Marko Barišić,1995,,p05,,,,,2
+p63,Ana Žužul,1997-04-30,,p05,,,,,2
+p64,Iva Barišić,1997-04-30,,p05,,,,,2
 p21,Marta Barišić,2012-11-07,,p05,,,976762344,,2
 p22,Janja Pavković Čuljak,1985-09-16,/images/p22-janja-pavkovic-culjak.jpeg,p10,p23,"Fra Pave šimovića 8, 88240 Posusje",+38763405663,,2
 p23,Tomo Čuljak,,,,p22,,,2025-03-15,2
