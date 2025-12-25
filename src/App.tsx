@@ -78,7 +78,7 @@ function App() {
   }
 
   return (
-    <div className="w-full h-screen bg-gray-50 relative">
+    <div className="w-full h-screen bg-gray-50 relative" style={{ backgroundImage: 'url(/variant.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       <div className="absolute top-4 left-0 right-0 z-40">
         <SearchBar
           people={people}
