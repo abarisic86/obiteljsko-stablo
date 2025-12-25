@@ -78,7 +78,20 @@ function App() {
   }
 
   return (
-    <div className="w-full h-screen bg-gray-50 relative" style={{ backgroundImage: 'url(/variant.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+    <div className="w-full h-screen relative">
+      {/* Background image */}
+      <img
+        src="/variant.jpg"
+        alt="Background"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        onError={(e) => {
+          console.log('Background image failed to load:', e);
+          const target = e.target as HTMLImageElement;
+          target.style.display = 'none';
+        }}
+      />
+      {/* Content overlay */}
+      <div className="relative z-10">
       <div className="absolute top-4 left-0 right-0 z-40">
         <SearchBar
           people={people}
@@ -95,6 +108,7 @@ function App() {
         selectedPersonParent={selectedPersonId ? findParent(selectedPersonId, people) : null}
         selectedPersonChildren={selectedPersonId ? findChildren(selectedPersonId, people) : []}
       />
+      </div>
     </div>
   )
 }
