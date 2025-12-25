@@ -9,10 +9,18 @@ p07,Jago Barišić,1959-01-02,,p01,p08,"Rakitno Podi 15",063 322 819,,1
 p08,Ljubica,,,,p07,,,,1
 p10,Veselka (Vesa) Pavković,,,p01,p09,,,,1
 p09,Veselko Pavković,,,,p10,,,,1
-p12,Ankica Radoš,,,p01,p11,,,,1
+p12,Ankica Radoš,1955-07-03,,p01,p11,,,,1
 p11,Vinko Radoš,,,,p12,,,,1
-p13,Ilija Barišić,1945-01-01,,p01,p14,,,2002-10-15,1
+p13,Ilija Barišić,1945-01-01,,p01,p14,,,2022-10-17,1
 p14,Nada,,,,p13,,,,1
+p53,Vinko (Vice) Barišić,,,p01,p54,,,,1
+p54,Anđelka Barišić,1956-04-22,,,p53,,,,1
+p55,Danica Pavković,,,p01,p60,,,,1
+p60,Ilija Pavković,1945-11-26,,,p55,,,,1
+p56,Stanko Pavković,,,p10,,,,,2
+p57,Vjeko (Jack) Pavković,,,p55,p58,,,,2
+p58,Suzana Pavković,,,,p57,,,,2
+p59,Lara Pavković,2006-04-28,,p57,,,,,,3
 p34,Marica (Mardefina) Jakovljević,,,p01,p35,,,,1
 p35,Ivan Jakovljević,,,,p34,,,,1
 p16,Iva Zlomislić,,,p34,p15,,,,2
@@ -27,7 +35,7 @@ p23,Tomo Čuljak,,,,p22,,,2025-03-15,2
 p24,Ivan Radoš,1996-06-02,,p12,,,0989866390,,2
 p25,Branka Barišić,1986-03-15,/images/p25-branka-barisic.jpg,p07,,"Podi 15, Rakitno, Bosna i Hercegovina",+387 63 403 234,,2
 p26,Mario Barišić,1981-10-24,,p07,p27,"Rakitno, Podi 15",0038763362291,,2
-p27,Anđelka Barišić,,,,p26,,,,2
+p27,Anđelka (Marijina),,,,p26,,,,2
 p28,Mirko Barišić,1991-06-18,,p07,,"Podi 15, Posušje, Bosna i Hercegovina",+387 63 488 179,,2
 p29,Iva Majić,1971-07-04,,p13,p30,"Kutnjački put 2a Zagreb hrvatska",,,2
 p30,Dragan Majić,1970-05-10,,,p29,"Kutnjački put 2a Zagreb hrvatska",,,2
