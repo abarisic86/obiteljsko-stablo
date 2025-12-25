@@ -1,17 +1,17 @@
 id,name,birthdate,photo_url,parent_id,spouse_id,street_address,phone_number,deceased_date,generation
-p01,Mirko Barišić,1932-06-14,,,p02,Rakitno,,1991-01-14,0
-p02,Iva Barišić,1930-12-12,,,p01,Rakitno,,1995-12-12,0
+p01,Mirko Barišić,1915-01-13,,,p02,Rakitno,,1991-01-02,0
+p02,Iva Barišić,1922-12-12,,,p01,Rakitno,,1995-12-17,0
 p03,Jure Barišić,1953-06-14,,p01,p04,"Haendelova 2, Zagreb, Croatia",,,1
 p04,Nada Barišić,1959-01-11,,,p03,"Haendelova 2, Zagreb, Croatia",,,1
 p05,Petar Barišić,1961-06-22,/images/p05-petar-barisic.jpg,p01,p06,"Borje 12, Zagreb, Hrvatska",+385989811433,,1
 p06,Sanja r. Grčanac,,,,p05,,,,1
-p07,Jago Barišić,,,p01,p08,,,,1
+p07,Jago Barišić,1959-01-02,,p01,p08,"Rakitno Podi 15",063 322 819,,1
 p08,Ljubica,,,,p07,,,,1
 p10,Veselka (Vesa) Pavković,,,p01,p09,,,,1
 p09,Veselko Pavković,,,,p10,,,,1
 p12,Ankica Radoš,,,p01,p11,,,,1
 p11,Vinko Radoš,,,,p12,,,,1
-p13,Ilija Barišić,,,p01,p14,,,,1
+p13,Ilija Barišić,,,p01,p14,,,2002-10-15,1
 p14,Nada,,,,p13,,,,1
 p34,Marica (Mardefina) Jakovljević,,,p01,p35,,,,1
 p35,Ivan Jakovljević,,,,p34,,,,1
