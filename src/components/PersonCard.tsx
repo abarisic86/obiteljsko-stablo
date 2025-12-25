@@ -36,13 +36,33 @@ const PersonCard = forwardRef<HTMLDivElement, PersonCardProps>(
       }
     }
 
+    // Check if person is older than 30 and has no spouse (and is alive)
+    const isOver30WithoutSpouse = () => {
+      if (!person.birthdate || person.deceasedDate || person.spouseId) return false
+
+      try {
+        const today = new Date()
+        const birthDate = new Date(person.birthdate)
+        const age = today.getFullYear() - birthDate.getFullYear()
+        const monthDiff = today.getMonth() - birthDate.getMonth()
+        const actualAge = monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())
+          ? age - 1
+          : age
+        return actualAge > 30
+      } catch {
+        return false
+      }
+    }
+
     const birthdaySoon = isBirthdaySoon()
+    const singleOver30 = isOver30WithoutSpouse()
 
     return (
       <div
         ref={ref}
         className={`
-          bg-white rounded-lg shadow-md border-2 border-gray-200
+          ${singleOver30 ? 'bg-red-100 border-red-400' : 'bg-white border-gray-200'}
+          rounded-lg shadow-md border-2
           transition-all duration-200 cursor-pointer
           hover:shadow-lg hover:border-blue-400
           ${onClick ? 'hover:scale-105' : ''}
