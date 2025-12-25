@@ -1,6 +1,6 @@
 id,name,birthdate,photo_url,parent_id,spouse_id,street_address,phone_number,deceased_date,generation
 p01,Mirko Barišić,1915-01-13,,,p02,Rakitno,,1991-01-02,0
-p02,Iva Barišić,1922-12-12,,,p01,Rakitno,,1995-12-17,0
+p02,Iva Barišić,1922-10-22,,,p01,Rakitno,,1995-12-17,0
 p03,Jure Barišić,1953-06-14,,p01,p04,"Haendelova 2, Zagreb, Croatia",,,1
 p04,Nada Barišić,1959-01-11,,,p03,"Haendelova 2, Zagreb, Croatia",,,1
 p05,Petar Barišić,1961-06-22,/images/p05-petar-barisic.jpg,p01,p06,"Borje 12, Zagreb, Hrvatska",+385989811433,,1
