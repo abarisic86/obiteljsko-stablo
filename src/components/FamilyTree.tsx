@@ -175,19 +175,19 @@ export default function FamilyTree({
             <>
               <TransformComponent
                 wrapperClass="w-full h-full"
-                contentClass="flex items-center justify-center"
+                contentClass="relative"
                 contentStyle={{
-                  width: `${bounds.width}px`,
-                  height: `${bounds.height}px`,
+                  width: `${Math.max(bounds.width, viewportSize.width)}px`,
+                  height: `${Math.max(bounds.height, viewportSize.height)}px`,
                 }}
               >
                 <div
                   ref={containerRef}
                   data-tree-container
-                  className="relative flex items-center justify-center"
+                  className="absolute inset-0 flex items-center justify-center"
                   style={{
-                    width: `${bounds.width}px`,
-                    height: `${bounds.height}px`,
+                    width: `${Math.max(bounds.width, viewportSize.width)}px`,
+                    height: `${Math.max(bounds.height, viewportSize.height)}px`,
                     padding: "20px",
                   }}
                 >
