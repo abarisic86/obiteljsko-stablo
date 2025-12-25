@@ -4,7 +4,7 @@ p02,Iva Barišić,1922-10-22,,,p01,Rakitno,,1995-12-17,0
 p03,Jure Barišić,1953-06-14,,p01,p04,"Haendelova 2, Zagreb, Croatia",,,1
 p04,Nada Barišić,1959-01-11,,,p03,"Haendelova 2, Zagreb, Croatia",,,1
 p05,Petar Barišić,1961-06-22,/images/p05-petar-barisic.jpg,p01,p06,"Borje 12, Zagreb, Hrvatska",+385989811433,,1
-p06,Sanja r. Grčanac,,,,p05,,,,1
+p06,Sanja r. Grčanac,,,,p05,"Borje 12, Zagreb, Hrvatska",,,1
 p07,Jago Barišić,1959-01-02,,p01,p08,"Rakitno Podi 15",063 322 819,,1
 p08,Ljubica,,,,p07,,,,1
 p10,Veselka (Vesa) Pavković,,,p01,p09,,,,1
@@ -34,8 +34,8 @@ p61,Luka Barišić,1994-04-06,,p05,,,0998225591,,2
 p62,Marko Barišić,1995-09-04,,p05,,,0981622478,,2
 p63,Ana Žužul,1997-04-30,,p05,p68,,098702877,,2
 p68,Ante Žužul,1997-05-03,,,p63,"Davora Zbiljskog 36, Zagreb, Croatia",+385998125817,,2
-p64,Iva Barišić,1997-04-30,,p05,,,0995180367,,2
-p21,Marta Barišić,2012-11-07,,p05,,,976762344,,2
+p64,Iva Barišić,1997-04-30,,p05,,"Prevoj 13, Zagreb, Hrvatska",0995180367,,2
+p21,Marta Barišić,2012-11-07,,p05,,"Borje 12, Zagreb, Hrvatska",976762344,,2
 p22,Janja Pavković Čuljak,1985-09-16,/images/p22-janja-pavkovic-culjak.jpeg,p10,p23,"Fra Pave šimovića 8, 88240 Posusje",+38763405663,,2
 p23,Tomo Čuljak,,,,p22,,,2025-03-15,2
 p24,Ivan Radoš,1996-06-02,/images/p24-ivan-rados.jpeg,p12,,,0989866390,,2
