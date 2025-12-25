@@ -1,0 +1,35 @@
+id,name,birthdate,photo_url,parent_id,spouse_id,street_address,phone_number,deceased_date,generation
+p01,Mirko Barišić,1932-06-14,,,p02,Rakitno,,1991-01-14,0
+p02,Iva Barišić,1930-12-12,,,p01,Rakitno,,1995-12-12,0
+p03,Jure Barišić,1953-06-14,,p01,p04,"Haendelova 2, Zagreb, Croatia",,,1
+p04,Nada Barišić,1959-01-11,,,p03,"Haendelova 2, Zagreb, Croatia",,,1
+p05,Petar Barišić,1961-06-22,,p01,p06,,+385989811433,,1
+p06,Sanja,,,,p05,,,,1
+p07,Jago Barišić,,,p01,p08,,,,1
+p08,Ljubica,,,,p07,,,,1
+p10,Veselka (Vesa) Pavković,,,p01,p09,,,,1
+p09,Veselko Pavković,,,,p10,,,,1
+p11,Vinko Radoš,,,p01,p12,,,,1
+p12,Ankica Radoš,,,,p11,,,,1
+p13,Ilija,,,p01,p14,,,,1
+p14,Nada,,,,p13,,,,1
+p34,Marica Jakovljević,,,p01,,,,,1
+p16,Iva Zlomislić,,,p34,p15,,,,2
+p15,Grgo Zlomislić,,,,p16,,,,2
+p17,Ante Barišić,1986-07-11,,p03,p18,"Kutnjački put 2A, 10000 Zagreb",+38598446921,,2
+p18,Ana Kunović,,,,p17,,,,2
+p19,Mirko Barišić,1988-05-14,,p03,,"Kutnjacki put 2A, Zagreb, Hrvatska",,,2
+p20,Marijana Barišić,1984-10-31,,p03,,"Kutnjacki put 2A, Zagreb, Hrvatska",,2010-03-05,2
+p21,Marta Barišić,2012-11-07,,p05,,,976762344,,2
+p22,Janja Pavković Čuljak,1985-09-16,https://drive.google.com/u/0/open?usp=forms_web&id=1NWc0FposqQ4neO32nVqbjvDDH03uGmC3,p10,p23,"Fra Pave šimovića 8, 88240 Posusje",+38763405663,,2
+p23,Tomo Čuljak,,,,p22,,,2025-03-15,2
+p24,Ivan Radoš,1996-06-02,,p11,,,0989866390,,2
+p25,Branka Barišić,1986-03-15,https://drive.google.com/u/0/open?usp=forms_web&id=1c9KUTuFKftsa7TUp2HSOHaJYi6y-5Y9m,p07,,"Podi 15, Rakitno, Bosna i Hercegovina",+387 63 403 234,,2
+p26,Mario Barišić,1981-10-24,https://drive.google.com/u/0/open?usp=forms_web&id=1ymLdNQ2a45IRU4b5FAk2ZFF8EJWOr_OR,p07,p27,"Rakitno, Podi 15",0038763362291,,2
+p27,Anđelka Barišić,,,,p26,,,,2
+p28,Mirko Barišić,1991-06-18,,p07,,"Podi 15, Posušje, Bosna i Hercegovina",+387 63 488 179,,2
+p29,Iva Majić,1971-07-04,,p13,p30,"Kutnjački put 2a Zagreb hrvatska",,,2
+p30,Dragan Majić,1970-05-10,,,p29,"Kutnjački put 2a Zagreb hrvatska",,,2
+p31,Fran Barišić,2019-12-06,,p17,,"Ulica Crvenog Križa 25",-,,3
+p32,Mara Majić,2006-12-03,https://drive.google.com/u/0/open?usp=forms_web&id=1Tf6NdPlLaFhnSOjDh4hDCKFc9mwuvARw,p29,,"Kutnjački put 2a",,,3
+p33,Mario Zlomislić,1991-05-11,,p16,,"Unterdorfstrasse 5, 8442 Hettlingen, Švicarska",+41786596697,,3

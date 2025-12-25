@@ -4,8 +4,8 @@ import SearchBar from './components/SearchBar'
 import { useFamilyData } from './hooks/useFamilyData'
 import { Person } from './types/family'
 
-// Data source: Local test data file
-const FALLBACK_DATA_URL = '/test-data.csv'
+// Data source: Real family data
+const FALLBACK_DATA_URL = '/real-data.csv'
 
 function App() {
   const { tree, people, loading, error } = useFamilyData({
