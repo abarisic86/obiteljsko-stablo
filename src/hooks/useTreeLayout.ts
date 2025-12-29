@@ -32,6 +32,34 @@ export function useTreeLayout(rootNode: FamilyNode) {
       return node.spouse ? CARD_HEIGHT + CARD_HEIGHT : CARD_HEIGHT;
     }
 
+    // Helper function to shift a subtree and all its descendants down by offset
+    function shiftSubtree(node: FamilyNode, offset: number): void {
+      // Shift the node's position if it's already set
+      const nodePos = positions.get(node.id);
+      if (nodePos) {
+        positions.set(node.id, {
+          ...nodePos,
+          y: nodePos.y + offset,
+        });
+      }
+
+      // Shift the spouse's position if it exists and is already set
+      if (node.spouse) {
+        const spousePos = spousePositions.get(node.spouse.id);
+        if (spousePos) {
+          spousePositions.set(node.spouse.id, {
+            ...spousePos,
+            y: spousePos.y + offset,
+          });
+        }
+      }
+
+      // Recursively shift all children
+      node.children.forEach((child) => {
+        shiftSubtree(child, offset);
+      });
+    }
+
     // Recursive function to position a subtree
     // Returns the vertical range (minY, maxY) of the positioned subtree
     function positionSubtree(
@@ -73,6 +101,17 @@ export function useTreeLayout(rootNode: FamilyNode) {
 
       node.children.forEach((child, index) => {
         const childRange = positionSubtree(child, genIndex + 1, currentChildY);
+
+        // Check if the subtree moved up above the allowed minimum Y position
+        // This can happen when a parent centers itself relative to its children
+        if (childRange.minY < currentChildY) {
+          const offset = currentChildY - childRange.minY;
+          shiftSubtree(child, offset);
+          // Update the range to reflect the shift
+          childRange.minY += offset;
+          childRange.maxY += offset;
+        }
+
         childrenRanges.push(childRange);
         // Position next sibling directly below with minimal spacing (siblings grouped together)
         // Use smaller spacing for siblings, larger spacing between different parent groups
