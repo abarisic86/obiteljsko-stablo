@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FamilyTree from "./components/FamilyTree";
 import SearchBar from "./components/SearchBar";
+import QuizModal from "./components/QuizModal";
 import { useFamilyData } from "./hooks/useFamilyData";
 import { Person } from "./types/family";
 
@@ -14,6 +15,7 @@ function App() {
   });
   const [selectedPersonId, setSelectedPersonId] = useState<string | null>(null);
   const [scrollToPersonId, setScrollToPersonId] = useState<string | null>(null);
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
 
   const handlePersonSelect = (personId: string | null) => {
     setSelectedPersonId(personId);
@@ -91,6 +93,12 @@ function App() {
         selectedPersonChildren={
           selectedPersonId ? findChildren(selectedPersonId, people) : []
         }
+        onQuizClick={() => setIsQuizOpen(true)}
+      />
+      <QuizModal
+        isOpen={isQuizOpen}
+        onClose={() => setIsQuizOpen(false)}
+        people={people}
       />
     </div>
   );

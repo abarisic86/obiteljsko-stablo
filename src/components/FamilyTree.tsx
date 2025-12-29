@@ -17,6 +17,7 @@ interface FamilyTreeProps {
   selectedPersonParent?: Person | null;
   selectedPersonChildren?: Person[];
   onZoomChange?: (zoomLevel: number) => void;
+  onQuizClick: () => void;
 }
 
 export default function FamilyTree({
@@ -29,6 +30,7 @@ export default function FamilyTree({
   selectedPersonParent,
   selectedPersonChildren = [],
   onZoomChange,
+  onQuizClick,
 }: FamilyTreeProps) {
   const { generations, positions, spousePositions, bounds } =
     useTreeLayout(rootNode);
@@ -278,6 +280,7 @@ export default function FamilyTree({
                 onZoomIn={handleZoomIn}
                 onZoomOut={handleZoomOut}
                 onReset={handleReset}
+                onQuizClick={onQuizClick}
               />
             </>
           );
