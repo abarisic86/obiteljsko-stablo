@@ -1,6 +1,6 @@
 import { memo, forwardRef } from 'react'
 import { Person } from '../types/family'
-import { isBirthdaySoon, isOver30WithoutSpouse } from '../utils/personUtils'
+import { isBirthdaySoon } from '../utils/personUtils'
 
 interface PersonCardProps {
   person: Person
@@ -13,13 +13,12 @@ const PersonCard = forwardRef<HTMLDivElement, PersonCardProps>(
     const isZoomedOut = zoomLevel < 0.5
 
     const birthdaySoon = isBirthdaySoon(person.birthdate, person.deceasedDate)
-    const singleOver30 = isOver30WithoutSpouse(person)
 
     return (
       <div
         ref={ref}
         className={`
-          ${singleOver30 ? 'bg-red-100 border-red-400' : 'bg-white border-gray-200'}
+          bg-white border-gray-200
           rounded-lg shadow-md border-2
           transition-all duration-200 cursor-pointer
           hover:shadow-lg hover:border-blue-400

@@ -24,23 +24,6 @@ export function isBirthdaySoon(birthdate: string | null, deceasedDate: string | 
   }
 }
 
-export function isOver30WithoutSpouse(person: Person): boolean {
-  if (!person.birthdate || person.deceasedDate || person.spouseId) return false
-
-  try {
-    const today = new Date()
-    const birthDate = new Date(person.birthdate)
-    const age = today.getFullYear() - birthDate.getFullYear()
-    const monthDiff = today.getMonth() - birthDate.getMonth()
-    const actualAge = monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())
-      ? age - 1
-      : age
-    return actualAge > 30
-  } catch {
-    return false
-  }
-}
-
 export function formatDateHR(date: string): string {
   return new Date(date).toLocaleDateString('hr-HR', {
     year: 'numeric',
