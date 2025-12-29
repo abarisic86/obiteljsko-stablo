@@ -150,8 +150,7 @@ export default function FamilyTree({
         pinch={{ step: 5 }}
         doubleClick={{ disabled: false, step: 0.7 }}
         onTransformed={(_ref, state) => handleZoomChange(state)}
-        animationTime={200}
-        animationType="easeOut"
+        smooth
       >
         {({ zoomIn, zoomOut, resetTransform, setTransform }) => {
           // Store controls for external access
