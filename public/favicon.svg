@@ -1,7 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- Stylized letter B -->
-  <path d="M 20 15 L 20 85 L 45 85 Q 65 85 65 70 Q 65 60 55 55 Q 65 50 65 40 Q 65 25 45 25 L 20 25 Z" 
-        fill="#1a365d" stroke="#2d3748" stroke-width="2"/>
-  <path d="M 25 30 L 25 50 L 50 50 Q 58 50 58 40 Q 58 30 50 30 Z" fill="#ffffff"/>
-  <path d="M 25 55 L 25 75 L 50 75 Q 58 75 58 65 Q 58 55 50 55 Z" fill="#ffffff"/>
+  <rect width="100" height="100" fill="#2563eb"/>
+  <!-- Bold letter B -->
+  <path d="M 25 20 L 25 80 L 50 80 Q 70 80 70 65 Q 70 55 60 50 Q 70 45 70 35 Q 70 20 50 20 Z" 
+        fill="#ffffff" stroke="#ffffff" stroke-width="1"/>
+  <rect x="30" y="30" width="30" height="15" rx="3" fill="#2563eb"/>
+  <rect x="30" y="55" width="30" height="15" rx="3" fill="#2563eb"/>
 </svg>
