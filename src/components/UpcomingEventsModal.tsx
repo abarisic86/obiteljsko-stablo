@@ -27,6 +27,13 @@ export default function UpcomingEventsModal({
     return `Za ${days} dana`
   }
 
+  const formatDateShort = (date: Date): string => {
+    const day = String(date.getDate()).padStart(2, '0')
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const year = date.getFullYear()
+    return `${day}.${month}.${year}`
+  }
+
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
@@ -106,17 +113,14 @@ export default function UpcomingEventsModal({
                     {event.person.deceasedDate && (
                       <span className="text-gray-500 flex-shrink-0">✝</span>
                     )}
-                    {event.eventType === 'anniversary' && (
-                      <>
-                        <span className="text-gray-500 flex-shrink-0">•</span>
-                        <span className="text-gray-600 flex-shrink-0">Godišnjica</span>
-                      </>
-                    )}
                     <span className="text-gray-500 flex-shrink-0">•</span>
-                    <span className="text-gray-500 flex-shrink-0">
+                    <span className="text-gray-500 flex-shrink-0 hidden md:inline">
                       {formatDateHR(
                         `${event.date.getFullYear()}-${String(event.date.getMonth() + 1).padStart(2, '0')}-${String(event.date.getDate()).padStart(2, '0')}`
                       )}
+                    </span>
+                    <span className="text-gray-500 flex-shrink-0 md:hidden">
+                      {formatDateShort(event.date)}
                     </span>
                   </div>
 
