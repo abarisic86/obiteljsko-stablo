@@ -1,5 +1,6 @@
 import { memo, forwardRef } from 'react'
 import { Person } from '../types/family'
+import { isBirthdaySoon, isOver30WithoutSpouse } from '../utils/personUtils'
 
 interface PersonCardProps {
   person: Person
@@ -11,51 +12,8 @@ const PersonCard = forwardRef<HTMLDivElement, PersonCardProps>(
   ({ person, onClick, zoomLevel = 1 }, ref) => {
     const isZoomedOut = zoomLevel < 0.5
 
-    // Check if birthday is in the next week
-    const isBirthdaySoon = () => {
-      if (!person.birthdate || person.deceasedDate) return false
-
-      try {
-        const today = new Date()
-        today.setHours(0, 0, 0, 0)
-        
-        const birthDate = new Date(person.birthdate)
-        const thisYearBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate())
-        
-        // If birthday already passed this year, check next year
-        const nextBirthday = thisYearBirthday < today
-          ? new Date(today.getFullYear() + 1, birthDate.getMonth(), birthDate.getDate())
-          : thisYearBirthday
-        
-        // Calculate days until birthday
-        const daysUntilBirthday = Math.ceil((nextBirthday.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
-        
-        return daysUntilBirthday >= 0 && daysUntilBirthday <= 7
-      } catch {
-        return false
-      }
-    }
-
-    // Check if person is older than 30 and has no spouse (and is alive)
-    const isOver30WithoutSpouse = () => {
-      if (!person.birthdate || person.deceasedDate || person.spouseId) return false
-
-      try {
-        const today = new Date()
-        const birthDate = new Date(person.birthdate)
-        const age = today.getFullYear() - birthDate.getFullYear()
-        const monthDiff = today.getMonth() - birthDate.getMonth()
-        const actualAge = monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())
-          ? age - 1
-          : age
-        return actualAge > 30
-      } catch {
-        return false
-      }
-    }
-
-    const birthdaySoon = isBirthdaySoon()
-    const singleOver30 = isOver30WithoutSpouse()
+    const birthdaySoon = isBirthdaySoon(person.birthdate, person.deceasedDate)
+    const singleOver30 = isOver30WithoutSpouse(person)
 
     return (
       <div

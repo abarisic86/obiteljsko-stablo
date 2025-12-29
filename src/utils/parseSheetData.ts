@@ -32,7 +32,7 @@ export function parseSheetData(csvText: string): Person[] {
 
   return result.data
     .filter((row) => row && row.id && row.name && row.id.trim() && row.name.trim()) // Filter out empty rows
-    .map((row: any) => {
+    .map((row: SheetRow & { __parsed_extra?: string[] }) => {
       if (!row || !row.id || !row.name) {
         console.warn('Skipping invalid row:', row)
         return null
