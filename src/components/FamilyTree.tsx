@@ -16,6 +16,7 @@ interface FamilyTreeProps {
   onScrollComplete: () => void;
   selectedPersonParent?: Person | null;
   selectedPersonChildren?: Person[];
+  onZoomChange?: (zoomLevel: number) => void;
 }
 
 export default function FamilyTree({
@@ -27,10 +28,12 @@ export default function FamilyTree({
   onScrollComplete,
   selectedPersonParent,
   selectedPersonChildren = [],
+  onZoomChange,
 }: FamilyTreeProps) {
   const { generations, positions, spousePositions, bounds } =
     useTreeLayout(rootNode);
-  const [zoomLevel, setZoomLevel] = useState(1);
+  const scale = 0.75;
+  const [zoomLevel, setZoomLevel] = useState(scale);
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
   const [shouldScrollToPerson, setShouldScrollToPerson] = useState<
     string | null
@@ -55,6 +58,11 @@ export default function FamilyTree({
     window.addEventListener("resize", updateSize);
     return () => window.removeEventListener("resize", updateSize);
   }, []);
+
+  // Notify parent of initial zoom level
+  useEffect(() => {
+    onZoomChange?.(zoomLevel);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Find selected person data
   useEffect(() => {
@@ -89,6 +97,7 @@ export default function FamilyTree({
 
   const handleZoomChange = (state: { scale: number }) => {
     setZoomLevel(state.scale);
+    onZoomChange?.(state.scale);
   };
 
   const handleZoomIn = () => {
@@ -105,7 +114,6 @@ export default function FamilyTree({
 
   // Calculate initial position to center content at (0,0) in viewport center
   // Account for search bar overlaying the top portion
-  const scale = 0.75;
   const searchBarOffset = 40; // Approximate search bar height + spacing
   const initialPositionX = viewportSize.width / 2;
   const initialPositionY = (viewportSize.height - searchBarOffset) / 2;
@@ -142,6 +150,8 @@ export default function FamilyTree({
         pinch={{ step: 5 }}
         doubleClick={{ disabled: false, step: 0.7 }}
         onTransformed={(_ref, state) => handleZoomChange(state)}
+        animationTime={200}
+        animationType="easeOut"
       >
         {({ zoomIn, zoomOut, resetTransform, setTransform }) => {
           // Store controls for external access
@@ -160,11 +170,17 @@ export default function FamilyTree({
               const searchBarOffset = 40; // Approximate search bar height + spacing
               const viewportCenterX = viewportSize.width / 2;
               const viewportCenterY =
-                (viewportSize.height - searchBarOffset) / 2;
+                (viewportSize.height + searchBarOffset) / 2;
 
-              // To center the person, we want personPosition to appear at viewport center
-              const targetX = viewportCenterX - personPosition.x;
-              const targetY = viewportCenterY - personPosition.y;
+              // Calculate center of the person card (not top-left corner)
+              const cardCenterX = personPosition.x + personPosition.width / 2;
+              const cardCenterY = personPosition.y + 60; // Approximate half card height
+
+              // To center the person, account for zoom level
+              // The transform applies: screenPos = contentPos * scale + translation
+              // So: translation = screenPos - contentPos * scale
+              const targetX = viewportCenterX - cardCenterX * zoomLevel;
+              const targetY = viewportCenterY - cardCenterY * zoomLevel;
 
               // Keep current zoom level
               setTransform(targetX, targetY, zoomLevel);

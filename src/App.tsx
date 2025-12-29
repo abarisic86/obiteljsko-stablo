@@ -1,39 +1,41 @@
-import { useState } from 'react'
-import FamilyTree from './components/FamilyTree'
-import SearchBar from './components/SearchBar'
-import { useFamilyData } from './hooks/useFamilyData'
-import { Person } from './types/family'
+import { useState } from "react";
+import FamilyTree from "./components/FamilyTree";
+import SearchBar from "./components/SearchBar";
+import { useFamilyData } from "./hooks/useFamilyData";
+import { Person } from "./types/family";
 
 // Data source: Real family data
-const FALLBACK_DATA_URL = '/real-data.csv'
+const FALLBACK_DATA_URL = "/real-data.csv";
 
 function App() {
   const { tree, people, loading, error } = useFamilyData({
     primaryUrl: null, // Use local test data for now
     fallbackUrl: FALLBACK_DATA_URL,
-  })
-  const [selectedPersonId, setSelectedPersonId] = useState<string | null>(null)
-  const [scrollToPersonId, setScrollToPersonId] = useState<string | null>(null)
+  });
+  const [selectedPersonId, setSelectedPersonId] = useState<string | null>(null);
+  const [scrollToPersonId, setScrollToPersonId] = useState<string | null>(null);
 
-  const handlePersonSelect = (personId: string) => {
-    setSelectedPersonId(personId)
-    setScrollToPersonId(personId)
-  }
+  const handlePersonSelect = (personId: string | null) => {
+    setSelectedPersonId(personId);
+    if (personId) {
+      setScrollToPersonId(personId);
+    }
+  };
 
   const handleScrollComplete = () => {
-    setScrollToPersonId(null)
-  }
+    setScrollToPersonId(null);
+  };
 
   // Helper functions to find parent and children
   const findParent = (personId: string, people: Person[]): Person | null => {
-    const person = people.find(p => p.id === personId)
-    if (!person || !person.parentId) return null
-    return people.find(p => p.id === person.parentId) || null
-  }
+    const person = people.find((p) => p.id === personId);
+    if (!person || !person.parentId) return null;
+    return people.find((p) => p.id === person.parentId) || null;
+  };
 
   const findChildren = (personId: string, people: Person[]): Person[] => {
-    return people.filter(p => p.parentId === personId)
-  }
+    return people.filter((p) => p.parentId === personId);
+  };
 
   if (loading) {
     return (
@@ -43,7 +45,7 @@ function App() {
           <p className="text-gray-600">Učitavanje obiteljskog stabla...</p>
         </div>
       </div>
-    )
+    );
   }
 
   if (error) {
@@ -53,11 +55,12 @@ function App() {
           <h2 className="text-xl font-bold text-red-600 mb-2">Greška</h2>
           <p className="text-gray-700">{error}</p>
           <p className="text-sm text-gray-500 mt-4">
-            Provjerite da je izvor podataka (CSV datoteka ili Google Sheets URL) ispravan i dostupan.
+            Provjerite da je izvor podataka (CSV datoteka ili Google Sheets URL)
+            ispravan i dostupan.
           </p>
         </div>
       </div>
-    )
+    );
   }
 
   if (!tree) {
@@ -67,46 +70,30 @@ function App() {
           <p className="text-gray-600">Nema podataka za prikaz.</p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
-    <div className="w-full h-screen relative">
-      {/* Background image */}
-      <img
-        src="/bg.jpg"
-        alt="Background"
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        onLoad={() => console.log('Background image loaded successfully')}
-        onError={(e) => {
-          console.log('Background image failed to load:', e);
-          console.log('Image src:', (e.target as HTMLImageElement).src);
-          const target = e.target as HTMLImageElement;
-          target.style.display = 'none';
-        }}
-      />
-      {/* Content overlay */}
-      <div className="relative z-10">
+    <div className="w-full h-screen relative overflow-hidden bg-black">
       <div className="absolute top-4 left-0 right-0 z-40">
-        <SearchBar
-          people={people}
-          onPersonSelect={handlePersonSelect}
-        />
+        <SearchBar people={people} onPersonSelect={handlePersonSelect} />
       </div>
       <FamilyTree
         rootNode={tree}
         people={people}
         selectedPersonId={selectedPersonId}
-        onPersonSelect={setSelectedPersonId}
+        onPersonSelect={handlePersonSelect}
         scrollToPersonId={scrollToPersonId}
         onScrollComplete={handleScrollComplete}
-        selectedPersonParent={selectedPersonId ? findParent(selectedPersonId, people) : null}
-        selectedPersonChildren={selectedPersonId ? findChildren(selectedPersonId, people) : []}
+        selectedPersonParent={
+          selectedPersonId ? findParent(selectedPersonId, people) : null
+        }
+        selectedPersonChildren={
+          selectedPersonId ? findChildren(selectedPersonId, people) : []
+        }
       />
-      </div>
     </div>
-  )
+  );
 }
 
-export default App
-
+export default App;
