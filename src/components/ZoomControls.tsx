@@ -6,9 +6,10 @@ interface ZoomControlsProps {
   onReset: () => void
   onQuizClick: () => void
   onEventsClick: () => void
+  onStatisticsClick: () => void
 }
 
-export default function ZoomControls({ onZoomIn, onZoomOut, onReset, onQuizClick, onEventsClick }: ZoomControlsProps) {
+export default function ZoomControls({ onZoomIn, onZoomOut, onReset, onQuizClick, onEventsClick, onStatisticsClick }: ZoomControlsProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
@@ -134,6 +135,26 @@ export default function ZoomControls({ onZoomIn, onZoomOut, onReset, onQuizClick
                 strokeLinejoin="round"
                 strokeWidth={2}
                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+          </button>
+          <button
+            onClick={onStatisticsClick}
+            className="bg-indigo-500 hover:bg-indigo-600 rounded-full shadow-lg p-3 transition-colors"
+            aria-label="Statistika"
+            title="Statistika obitelji"
+          >
+            <svg
+              className="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
               />
             </svg>
           </button>
