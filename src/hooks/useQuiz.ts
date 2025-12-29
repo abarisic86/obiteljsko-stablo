@@ -1,158 +1,169 @@
-import { useState, useCallback } from 'react'
-import { Person } from '../types/family'
+import { useState, useCallback } from "react";
+import { Person } from "../types/family";
 
 export interface QuizQuestion {
-  type: 'guess-year' | 'guess-person'
-  prompt: string
-  correctAnswer: string
-  options: string[]
-  personId: string
-  correctYear?: number
+  type: "guess-year" | "guess-person";
+  prompt: string;
+  correctAnswer: string;
+  options: string[];
+  personId: string;
+  correctYear?: number;
 }
 
 interface QuizState {
-  questions: QuizQuestion[]
-  currentIndex: number
-  score: number
-  isFinished: boolean
-  answers: boolean[]
+  questions: QuizQuestion[];
+  currentIndex: number;
+  score: number;
+  isFinished: boolean;
+  answers: boolean[];
 }
 
-const TOTAL_QUESTIONS = 10
+const TOTAL_QUESTIONS = 10;
 
 function shuffleArray<T>(array: T[]): T[] {
-  const shuffled = [...array]
+  const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
-  return shuffled
+  return shuffled;
 }
 
 function generateYearOptions(correctYear: number): number[] {
-  const options = [correctYear]
-  const usedYears = new Set([correctYear])
-  
+  const options = [correctYear];
+  const usedYears = new Set([correctYear]);
+
   while (options.length < 4) {
-    const offset = Math.floor(Math.random() * 20) - 10 // ±10 years
-    const candidate = correctYear + offset
-    
-    if (candidate > 1900 && candidate <= new Date().getFullYear() && !usedYears.has(candidate)) {
-      options.push(candidate)
-      usedYears.add(candidate)
+    const offset = Math.floor(Math.random() * 20) - 10; // ±10 years
+    const candidate = correctYear + offset;
+
+    if (
+      candidate > 1900 &&
+      candidate <= new Date().getFullYear() &&
+      !usedYears.has(candidate)
+    ) {
+      options.push(candidate);
+      usedYears.add(candidate);
     }
   }
-  
-  return shuffleArray(options)
+
+  return shuffleArray(options);
 }
 
-function generatePersonOptions(correctPerson: Person, allPeople: Person[]): Person[] {
-  const correctYear = new Date(correctPerson.birthdate).getFullYear()
-  const options = [correctPerson]
-  const usedIds = new Set([correctPerson.id])
-  
+function generatePersonOptions(
+  correctPerson: Person,
+  allPeople: Person[]
+): Person[] {
+  const correctYear = new Date(correctPerson.birthdate).getFullYear();
+  const options = [correctPerson];
+  const usedIds = new Set([correctPerson.id]);
+
   // Filter people born in different years
   const candidates = allPeople.filter(
-    (p) => p.birthdate && 
-    new Date(p.birthdate).getFullYear() !== correctYear &&
-    !usedIds.has(p.id)
-  )
-  
+    (p) =>
+      p.birthdate &&
+      new Date(p.birthdate).getFullYear() !== correctYear &&
+      !usedIds.has(p.id)
+  );
+
   // Shuffle and take 3 more
-  const shuffled = shuffleArray(candidates)
+  const shuffled = shuffleArray(candidates);
   for (let i = 0; i < shuffled.length && options.length < 4; i++) {
     if (!usedIds.has(shuffled[i].id)) {
-      options.push(shuffled[i])
-      usedIds.add(shuffled[i].id)
+      options.push(shuffled[i]);
+      usedIds.add(shuffled[i].id);
     }
   }
-  
-  return shuffleArray(options)
+
+  return shuffleArray(options);
 }
 
 function generatePrompt(person: Person, people: Person[]): string {
   // Create maps for quick lookup
-  const peopleMap = new Map<string, Person>()
+  const peopleMap = new Map<string, Person>();
   people.forEach((p) => {
     if (p.id) {
-      peopleMap.set(p.id, p)
+      peopleMap.set(p.id, p);
     }
-  })
+  });
 
   // Try to find parent first
   if (person.parentId) {
-    const parent = peopleMap.get(person.parentId)
+    const parent = peopleMap.get(person.parentId);
     if (parent) {
-      return `Koje godine je rođen/a ${person.name}, sin/kći ${parent.name}?`
+      return `Koje godine je rođen/a ${person.name}, sin/kći ${parent.name}?`;
     }
   }
 
   // If no parent, try spouse
   if (person.spouseId) {
-    const spouse = peopleMap.get(person.spouseId)
+    const spouse = peopleMap.get(person.spouseId);
     if (spouse) {
-      return `Koje godine je rođen/a ${person.name}, supružnik ${spouse.name}?`
+      return `Koje godine je rođen/a ${person.name}, supružnik ${spouse.name}?`;
     }
   }
 
   // Fallback to simple name
-  return `Koje godine je rođen/a ${person.name}?`
+  return `Koje godine je rođen/a ${person.name}?`;
 }
 
 function generateQuestions(people: Person[]): QuizQuestion[] {
   // Filter people with valid birthdates
-  const validPeople = people.filter((p) => p.birthdate && p.birthdate.trim() !== '')
-  
+  const validPeople = people.filter(
+    (p) => p.birthdate && p.birthdate.trim() !== ""
+  );
+
   if (validPeople.length === 0) {
-    return []
+    return [];
   }
-  
-  const questions: QuizQuestion[] = []
-  
+
+  const questions: QuizQuestion[] = [];
+
   for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-    const questionType = Math.random() < 0.5 ? 'guess-year' : 'guess-person'
-    const randomPerson = validPeople[Math.floor(Math.random() * validPeople.length)]
-    const birthYear = new Date(randomPerson.birthdate).getFullYear()
-    
-    if (questionType === 'guess-year') {
-      const yearOptions = generateYearOptions(birthYear)
-      const prompt = generatePrompt(randomPerson, people)
+    const questionType = Math.random() < 0.5 ? "guess-year" : "guess-person";
+    const randomPerson =
+      validPeople[Math.floor(Math.random() * validPeople.length)];
+    const birthYear = new Date(randomPerson.birthdate).getFullYear();
+
+    if (questionType === "guess-year") {
+      const yearOptions = generateYearOptions(birthYear);
+      const prompt = generatePrompt(randomPerson, people);
       questions.push({
-        type: 'guess-year',
+        type: "guess-year",
         prompt,
         correctAnswer: birthYear.toString(),
         options: yearOptions.map((y) => y.toString()),
         personId: randomPerson.id,
         correctYear: birthYear,
-      })
+      });
     } else {
-      const personOptions = generatePersonOptions(randomPerson, validPeople)
+      const personOptions = generatePersonOptions(randomPerson, validPeople);
       if (personOptions.length < 4) {
         // Fallback to guess-year if not enough candidates
-        const yearOptions = generateYearOptions(birthYear)
-        const prompt = generatePrompt(randomPerson, people)
+        const yearOptions = generateYearOptions(birthYear);
+        const prompt = generatePrompt(randomPerson, people);
         questions.push({
-          type: 'guess-year',
+          type: "guess-year",
           prompt,
           correctAnswer: birthYear.toString(),
           options: yearOptions.map((y) => y.toString()),
           personId: randomPerson.id,
           correctYear: birthYear,
-        })
+        });
       } else {
         questions.push({
-          type: 'guess-person',
+          type: "guess-person",
           prompt: `Tko je rođen ${birthYear}. godine?`,
           correctAnswer: randomPerson.name,
           options: personOptions.map((p) => p.name),
           personId: randomPerson.id,
           correctYear: birthYear,
-        })
+        });
       }
     }
   }
-  
-  return questions
+
+  return questions;
 }
 
 export function useQuiz(people: Person[]) {
@@ -162,31 +173,31 @@ export function useQuiz(people: Person[]) {
     score: 0,
     isFinished: false,
     answers: [],
-  })
+  });
 
   const startQuiz = useCallback(() => {
-    const questions = generateQuestions(people)
+    const questions = generateQuestions(people);
     setState({
       questions,
       currentIndex: 0,
       score: 0,
       isFinished: false,
       answers: [],
-    })
-  }, [people])
+    });
+  }, [people]);
 
   const answerQuestion = useCallback((answer: string) => {
     setState((prev) => {
       if (prev.isFinished || prev.currentIndex >= prev.questions.length) {
-        return prev
+        return prev;
       }
 
-      const currentQuestion = prev.questions[prev.currentIndex]
-      const isCorrect = answer === currentQuestion.correctAnswer
-      const newScore = isCorrect ? prev.score + 1 : prev.score
-      const newAnswers = [...prev.answers, isCorrect]
-      const nextIndex = prev.currentIndex + 1
-      const isFinished = nextIndex >= prev.questions.length
+      const currentQuestion = prev.questions[prev.currentIndex];
+      const isCorrect = answer === currentQuestion.correctAnswer;
+      const newScore = isCorrect ? prev.score + 1 : prev.score;
+      const newAnswers = [...prev.answers, isCorrect];
+      const nextIndex = prev.currentIndex + 1;
+      const isFinished = nextIndex >= prev.questions.length;
 
       return {
         ...prev,
@@ -194,13 +205,13 @@ export function useQuiz(people: Person[]) {
         currentIndex: nextIndex,
         isFinished,
         answers: newAnswers,
-      }
-    })
-  }, [])
+      };
+    });
+  }, []);
 
   const resetQuiz = useCallback(() => {
-    startQuiz()
-  }, [startQuiz])
+    startQuiz();
+  }, [startQuiz]);
 
   return {
     ...state,
@@ -209,6 +220,5 @@ export function useQuiz(people: Person[]) {
     resetQuiz,
     currentQuestion: state.questions[state.currentIndex],
     totalQuestions: TOTAL_QUESTIONS,
-  }
+  };
 }
-
