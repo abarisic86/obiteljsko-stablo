@@ -4,6 +4,7 @@ import { FamilyNode, Person } from "../types/family";
 import PersonCard from "./PersonCard";
 import ConnectionLines from "./ConnectionLines";
 import PersonDetailModal from "./PersonDetailModal";
+import UpcomingEventsModal from "./UpcomingEventsModal";
 import ZoomControls from "./ZoomControls";
 import { useTreeLayout } from "../hooks/useTreeLayout";
 
@@ -40,6 +41,7 @@ export default function FamilyTree({
   const [shouldScrollToPerson, setShouldScrollToPerson] = useState<
     string | null
   >(null);
+  const [showEventsModal, setShowEventsModal] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const transformControlsRef = useRef<{
     zoomIn: () => void;
@@ -281,6 +283,7 @@ export default function FamilyTree({
                 onZoomOut={handleZoomOut}
                 onReset={handleReset}
                 onQuizClick={onQuizClick}
+                onEventsClick={() => setShowEventsModal(true)}
               />
             </>
           );
@@ -296,6 +299,15 @@ export default function FamilyTree({
         onClose={() => onPersonSelect(null)}
         onPersonClick={onPersonSelect}
       />
+
+      {/* Upcoming Events Modal */}
+      {showEventsModal && (
+        <UpcomingEventsModal
+          people={people}
+          onClose={() => setShowEventsModal(false)}
+          onPersonClick={onPersonSelect}
+        />
+      )}
     </div>
   );
 }
