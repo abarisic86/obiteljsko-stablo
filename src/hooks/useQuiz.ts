@@ -70,6 +70,35 @@ function generatePersonOptions(correctPerson: Person, allPeople: Person[]): Pers
   return shuffleArray(options)
 }
 
+function generatePrompt(person: Person, people: Person[]): string {
+  // Create maps for quick lookup
+  const peopleMap = new Map<string, Person>()
+  people.forEach((p) => {
+    if (p.id) {
+      peopleMap.set(p.id, p)
+    }
+  })
+
+  // Try to find parent first
+  if (person.parentId) {
+    const parent = peopleMap.get(person.parentId)
+    if (parent) {
+      return `Koje godine je rođen/a ${person.name}, sin/kći ${parent.name}?`
+    }
+  }
+
+  // If no parent, try spouse
+  if (person.spouseId) {
+    const spouse = peopleMap.get(person.spouseId)
+    if (spouse) {
+      return `Koje godine je rođen/a ${person.name}, supružnik ${spouse.name}?`
+    }
+  }
+
+  // Fallback to simple name
+  return `Koje godine je rođen/a ${person.name}?`
+}
+
 function generateQuestions(people: Person[]): QuizQuestion[] {
   // Filter people with valid birthdates
   const validPeople = people.filter((p) => p.birthdate && p.birthdate.trim() !== '')
@@ -87,9 +116,10 @@ function generateQuestions(people: Person[]): QuizQuestion[] {
     
     if (questionType === 'guess-year') {
       const yearOptions = generateYearOptions(birthYear)
+      const prompt = generatePrompt(randomPerson, people)
       questions.push({
         type: 'guess-year',
-        prompt: `Koje godine je rođen/a ${randomPerson.name}?`,
+        prompt,
         correctAnswer: birthYear.toString(),
         options: yearOptions.map((y) => y.toString()),
         personId: randomPerson.id,
@@ -100,9 +130,10 @@ function generateQuestions(people: Person[]): QuizQuestion[] {
       if (personOptions.length < 4) {
         // Fallback to guess-year if not enough candidates
         const yearOptions = generateYearOptions(birthYear)
+        const prompt = generatePrompt(randomPerson, people)
         questions.push({
           type: 'guess-year',
-          prompt: `Koje godine je rođen/a ${randomPerson.name}?`,
+          prompt,
           correctAnswer: birthYear.toString(),
           options: yearOptions.map((y) => y.toString()),
           personId: randomPerson.id,
