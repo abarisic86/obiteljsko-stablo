@@ -1,6 +1,6 @@
 import { memo, forwardRef } from 'react'
 import { Person } from '../types/family'
-import { isBirthdaySoon } from '../utils/personUtils'
+import { isBirthdaySoon, formatDateHR } from '../utils/personUtils'
 
 interface PersonCardProps {
   person: Person
@@ -13,6 +13,16 @@ const PersonCard = forwardRef<HTMLDivElement, PersonCardProps>(
     const isZoomedOut = zoomLevel < 0.5
 
     const birthdaySoon = isBirthdaySoon(person.birthdate, person.deceasedDate)
+
+    // Build tooltip text
+    const tooltipParts: string[] = [person.name]
+    if (person.birthdate) {
+      tooltipParts.push(`Rođen/a: ${formatDateHR(person.birthdate)}`)
+    }
+    if (person.deceasedDate) {
+      tooltipParts.push(`Preminuo/la: ${formatDateHR(person.deceasedDate)}`)
+    }
+    const tooltipText = tooltipParts.join('\n')
 
     return (
       <div
@@ -28,6 +38,7 @@ const PersonCard = forwardRef<HTMLDivElement, PersonCardProps>(
         onClick={onClick}
         style={{ minWidth: isZoomedOut ? '60px' : '120px' }}
         data-person-id={person.id}
+        title={tooltipText}
       >
         {/* Name */}
         <div className={`text-center font-semibold text-gray-800 ${isZoomedOut ? 'text-xs' : 'text-sm'} truncate`}>
