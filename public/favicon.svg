@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Stylized letter B -->
+  <path d="M 20 15 L 20 85 L 45 85 Q 65 85 65 70 Q 65 60 55 55 Q 65 50 65 40 Q 65 25 45 25 L 20 25 Z" 
+        fill="#1a365d" stroke="#2d3748" stroke-width="2"/>
+  <path d="M 25 30 L 25 50 L 50 50 Q 58 50 58 40 Q 58 30 50 30 Z" fill="#ffffff"/>
+  <path d="M 25 55 L 25 75 L 50 75 Q 58 75 58 65 Q 58 55 50 55 Z" fill="#ffffff"/>
+</svg>
