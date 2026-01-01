@@ -1,4 +1,4 @@
-import { memo, forwardRef } from 'react'
+import React, { memo, forwardRef } from 'react'
 import { Person } from '../types/family'
 import { isBirthdaySoon, formatDateHR } from '../utils/personUtils'
 
@@ -6,10 +6,11 @@ interface PersonCardProps {
   person: Person
   onClick?: () => void
   zoomLevel?: number
+  branchColor?: string | null
 }
 
 const PersonCard = forwardRef<HTMLDivElement, PersonCardProps>(
-  ({ person, onClick, zoomLevel = 1 }, ref) => {
+  ({ person, onClick, zoomLevel = 1, branchColor = null }, ref) => {
     const isZoomedOut = zoomLevel < 0.5
 
     const birthdaySoon = isBirthdaySoon(person.birthdate, person.deceasedDate)
@@ -24,11 +25,20 @@ const PersonCard = forwardRef<HTMLDivElement, PersonCardProps>(
     }
     const tooltipText = tooltipParts.join('\n')
 
+    // Build style object with branch color
+    const cardStyle: React.CSSProperties = {
+      minWidth: isZoomedOut ? '60px' : '120px',
+    }
+    if (branchColor) {
+      cardStyle.backgroundColor = branchColor
+      cardStyle.borderColor = branchColor
+    }
+
     return (
       <div
         ref={ref}
         className={`
-          bg-white border-gray-200
+          ${branchColor ? '' : 'bg-white border-gray-200'}
           rounded-lg shadow-md border-2
           transition-all duration-200 cursor-pointer
           hover:shadow-lg hover:border-blue-400
@@ -36,7 +46,7 @@ const PersonCard = forwardRef<HTMLDivElement, PersonCardProps>(
           ${isZoomedOut ? 'p-1' : 'p-2'}
         `}
         onClick={onClick}
-        style={{ minWidth: isZoomedOut ? '60px' : '120px' }}
+        style={cardStyle}
         data-person-id={person.id}
         title={tooltipText}
       >

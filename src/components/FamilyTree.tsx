@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { FamilyNode, Person } from "../types/family";
 import PersonCard from "./PersonCard";
@@ -8,6 +8,7 @@ import UpcomingEventsModal from "./UpcomingEventsModal";
 import StatisticsModal from "./StatisticsModal";
 import ZoomControls from "./ZoomControls";
 import { useTreeLayout } from "../hooks/useTreeLayout";
+import { buildBranchColorMap } from "../utils/branchColors";
 
 interface FamilyTreeProps {
   rootNode: FamilyNode;
@@ -36,6 +37,7 @@ export default function FamilyTree({
 }: FamilyTreeProps) {
   const { generations, positions, spousePositions, bounds } =
     useTreeLayout(rootNode);
+  const branchColorMap = useMemo(() => buildBranchColorMap(rootNode), [rootNode]);
   const scale = 0.75;
   const [zoomLevel, setZoomLevel] = useState(scale);
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
@@ -252,6 +254,7 @@ export default function FamilyTree({
                               person={node}
                               onClick={() => handlePersonClick(node)}
                               zoomLevel={zoomLevel}
+                              branchColor={branchColorMap.get(node.id) || null}
                             />
                           </div>
 
@@ -269,6 +272,7 @@ export default function FamilyTree({
                                 person={node.spouse}
                                 onClick={() => handlePersonClick(node.spouse!)}
                                 zoomLevel={zoomLevel}
+                                branchColor={branchColorMap.get(node.spouse.id) || null}
                               />
                             </div>
                           )}
