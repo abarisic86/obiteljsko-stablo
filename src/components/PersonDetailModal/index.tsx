@@ -71,7 +71,7 @@ export default function PersonDetailModal({
           <PersonInfoSection person={person} />
 
           {/* Spouse */}
-          {spouse && <SpouseCard spouse={spouse} />}
+          {spouse && <SpouseCard spouse={spouse} onSpouseClick={onPersonClick} />}
 
           {/* Family Links */}
           <FamilyLinks parent={parent} children={children} onPersonClick={onPersonClick} />
