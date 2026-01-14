@@ -1,6 +1,7 @@
 import { Person } from '../../types/family'
 import { formatDateHR, isBirthdaySoon } from '../../utils/personUtils'
 import { addToCalendar, getGoogleMapsUrl } from '../../utils/calendarUtils'
+import { downloadVCard } from '../../utils/vcardUtils'
 import PersonPhoto from './PersonPhoto'
 
 interface SpouseCardProps {
@@ -31,11 +32,22 @@ export default function SpouseCard({ spouse }: SpouseCardProps) {
         <PersonPhoto person={spouse} size="small" />
         
         {/* Spouse Name */}
-        <p className="text-lg font-semibold text-gray-800 text-center">
-          {spouse.name}
-          {spouse.deceasedDate && <span className="ml-1 text-gray-500">✝</span>}
-          {spouseBirthdaySoon && !spouse.deceasedDate && <span className="ml-1" title="Birthday soon!">🎂</span>}
-        </p>
+        <div className="flex items-center justify-center gap-2">
+          <p className="text-lg font-semibold text-gray-800">
+            {spouse.name}
+            {spouse.deceasedDate && <span className="ml-1 text-gray-500">✝</span>}
+            {spouseBirthdaySoon && !spouse.deceasedDate && <span className="ml-1" title="Birthday soon!">🎂</span>}
+          </p>
+          <button
+            onClick={() => downloadVCard(spouse)}
+            className="text-gray-500 hover:text-gray-700"
+            title="Spremi kontakt"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </button>
+        </div>
         
         {/* Spouse Birthdate */}
         {spouse.birthdate && (
