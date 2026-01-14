@@ -2,7 +2,7 @@ id,name,birthdate,photo_url,parent_id,spouse_id,street_address,phone_number,dece
 p01,Mirko Barišić,1915-01-13,,,p02,Rakitno,,1991-01-02,0
 p02,Iva Barišić,1922-10-22,,,p01,Rakitno,,1995-12-17,0
 p13,Ilija Barišić,1945-01-01,,p01,p14,,,2002-10-17,1
-p60,Ilija Pavković,1945-11-26,,,p55,,,2020-12-20,1
+p60,Ilija Pavković,1939-11-26,,,p55,,,2020-12-20,1
 p55,Danica Pavković,1948-02-04,,p01,p60,,+38763502384,,1
 p35,Ivan Jakovljević,1948-02-08,,,p34,,,2021-11-20,1
 p34,Marica (Mardefina) Jakovljević,1951-12-08,,p01,p35,,,,1
@@ -32,7 +32,7 @@ p74,Jozo Pavković,1977-03-22,,p10,,,,1996-05-06,2
 p41,Domagoj Krišto,1978-03-31,,,p40,"Rangarova 2, Zagreb, Hrvatska",,,2
 p75,Marija Bakula,1978-10-07,,p10,p76,"Ulica Tratina 9, Novaki, 10431 Sveta Nedelja",,,2
 p50,Violeta Jakovljević,1979-02-20,,,p49,"Podi, Rakitno, BiH",,,2
-p65,Miroslav (Mićo) Barišić,1979-03-30,,p13,,,,,2
+p65,Miroslav (Mićo) Barišić,1977-03-30,,p13,,"Friedbergerstrasse 8, Friedrichsdorf",+49 172 6935771,,2
 p36,Blaženka Pavina,1979-03-30,/images/p36-blazenka-pavina.jpeg,p34,p37,Ivana Šibla 6,098721038,,2
 p44,Blaženko Jakovljević,1979-03-30,,p34,p45,"Kralja Tomislava 20, Posušje, BiH",,,2
 p76,Josip Bakula,1979-04-24,,,p75,"Ulica Tratina 9, Novaki, 10431 Sveta Nedelja",098510234,,2
@@ -104,3 +104,15 @@ p99,Pavao Galić,2016-03-28,,p73,,,,,3
 p100,Ana Galić,2018-12-15,,p73,,,,,3
 p101,Marija Galić,2023-01-14,,p73,,,,,3
 p102,Toma Čuljak,2013-10-15,,p22,,"Fra Pave šimovića 8, 88240 Posušje",,,3
+p107,Tomislav Barišić,1972-12-22,,p13,p108,"Friedbergerstrasse 6, Friedrichsdorf",+49 172 6156496,,2
+p108,Ljilja Barišić r. Zovko,,,,p107,"Friedbergerstrasse 6, Friedrichsdorf",,,2
+p109,Marija Medić r. Barišić,1975-09-16,,p13,p110,,+49 163 6274038,,2
+p110,Igor Medić,,,,p109,,,,2
+p111,Brigita Filko r. Barišić,1983-06-04,,p13,p112,,+49 178 5532630,,2
+p112,Kristian Filko,,,,p111,,,,2
+p113,Katarina Barišić,2002-10-16,,p107,,"Friedbergerstrasse 6, Friedrichsdorf",,,3
+p114,Paul Barišić,2007-05-06,,p107,,"Friedbergerstrasse 6, Friedrichsdorf",,,3
+p115,Theresa Medić,,,p109,,,,,3
+p116,Viktoria Filko,,,p111,,,,,3
+p117,Rafael Filko,,,p111,,,,,3
+p118,Leonardo Filko,,,p111,,,,,3
