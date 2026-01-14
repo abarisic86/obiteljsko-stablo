@@ -14,6 +14,7 @@ export interface Person {
 export interface FamilyNode extends Person {
   children: FamilyNode[];
   spouse?: Person;
+  spouseParents?: FamilyNode; // Parent tree of the spouse (for merged family display)
 }
 
 export interface PersonPosition {

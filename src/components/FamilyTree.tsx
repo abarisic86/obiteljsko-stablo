@@ -35,7 +35,7 @@ export default function FamilyTree({
   onZoomChange,
   onQuizClick,
 }: FamilyTreeProps) {
-  const { generations, positions, spousePositions, bounds } =
+  const { generations, positions, spousePositions, spouseParentConnections, bounds } =
     useTreeLayout(rootNode);
   const branchColorMap = useMemo(() => buildBranchColorMap(rootNode), [rootNode]);
   const scale = 0.75;
@@ -223,6 +223,7 @@ export default function FamilyTree({
                     generations={generations}
                     positions={positions}
                     spousePositions={spousePositions}
+                    spouseParentConnections={spouseParentConnections}
                     zoomLevel={zoomLevel}
                   />
 

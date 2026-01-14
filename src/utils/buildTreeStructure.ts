@@ -83,7 +83,8 @@ function buildNode(
   person: Person,
   personMap: Map<string, Person>,
   spouseMap: Map<string, Person>,
-  visited: Set<string>
+  visited: Set<string>,
+  includeSpouseParents: boolean = true
 ): FamilyNode {
   if (!person || !person.id) {
     throw new Error('Invalid person object passed to buildNode')
@@ -103,7 +104,7 @@ function buildNode(
   const children: FamilyNode[] = []
   personMap.forEach((p) => {
     if (p.parentId === person.id) {
-      children.push(buildNode(p, personMap, spouseMap, visited))
+      children.push(buildNode(p, personMap, spouseMap, visited, includeSpouseParents))
     }
   })
 
@@ -124,6 +125,15 @@ function buildNode(
   const spouse = spouseMap.get(person.id)
   if (spouse) {
     node.spouse = spouse
+
+    // Build spouse's parent tree if spouse has parents not yet visited
+    if (includeSpouseParents && spouse.parentId && !visited.has(spouse.parentId)) {
+      const spouseParent = personMap.get(spouse.parentId)
+      if (spouseParent) {
+        // Build the spouse's parent tree (but don't recurse into more spouse parents)
+        node.spouseParents = buildNode(spouseParent, personMap, spouseMap, new Set(visited), false)
+      }
+    }
   }
 
   return node

@@ -11,6 +11,7 @@ export function useTreeLayout(rootNode: FamilyNode) {
     const generations: FamilyNode[][] = [];
     const positions = new Map<string, PersonPosition>();
     const spousePositions = new Map<string, PersonPosition>(); // Track spouse positions separately
+    const spouseParentNodes: { node: FamilyNode; genIndex: number; spouseId: string }[] = []; // Track spouse parent trees
 
     // First pass: traverse tree and organize by generation
     function traverse(node: FamilyNode, generation: number) {
@@ -18,6 +19,15 @@ export function useTreeLayout(rootNode: FamilyNode) {
         generations[generation] = [];
       }
       generations[generation].push(node);
+
+      // Track spouse parents for later positioning
+      if (node.spouseParents) {
+        spouseParentNodes.push({
+          node: node.spouseParents,
+          genIndex: Math.max(0, generation - 1), // Parent's generation (one level up)
+          spouseId: node.spouse!.id,
+        });
+      }
 
       // Process children
       node.children.forEach((child) => {
@@ -157,6 +167,43 @@ export function useTreeLayout(rootNode: FamilyNode) {
     // We'll center it later, so start at 0
     positionSubtree(rootNode, 0, 0);
 
+    // Position spouse parent trees
+    spouseParentNodes.forEach(({ node: spouseParentNode, genIndex, spouseId }) => {
+      const spousePos = spousePositions.get(spouseId);
+      if (!spousePos) return;
+
+      // Position spouse parent at the same X as other nodes in that generation
+      // but vertically aligned below the spouse
+      const baseX = genIndex * COLUMN_SPACING;
+      const spouseParentY = spousePos.y + CARD_HEIGHT + ROW_SPACING;
+
+      // Add to generations array for rendering
+      if (!generations[genIndex]) {
+        generations[genIndex] = [];
+      }
+      generations[genIndex].push(spouseParentNode);
+
+      // Position the spouse parent node
+      positions.set(spouseParentNode.id, {
+        id: spouseParentNode.id,
+        x: baseX,
+        y: spouseParentY,
+        width: CARD_WIDTH,
+        height: CARD_HEIGHT,
+      });
+
+      // Position spouse parent's spouse if exists
+      if (spouseParentNode.spouse) {
+        spousePositions.set(spouseParentNode.spouse.id, {
+          id: spouseParentNode.spouse.id,
+          x: baseX,
+          y: spouseParentY + CARD_HEIGHT,
+          width: CARD_WIDTH,
+          height: CARD_HEIGHT,
+        });
+      }
+    });
+
     // Sort each generation by Y position so they render in the correct order
     generations.forEach((genNodes) => {
       genNodes.sort((a, b) => {
@@ -230,10 +277,18 @@ export function useTreeLayout(rootNode: FamilyNode) {
       adjMaxY = Math.max(adjMaxY, pos.y + pos.height);
     });
 
+    // Build spouse parent connections for line drawing
+    const spouseParentConnections = spouseParentNodes.map(({ node, spouseId }) => ({
+      parentId: node.id,
+      spouseParentSpouseId: node.spouse?.id,
+      childId: spouseId,
+    }));
+
     return {
       generations,
       positions: adjustedPositions,
       spousePositions: adjustedSpousePositions,
+      spouseParentConnections,
       bounds: {
         width: adjMaxX - adjMinX + COLUMN_SPACING,
         height: adjMaxY - adjMinY + ROW_SPACING / 2,
