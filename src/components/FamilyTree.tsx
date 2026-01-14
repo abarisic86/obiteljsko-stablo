@@ -72,7 +72,7 @@ export default function FamilyTree({
     onZoomChange?.(zoomLevel);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Find selected person data
+  // Find selected person data (including spouses)
   useEffect(() => {
     if (!selectedPersonId) {
       setSelectedPerson(null);
@@ -81,6 +81,13 @@ export default function FamilyTree({
 
     function findPerson(node: FamilyNode): Person | null {
       if (node.id === selectedPersonId) return node;
+      // Also check spouse
+      if (node.spouse?.id === selectedPersonId) return node.spouse;
+      // Check spouseParents tree
+      if (node.spouseParents) {
+        const foundInSpouseParents = findPerson(node.spouseParents);
+        if (foundInSpouseParents) return foundInSpouseParents;
+      }
       for (const child of node.children) {
         const found = findPerson(child);
         if (found) return found;
@@ -89,8 +96,10 @@ export default function FamilyTree({
     }
 
     const person = findPerson(rootNode);
-    setSelectedPerson(person);
-  }, [selectedPersonId, rootNode]);
+    // Also check in flat people array as fallback
+    const personFromArray = person || people.find(p => p.id === selectedPersonId) || null;
+    setSelectedPerson(personFromArray);
+  }, [selectedPersonId, rootNode, people]);
 
   // Handle scroll to person
   useEffect(() => {
@@ -127,15 +136,25 @@ export default function FamilyTree({
   const initialPositionY = (viewportSize.height - searchBarOffset) / 2;
 
   // Find spouse for selected person - check both tree and original people array
+  // Also handle case when selected person is a spouse (find their partner)
   const selectedSpouse = selectedPerson
     ? (() => {
-        // First check if spouse is in the tree
+        // First check if selected person is a main node in the tree
         const nodeInTree = generations
           .flat()
           .find((node) => node.id === selectedPerson.id);
         if (nodeInTree?.spouse) {
           return nodeInTree.spouse;
         }
+
+        // Check if selected person is a spouse of someone in the tree
+        const partnerNode = generations
+          .flat()
+          .find((node) => node.spouse?.id === selectedPerson.id);
+        if (partnerNode) {
+          return partnerNode as Person;
+        }
+
         // If not in tree, check original people array
         if (selectedPerson.spouseId) {
           const spouse = people.find((p) => p.id === selectedPerson.spouseId);
