@@ -6,7 +6,6 @@ import ConnectionLines from "./ConnectionLines";
 import PersonDetailModal from "./PersonDetailModal";
 import UpcomingEventsModal from "./UpcomingEventsModal";
 import StatisticsModal from "./StatisticsModal";
-import LocationMapModal from "./LocationMapModal";
 import ZoomControls from "./ZoomControls";
 import { useTreeLayout } from "../hooks/useTreeLayout";
 import { buildBranchColorMap } from "../utils/branchColors";
@@ -47,7 +46,6 @@ export default function FamilyTree({
   >(null);
   const [showEventsModal, setShowEventsModal] = useState(false);
   const [showStatisticsModal, setShowStatisticsModal] = useState(false);
-  const [showMapModal, setShowMapModal] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const transformControlsRef = useRef<{
     zoomIn: () => void;
@@ -293,7 +291,6 @@ export default function FamilyTree({
                 onQuizClick={onQuizClick}
                 onEventsClick={() => setShowEventsModal(true)}
                 onStatisticsClick={() => setShowStatisticsModal(true)}
-                onMapClick={() => setShowMapModal(true)}
               />
             </>
           );
@@ -326,12 +323,6 @@ export default function FamilyTree({
           onClose={() => setShowStatisticsModal(false)}
         />
       )}
-
-      {/* Location Map Modal */}
-      <LocationMapModal
-        isOpen={showMapModal}
-        onClose={() => setShowMapModal(false)}
-      />
     </div>
   );
 }
