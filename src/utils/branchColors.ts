@@ -15,19 +15,27 @@ const BASE_COLORS = [
 
 /**
  * Builds a map of person IDs to their branch indices.
- * Traverses from root down, assigning branch indices to level 1 children and their descendants.
+ * Assigns branch indices based on generation 1 nodes (the main family branches).
  */
 function buildBranchIndexMap(rootNode: FamilyNode): Map<string, number> {
   const branchMap = new Map<string, number>()
 
-  // Root has no branch index
-  branchMap.set(rootNode.id, -1)
-  if (rootNode.spouse) {
-    branchMap.set(rootNode.spouse.id, -1)
+  // Find all generation 1 nodes - these are the main branches
+  const generation1Nodes: FamilyNode[] = []
+
+  function findGeneration1(node: FamilyNode) {
+    if (node.generation === 1) {
+      generation1Nodes.push(node)
+    } else if (node.generation < 1) {
+      // Continue searching in children
+      node.children.forEach(child => findGeneration1(child))
+    }
   }
 
-  // Traverse each level 1 branch and assign indices
-  rootNode.children.forEach((level1Child, branchIndex) => {
+  findGeneration1(rootNode)
+
+  // Assign branch indices to generation 1 nodes and their descendants
+  generation1Nodes.forEach((gen1Node, branchIndex) => {
     function assignBranchToDescendants(node: FamilyNode, branchIdx: number) {
       branchMap.set(node.id, branchIdx)
       if (node.spouse) {
@@ -36,8 +44,25 @@ function buildBranchIndexMap(rootNode: FamilyNode): Map<string, number> {
       node.children.forEach(child => assignBranchToDescendants(child, branchIdx))
     }
 
-    assignBranchToDescendants(level1Child, branchIndex)
+    assignBranchToDescendants(gen1Node, branchIndex)
   })
+
+  // Mark generation 0 and below as no branch color
+  function markAncestors(node: FamilyNode) {
+    if (node.generation <= 0) {
+      branchMap.set(node.id, -1)
+      if (node.spouse) {
+        branchMap.set(node.spouse.id, -1)
+      }
+      node.children.forEach(child => {
+        if (child.generation <= 0) {
+          markAncestors(child)
+        }
+      })
+    }
+  }
+
+  markAncestors(rootNode)
 
   return branchMap
 }
@@ -53,13 +78,17 @@ export function getBranchColor(branchIndex: number, generation: number): string 
   }
 
   const baseColor = BASE_COLORS[branchIndex % BASE_COLORS.length]
-  
+
   // Calculate lightness based on generation depth
+  // Negative generations (ancestors): darker
   // Generation 1: base lightness (75%)
   // Generation 2: lighter (+5% = 80%)
   // Generation 3+: even lighter (+10% = 85%, capped at 95%)
   let lightness = baseColor.l
-  if (generation === 1) {
+  if (generation < 0) {
+    // Ancestors get slightly darker colors
+    lightness = Math.max(baseColor.l - 10, 50)
+  } else if (generation === 1) {
     lightness = baseColor.l
   } else if (generation === 2) {
     lightness = Math.min(baseColor.l + 5, 95)
@@ -78,20 +107,38 @@ export function buildBranchColorMap(rootNode: FamilyNode): Map<string, string | 
   const colorMap = new Map<string, string | null>()
   const branchIndexMap = buildBranchIndexMap(rootNode)
 
-  function traverse(node: FamilyNode) {
-    const branchIndex = branchIndexMap.get(node.id) ?? -1
+  function traverse(node: FamilyNode, inheritedBranchIndex?: number) {
+    const branchIndex = branchIndexMap.get(node.id) ?? inheritedBranchIndex ?? -1
     const color = getBranchColor(branchIndex, node.generation)
     colorMap.set(node.id, color)
 
     // Also set color for spouse if exists
     if (node.spouse) {
-      const spouseBranchIndex = branchIndexMap.get(node.spouse.id) ?? -1
+      const spouseBranchIndex = branchIndexMap.get(node.spouse.id) ?? branchIndex
       const spouseColor = getBranchColor(spouseBranchIndex, node.spouse.generation)
       colorMap.set(node.spouse.id, spouseColor)
     }
 
+    // Traverse spouse parents (ancestors of spouse)
+    if (node.spouseParents) {
+      traverseSpouseParents(node.spouseParents, branchIndex)
+    }
+
     // Traverse children
     node.children.forEach(child => traverse(child))
+  }
+
+  function traverseSpouseParents(node: FamilyNode, branchIndex: number) {
+    const color = getBranchColor(branchIndex, node.generation)
+    colorMap.set(node.id, color)
+
+    if (node.spouse) {
+      const spouseColor = getBranchColor(branchIndex, node.spouse.generation)
+      colorMap.set(node.spouse.id, spouseColor)
+    }
+
+    // Recursively traverse if there are more ancestors
+    node.children.forEach(child => traverseSpouseParents(child, branchIndex))
   }
 
   traverse(rootNode)
