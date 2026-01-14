@@ -6,10 +6,9 @@ import PersonPhoto from './PersonPhoto'
 
 interface SpouseCardProps {
   spouse: Person
-  onSpouseClick?: (spouseId: string) => void
 }
 
-export default function SpouseCard({ spouse, onSpouseClick }: SpouseCardProps) {
+export default function SpouseCard({ spouse }: SpouseCardProps) {
   const spouseBirthdaySoon = isBirthdaySoon(spouse.birthdate, spouse.deceasedDate)
 
   const handleAddressClick = (e: React.MouseEvent<HTMLAnchorElement>, address: string) => {
@@ -23,21 +22,12 @@ export default function SpouseCard({ spouse, onSpouseClick }: SpouseCardProps) {
     addToCalendar(name, birthdate)
   }
 
-  const handleCardClick = () => {
-    if (onSpouseClick) {
-      onSpouseClick(spouse.id)
-    }
-  }
-
   return (
     <div>
       <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">
         Supružnik
       </h3>
-      <div
-        className={`space-y-3 border border-gray-300 rounded-lg p-4 bg-gray-50 ${onSpouseClick ? 'cursor-pointer hover:bg-gray-100 transition-colors' : ''}`}
-        onClick={handleCardClick}
-      >
+      <div className="space-y-3 border border-gray-300 rounded-lg p-4 bg-gray-50">
         {/* Spouse Photo */}
         <PersonPhoto person={spouse} size="small" />
         
