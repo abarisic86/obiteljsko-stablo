@@ -21,9 +21,9 @@
       "content": "S prvom ženom Delfom r. Miličević, Jure je imao troje djece:",
       "people": [
         { "name": "Delfa Barišić r. Miličević", "birth": null, "death": null, "note": "prva žena", "biography": null },
-        { "name": "Jure Barišić", "birth": "1894", "death": "1972", "note": null, "biography": null },
-        { "name": "Matija Barišić", "birth": "1898", "death": "1976", "note": "udata Barbarić", "biography": null },
-        { "name": "Ilija Barišić", "birth": "1900", "death": "1942", "note": null, "biography": "Bio je poljoprivrednik. Godine 1942. ubijen je u Modrušu (općina Škola) u obiteljskoj kući." }
+        { "name": "Jure Barišić", "birth": "1894", "death": "1972", "note": null, "biography": "Imao je jednu kceru i 6 djece: Dana, Slavko, Iva, Mara, Ante, Matija, Ljubica. Antini potomci zive kuci ispod rodne kuce Šarinovaca: Zora, Mira, Slavko, Ruzica, Jure" },
+        { "name": "Matija Barišić", "birth": "1898", "death": "1976", "note": "udata Barbarić", "biography": "Matija je imala jednu kcer i 4 sina." },
+        { "name": "Ilija Barišić", "birth": "1900", "death": "1942", "note": null, "biography": "Bio je poljoprivrednik. Godine 1942. ubijen je u Modruši (općina Škola) u obiteljskoj kući." }
       ]
     },
     {
@@ -31,8 +31,8 @@
       "content": "S drugom ženom Janjom r. Tokić, Jure je imao troje djece:",
       "people": [
         { "name": "Janja Barišić r. Tokić", "birth": null, "death": "1915", "note": "druga žena, prabaka", "biography": null },
-        { "name": "Petar Barišić", "birth": "1912", "death": "2001", "note": null, "biography": null },
-        { "name": "Slavko Barišić", "birth": "1913", "death": "1924", "note": null, "biography": null },
+        { "name": "Petar Barišić", "birth": "1912", "death": "2001", "note": null, "biography": "Imao suprugu Šteficu djevojački Fastner. Rodjena 1915. a umrla 2000. Imao je jedno dijete Margitu rodjenu 1940. Margita je imala dvoje djece: Arijanu i Ivanu. Ivan" },
+        { "name": "Slavko Barišić", "birth": "1913", "death": "1924", "note": null, "biography": "Slavko je umro mlad od neke zarazne bolesti." },
         { "name": "Mirko Barišić", "birth": "1915", "death": "1991", "note": "naš djed", "biography": null }
       ]
     }
