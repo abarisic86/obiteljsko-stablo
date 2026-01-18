@@ -2,6 +2,7 @@ import { useState } from "react";
 import FamilyTree from "./components/FamilyTree";
 import SearchBar from "./components/SearchBar";
 import QuizModal from "./components/QuizModal";
+import HistoryBox from "./components/HistoryBox";
 import { useFamilyData } from "./hooks/useFamilyData";
 import { Person } from "./types/family";
 
@@ -100,6 +101,7 @@ function App() {
         onClose={() => setIsQuizOpen(false)}
         people={people}
       />
+      <HistoryBox />
     </div>
   );
 }

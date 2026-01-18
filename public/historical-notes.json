@@ -1,0 +1,26 @@
+{
+  "title": "Povijest obitelji Barišić",
+  "subtitle": "Generacije prije Mirka i Ive",
+  "sections": [
+    {
+      "title": "Jure (Šare) Barišić i Janja",
+      "content": "Moj pradjed Jure, poznat kao Šare, rođen je 1869. godine, a umro 1924. Njegova supruga Janja umrla je 1915. godine.",
+      "people": [
+        { "name": "Jure (Šare) Barišić", "birth": "1869", "death": "1924", "note": "pradjed" },
+        { "name": "Janja Barišić", "birth": null, "death": "1915", "note": "prabaka" }
+      ]
+    },
+    {
+      "title": "Djeca Jure (Šare) i Janje",
+      "content": "Šare i Janja su imali šestero djece:",
+      "people": [
+        { "name": "Jure Barišić", "birth": "1894", "death": "1972", "note": null },
+        { "name": "Matija Barišić", "birth": "1898", "death": "1976", "note": "udata Barbarić" },
+        { "name": "Ilija Barišić", "birth": "1900", "death": "1942", "note": "s prvom ženom, te s Janjom" },
+        { "name": "Petar Barišić", "birth": "1912", "death": "2001", "note": null },
+        { "name": "Slavko Barišić", "birth": "1913", "death": "1924", "note": null },
+        { "name": "Mirko Barišić", "birth": "1915", "death": "1991", "note": "naš djed" }
+      ]
+    }
+  ]
+}
