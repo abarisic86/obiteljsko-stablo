@@ -1,10 +1,17 @@
 {
   "title": "Povijest obitelji Barišić",
-  "subtitle": "Generacije prije Mirka i Ive",
+  "subtitle": "Generacije prije Mirka i Ive — Tubinovići",
   "sections": [
     {
+      "title": "Ante (Tubin) Barišić",
+      "content": "Otac Jure (Šare) Barišića zvao se Ante, poznat kao Tubin. Po njemu su se potomci ove loze nazivali Tubinovići.",
+      "people": [
+        { "name": "Ante (Tubin) Barišić", "birth": null, "death": null, "note": "čukundjed, rodonačelnik Tubinovića" }
+      ]
+    },
+    {
       "title": "Jure (Šare) Barišić i Janja",
-      "content": "Moj pradjed Jure, poznat kao Šare, rođen je 1869. godine, a umro 1924. Njegova supruga Janja umrla je 1915. godine.",
+      "content": "Sin Ante Tubina. Jure, poznat kao Šare, rođen je 1869. godine, a umro 1924. Njegova supruga Janja umrla je 1915. godine.",
       "people": [
         { "name": "Jure (Šare) Barišić", "birth": "1869", "death": "1924", "note": "pradjed" },
         { "name": "Janja Barišić", "birth": null, "death": "1915", "note": "prabaka" }
