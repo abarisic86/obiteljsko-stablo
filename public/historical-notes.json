@@ -6,34 +6,34 @@
       "title": "Ante (Tubin) Barišić",
       "content": "Otac Jure (Šare) Barišića zvao se Ante, poznat kao Tubin. Po njemu su se potomci ove loze nazivali Tubinovići.",
       "people": [
-        { "name": "Ante (Tubin) Barišić", "birth": null, "death": null, "note": "čukundjed, rodonačelnik Tubinovića" }
+        { "name": "Ante (Tubin) Barišić", "birth": null, "death": null, "note": "čukundjed, rodonačelnik Tubinovića", "biography": null }
       ]
     },
     {
       "title": "Jure (Šare) Barišić",
       "content": "Sin Ante Tubina. Jure, poznat kao Šare, rođen je 1869. godine, a umro 1924. Imao je dvije žene i šestero djece.",
       "people": [
-        { "name": "Jure (Šare) Barišić", "birth": "1869", "death": "1924", "note": "pradjed" }
+        { "name": "Jure (Šare) Barišić", "birth": "1869", "death": "1924", "note": "pradjed", "biography": null }
       ]
     },
     {
       "title": "Prva žena: Delfa Barišić r. Miličević",
       "content": "S prvom ženom Delfom r. Miličević, Jure je imao troje djece:",
       "people": [
-        { "name": "Delfa Barišić r. Miličević", "birth": null, "death": null, "note": "prva žena" },
-        { "name": "Jure Barišić", "birth": "1894", "death": "1972", "note": null },
-        { "name": "Matija Barišić", "birth": "1898", "death": "1976", "note": "udata Barbarić" },
-        { "name": "Ilija Barišić", "birth": "1900", "death": "1942", "note": null }
+        { "name": "Delfa Barišić r. Miličević", "birth": null, "death": null, "note": "prva žena", "biography": null },
+        { "name": "Jure Barišić", "birth": "1894", "death": "1972", "note": null, "biography": null },
+        { "name": "Matija Barišić", "birth": "1898", "death": "1976", "note": "udata Barbarić", "biography": null },
+        { "name": "Ilija Barišić", "birth": "1900", "death": "1942", "note": null, "biography": null }
       ]
     },
     {
       "title": "Druga žena: Janja Barišić r. Tokić",
       "content": "S drugom ženom Janjom r. Tokić, Jure je imao troje djece:",
       "people": [
-        { "name": "Janja Barišić r. Tokić", "birth": null, "death": "1915", "note": "druga žena, prabaka" },
-        { "name": "Petar Barišić", "birth": "1912", "death": "2001", "note": null },
-        { "name": "Slavko Barišić", "birth": "1913", "death": "1924", "note": null },
-        { "name": "Mirko Barišić", "birth": "1915", "death": "1991", "note": "naš djed" }
+        { "name": "Janja Barišić r. Tokić", "birth": null, "death": "1915", "note": "druga žena, prabaka", "biography": null },
+        { "name": "Petar Barišić", "birth": "1912", "death": "2001", "note": null, "biography": null },
+        { "name": "Slavko Barišić", "birth": "1913", "death": "1924", "note": null, "biography": null },
+        { "name": "Mirko Barišić", "birth": "1915", "death": "1991", "note": "naš djed", "biography": null }
       ]
     }
   ]

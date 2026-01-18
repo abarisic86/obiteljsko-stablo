@@ -5,6 +5,7 @@ interface Person {
   birth: string | null;
   death: string | null;
   note: string | null;
+  biography: string | null;
 }
 
 interface Section {
@@ -93,22 +94,29 @@ export default function HistoryBox() {
                       key={pidx}
                       className="bg-white rounded px-3 py-2 text-sm border border-amber-200"
                     >
-                      <span className="font-medium text-amber-900">
-                        {person.name}
-                      </span>
-                      <span className="text-gray-600 ml-2">
-                        {person.birth && person.death
-                          ? `(${person.birth} - ${person.death})`
-                          : person.death
-                          ? `(† ${person.death})`
-                          : person.birth
-                          ? `(${person.birth})`
-                          : ""}
-                      </span>
-                      {person.note && (
-                        <span className="text-amber-600 ml-2 italic">
-                          — {person.note}
+                      <div>
+                        <span className="font-medium text-amber-900">
+                          {person.name}
                         </span>
+                        <span className="text-gray-600 ml-2">
+                          {person.birth && person.death
+                            ? `(${person.birth} - ${person.death})`
+                            : person.death
+                            ? `(† ${person.death})`
+                            : person.birth
+                            ? `(${person.birth})`
+                            : ""}
+                        </span>
+                        {person.note && (
+                          <span className="text-amber-600 ml-2 italic">
+                            — {person.note}
+                          </span>
+                        )}
+                      </div>
+                      {person.biography && (
+                        <p className="text-gray-600 mt-1 pl-2 border-l-2 border-amber-300">
+                          {person.biography}
+                        </p>
                       )}
                     </div>
                   ))}
